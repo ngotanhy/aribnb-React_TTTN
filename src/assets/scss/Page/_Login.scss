@@ -115,6 +115,11 @@
                 font-size: 1.5rem;
                 background: transparent;
                 color: #FDFCFD;
+                outline: none;
+                border: none;
+                :focus {
+                    outline: none;
+                }                
             }
     
             &__submit {

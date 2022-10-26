@@ -12,8 +12,8 @@ export default defineConfig({
     host: true,
     open: false,
   },
-  // define: {
-  //   "global": {},
-  // },
+  define: {
+    "global": {},
+  },
   // basis:'/capstone_react_shoes/'
 })
