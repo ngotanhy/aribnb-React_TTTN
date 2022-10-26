@@ -14,8 +14,7 @@ import {
 
 
 interface userLogin {
-  user: any;
-  // user: string;
+  user: string|number;
   id?: number;
   name?: string;
   email?: string;

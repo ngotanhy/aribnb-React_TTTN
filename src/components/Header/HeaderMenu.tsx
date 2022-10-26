@@ -45,7 +45,7 @@ export default function HeaderMenu({}: Props) {
                       window.location.reload();
                     }}
                     className="text-base font-medium m-0"
-                  >{`Hello ${userLogin.user.name}`}</p>
+                  >{`Hello ${userLogin.name}`}</p>
                   <p
                     onClick={() => navigate("/history")}
                     className="text-base  mt-3"
@@ -101,7 +101,7 @@ export default function HeaderMenu({}: Props) {
           label: (
             <p
               onClick={() => {
-                if (userLogin?.user.role === "ADMIN") {
+                if (userLogin?.role === "ADMIN") {
                   navigate("/register");
                 } else {
                   navigate("/");

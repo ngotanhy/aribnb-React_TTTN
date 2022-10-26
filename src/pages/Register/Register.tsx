@@ -10,17 +10,13 @@ import classnames from "classnames";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import dayjs from "dayjs";
 import classNames from "classnames";
-import { AppDispatch } from "../../Redux/ConfigStore";
-import { postSignupUser } from "../../Redux/Reducers/UserReducer";
+import { AppDispatch } from "../../redux/configStore";
+import { postSignupUser } from "../../redux/Reducers/userReducer";
 
-
-
-type Props = {
-
-};
+type Props = {};
 
 interface Register {
-  id?: number;
+  id?: string | number;
   name?: string;
   email?: string;
   password?: string;
@@ -29,37 +25,30 @@ interface Register {
   gender?: boolean;
   role?: string;
 }
+
 export default function Register({}: Props) {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const [isShowPass, setIsShowPass] = useState(false);
-
-//   const { isExitEmail, handleCheckEmail } = useCheckEmailExit();
   const [day, setDay] = useState("1/1/2022");
 
-//   useEffect(() => {
-//     dispatch(getUserList());
-//   }, []);
-
-
-
+  //   useEffect(() => {
+  //     dispatch(getUserList());
+  //   }, []);
 
   const schema = object({
-    email: 
-    string()
+    email: string()
       .required("Email không được để trống")
       .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, {
         message: "Email phải có định dạng test@gmail.com",
       }),
-    password: 
-        string()
+    password: string()
       .required("Mật khẩu không được để trống")
       .matches(/(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,50})$/g, {
         message:
           "Mật khẩu tối thiểu 8 kí tự , gồm ít nhất 1 chữ cái , 1 số , không kí tự đặc biệt",
       }),
-    name: 
-    string()
+    name: string()
       .required("Tên không được để trống")
       .matches(
         /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/,
@@ -67,8 +56,7 @@ export default function Register({}: Props) {
           message: "Tên sai định dạng",
         }
       ),
-    phone: 
-    string()
+    phone: string()
       .required("Số điện thoại không được để trống")
       .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, {
         message: "Số điện thoại không đúng định dạng",
@@ -77,7 +65,6 @@ export default function Register({}: Props) {
     gender: boolean().required("Giới tính không được để trống"),
   });
 
-  
   const {
     register,
     handleSubmit,
@@ -86,26 +73,17 @@ export default function Register({}: Props) {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
-  const onSubmit = handleSubmit((valuse) => {
-    
-    console.log(valuse);
-    const action = postSignupUser(valuse);
+
+  const onSubmit = handleSubmit((values:any) => {
+    console.log(values);
+    const action = postSignupUser(values);
     dispatch(action);
-
   });
-
-
 
   return (
     <form
-      id="form" onSubmit={onSubmit}
-    //   onSubmit={handleSubmit((value) => {
-    //     const thongTinDangKy = { ...value, birthday: day };
-
-    //     dispatch(postDangKy(thongTinDangKy));
-    //     document.getElementById("form").reset();
-    //     // showModal()
-    //   })}
+      id="form"
+      onSubmit={onSubmit}
       style={{
         backgroundImage:
           'linear-gradient(to bottom, rgba(255,255,255,0.2) 10%, rgba(255,255,255,0.2)),url("https://img.thuthuatphanmem.vn/uploads/2018/10/03/anh-bai-bien-dep-hoang-so_111547687.jpeg")',
@@ -134,7 +112,7 @@ export default function Register({}: Props) {
               </div>
               <div className="h-24">
                 <input
-                //   onInput={handleCheckEmail}
+                  //   onInput={handleCheckEmail}
                   {...register("email")}
                   type="text"
                   className="block border border-grey-light w-full p-3 rounded mb-0"
@@ -218,8 +196,8 @@ export default function Register({}: Props) {
                   // type=""
                   className="block border border-grey-light w-full p-3 rounded mb-0"
                 >
-                  <option value={'true'}>Nam</option>
-                  <option value={'false'}>Nữ</option>
+                  <option value={"true"}>Nam</option>
+                  <option value={"false"}>Nữ</option>
                 </select>
                 {errors.gender && (
                   <p className="m-0 text-red-500 text-md italic text-left mt-2">
