@@ -14,6 +14,7 @@ import {
 
 
 interface userLogin {
+  user: any;
   // user: string;
   id?: number;
   name?: string;

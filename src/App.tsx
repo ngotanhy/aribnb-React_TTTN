@@ -20,9 +20,10 @@ import Login from "./pages/Login/Login";
 import DashBoard from "./pages/AdminPages/Dashboard/DashBoard";
 import DetailPages from "./pages/DetailPages/DetailPages";
 import Register from "./pages/Register/Register";
-import QuanLiNguoiDung from "./pages/AdminPages/TestPage/TestPage";
+import QuanLiNguoiDung from "./pages/AdminPages/TestPage/UserManage";
 import RoomManagement from "./pages/AdminPages/TestPage/RoomManage";
 import HomeTemplate from "./templates/HomeTemplate";
+import UserManagement from "./pages/AdminPages/TestPage/UserManage";
 
 type Props = {};
 
@@ -45,7 +46,7 @@ export default function App({}: Props) {
             <Route path="/register" element={<Register />} />
 
             {/* Testing page admin  */}
-            <Route path="/quanly" element={<QuanLiNguoiDung />} />
+            <Route path="/userAdmin" element={<UserManagement />} />
             <Route path="/roomAdmin" element={<RoomManagement />} />
           <Route path="/admin/dashboard" element={<DashBoard />}></Route>
         </Routes>
