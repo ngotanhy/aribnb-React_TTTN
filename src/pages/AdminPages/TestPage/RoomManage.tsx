@@ -9,8 +9,8 @@ import {
 import moment from "moment";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../Redux/ConfigStore"
-import { getRoomApi } from "../../../Redux/Reducers/RoomReducer";
+import { AppDispatch, RootState } from "../../../redux/configStore"
+import { getRoomApi } from "../../../redux/Reducers/roomReducer";
 // import { deleteRoomAction } from "../../store/reducers/roomsListReducer";
 // import { roomDetailsActions } from "../../store/reducers/roomDetailsReducer";
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 
 import type { ColumnsType, TableProps } from "antd/es/table";
-import { AppDispatch, RootState } from "../../../Redux/ConfigStore"
+import { AppDispatch, RootState } from "../../../redux/configStore"
 
 import { BsSearch } from "react-icons/bs";
 // import "./QuanLiNguoiDung.scss";
@@ -12,7 +12,7 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 // import { useForm } from 'react-hook-form';
 import { useFormik, ErrorMessage, Formik, Field } from "formik";
-import userAdminReducer, { getAllUserAction, getUserApi } from "../../../Redux/Reducers/UserAdminReducer";
+import userAdminReducer, { getAllUserAction, getUserApi } from "../../../redux/Reducers/userAdminReducer";
 
 
 type Props = {

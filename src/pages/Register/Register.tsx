@@ -10,8 +10,8 @@ import classnames from "classnames";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import dayjs from "dayjs";
 import classNames from "classnames";
-import { AppDispatch } from "../../Redux/ConfigStore";
-import { postSignupUser } from "../../Redux/Reducers/UserReducer";
+import { AppDispatch } from "../../redux/configStore";
+import { postSignupUser } from "../../redux/Reducers/userReducer";
 
 
 
@@ -86,7 +86,7 @@ export default function Register({}: Props) {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
-  const onSubmit = handleSubmit((valuse) => {
+  const onSubmit = handleSubmit((valuse:any) => {
     
     console.log(valuse);
     const action = postSignupUser(valuse);
