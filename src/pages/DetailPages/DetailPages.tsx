@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../Hooks/HooksRedux";
 import { getDetailRoomId } from "../../redux/Reducers/roomReducer";
 import DetailImage from "./DetailImage/DetailImage";
 import DetailInfoRoom from "./DetailInfo/DetailInfo";
+import DetailMap from "./DetailMap/DetailMap";
 import DetailReview from "./DetailReview/DetailReview";
 import DetailTitle from "./DetailTitle/DetailTitle";
 import DetailUser from "./DetaiUser/DetaiUser";
@@ -17,12 +18,12 @@ type QuizParams = {
   id: string;
 };
 export default function DetailPages({}: Props) {
-  const { id } = useParams<QuizParams>();
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    const action = getDetailRoomId(id);
-    dispatch(action);
-  }, []);
+  // const { id } = useParams<QuizParams>();
+  // const dispatch = useAppDispatch();
+  // useEffect(() => {
+  //   const action = getDetailRoomId(id);
+  //   dispatch(action);
+  // }, []);
 
   return (
     <div className="relative">
@@ -32,7 +33,7 @@ export default function DetailPages({}: Props) {
           <DetailTitle />
           <DetailImage />
           <DetailInfoRoom />
-          <DetailReview />
+          <DetailReview  />
           {/* <DetailMap/> */}
           <DetailUser />
           <ModalPopup />

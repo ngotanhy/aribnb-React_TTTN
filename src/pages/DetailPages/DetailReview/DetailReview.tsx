@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { GrFormNext } from "react-icons/gr";
 import { useAppDispatch } from "../../../Hooks/HooksRedux";
+import { getCommentsAllRoom } from "../../../redux/Reducers/commentReducer";
 import { modalPopUp } from "../../../redux/Reducers/openModalReducer";
+import { http } from "../../../utils/setting";
 import PopupReview from "./PopupReview";
 import PopUpTitle from "./PopUpTitle";
 
-type Props = {};
+type Props = {
+  // id: string | undefined;
+};
 
-export default function DetailReview({}: Props) {
+export default function DetailReview({  }: Props) {
   const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   const action = getCommentsAllRoom();
+  //   dispatch(action);
+  // }, []);
+
   return (
     <div className="border-b border-slate-400 pb-5">
       <div className="flex items-center gap-2 font-semibold text-2xl mt-5">
