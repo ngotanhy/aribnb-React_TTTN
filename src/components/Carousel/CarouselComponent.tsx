@@ -26,7 +26,7 @@ const images = [
 export default function CarouselComponent({}: Props) {
   const slider = useRef<CarouselRef>(null);
   return (
-    <div className="relative mt-20">
+    <div className="relative ">
       <button
         className="absolute left-0 font-medium text-3xl"
         style={{ top: "50%", transform: "translateY(-50%)",zIndex:'2' }}
