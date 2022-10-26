@@ -1,0 +1,37 @@
+.carouselHeader{
+    // .slick-arrow {
+        
+    //    &.slick-next{
+    //     right:3% !important;
+    //     top:46%;
+    //     &::before{
+    //         font-size: 50px;
+    //     }
+    //    }
+       
+    //     }
+        .slick-dots-bottom {
+            margin: 0 !important;
+            padding: 0 !important;
+            bottom: 5% !important;
+            li{
+                button {
+                    width:16px !important;
+                    height: 16px !important;
+                    border-radius: 9999px !important;
+                    &::before{
+                        display: none;
+                    }
+                }
+            }
+        }
+    
+        /* Text */
+        .text {
+            text-align: center;
+            vertical-align: middle;
+            line-height: 100px;
+            margin: 0;
+        }
+        
+}
