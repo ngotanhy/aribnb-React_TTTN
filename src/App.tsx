@@ -24,6 +24,13 @@ import QuanLiNguoiDung from "./pages/AdminPages/TestPage/UserManage";
 import RoomManagement from "./pages/AdminPages/TestPage/RoomManage";
 import HomeTemplate from "./templates/HomeTemplate";
 import UserManagement from "./pages/AdminPages/TestPage/UserManage";
+import LocationManagement from "./pages/AdminPages/TestPage/LocationManage";
+import CreateUser from "./pages/AdminPages/TestPage/CreateUser";
+import UpdateUser from "./pages/AdminPages/TestPage/UpdateUser";
+import CreateRoom from "./pages/AdminPages/TestPage/CreateRoom";
+import UpdateRoom from "./pages/AdminPages/TestPage/UpdateRoom";
+import CreateLocation from "./pages/AdminPages/TestPage/CreateLocation";
+import UpdateLocation from "./pages/AdminPages/TestPage/UpdateLocation";
 
 type Props = {};
 
@@ -46,9 +53,22 @@ export default function App({}: Props) {
             <Route path="/register" element={<Register />} />
 
             {/* Testing page admin  */}
-            <Route path="/userAdmin" element={<UserManagement />} />
-            <Route path="/roomAdmin" element={<RoomManagement />} />
-          <Route path="/admin/dashboard" element={<DashBoard />}></Route>
+          <Route path="/admin/dashboard" element={<DashBoard />}>
+            <Route path="userAdmin" element={<UserManagement />} />
+            <Route path="roomAdmin" element={<RoomManagement />} />
+            <Route path="locationAdmin" element={<LocationManagement />} />
+
+            <Route path="userAdmin/createuser" element={<CreateUser />} />
+            <Route path="userAdmin/updateuser/:id" element={<UpdateUser />} />
+
+            <Route path="roomAdmin/createroom" element={<CreateRoom />} />
+            <Route path="roomAdmin/updateroom/:id" element={<UpdateRoom />} />
+
+            <Route path="locationAdmin/createlocation" element={<CreateLocation />} />
+            <Route path="locationAdmin/updatelocation/:id" element={<UpdateLocation />} />
+
+
+          </Route>
         </Routes>
       </HistoryRouter>
     </>

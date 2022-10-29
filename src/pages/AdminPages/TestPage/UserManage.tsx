@@ -1,27 +1,18 @@
 import { Table, Input, Space, Button } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import React, { useEffect, useState } from "react";
-// import {
-//   deleteUserAction,
-//   fetchUsersSearchListAction,
-// } from "../../store/reducers/usersListReducer";
 import { AppDispatch, RootState } from "../../../redux/configStore";
-import {
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserApi } from "../../../redux/Reducers/userAdminReducer"
-// import { getAllRoom } from "../../../redux/Reducers/roomReducer";
+import { getUserApi } from "../../../redux/Reducers/userAdminReducer";
+import { deleteUserApi } from "../../../redux/Reducers/userAdminReducer";
 // import {
 //   fetchUsersListAction,
 //   fetchUsersListByPageAction,
 // } from "../../store/reducers/usersListReducer";
 // import { userDetailsActions } from "../../store/reducers/userDetailsReducer";
 // import { User } from "../../interfaces/user";
-
-
 
 export default function UserManagement(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,9 +21,7 @@ export default function UserManagement(): JSX.Element {
 
   const [searchState, setSearchState] = useState<DataType[]>([]);
 
-  const { arrUser } = useSelector(
-    (state: RootState) => state.userAdminReducer
-  );
+  const { arrUser } = useSelector((state: RootState) => state.userAdminReducer);
 
   // useEffect(() => {
   //   dispatch(fetchUsersListByPageAction(1));
@@ -61,7 +50,7 @@ export default function UserManagement(): JSX.Element {
       setLoadings((prevLoadings) => {
         const newLoadings = [...prevLoadings];
         newLoadings[index] = false;
-        navigate("/admin/user-management/create-user");
+        navigate("createuser");
         return newLoadings;
       });
     }, 1000);
@@ -169,22 +158,27 @@ export default function UserManagement(): JSX.Element {
       title: "Tương tác",
       dataIndex: "tuongTac",
       width: "7%",
-      render: (text) => {
+      render: (id: number, name) => {
         return (
-          <>
-            <Link to={`/admin/user-management/${text}/edit-user`}>
-              <EditOutlined />
-            </Link>
-
-            <a
-              // onClick={() => {
-              //   dispatch(deleteUserAction(parseInt(text)));
-              // }}
-              className="pl-4"
+          <div className="flex justify-center text-white">
+            <span
+              onClick={() => {
+                navigate(`updateuser/${id}`);
+              }}
+              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 "
             >
-              <DeleteOutlined />
-            </a>
-          </>
+              Xem & Sửa
+            </span>
+            <span
+              onClick={async () => {
+                await dispatch(deleteUserApi(id));
+                window.location.reload();
+              }}
+              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
+            >
+              Xóa
+            </span>
+          </div>
         );
       },
     },
