@@ -125,7 +125,7 @@ export default function DashBoard({}: Props) {
     ]),
     getItem("Quản lí vị trí", "sub2", <MdShareLocation />, [
       getItem("Danh sách vị trí", "5"),
-      getItem("Thêm vị trí", "11"),
+      getItem("Thêm vị trí", "6"),
     ]),
     getItem("Quản lí phòng", "sub3", <BsHouseDoor />, [
       getItem("Danh sách phòng", "9"),
