@@ -51,13 +51,15 @@ export interface roomListItem {
   roomDetail: roomList[];
   roomPost: roomList[];
   roomPut: roomList[] | any;
+  roomList: roomList[]
 }
 
 const initialState: roomListItem = {
   roomArray: [],
   roomDetail: [],
   roomPost: [],
-  roomPut: []
+  roomPut: [],
+  roomList: [],
 };
 
 const roomReducer = createSlice({
@@ -77,10 +79,13 @@ const roomReducer = createSlice({
     roomActionAdmin: (state: roomListItem, action: PayloadAction<roomList[]>) => {
       state.roomPut = action.payload;
     },
+    roomListLocation: (state: roomListItem, action: PayloadAction<roomList[]>) => {
+      state.roomPut = action.payload;
+    },
   },
 });
 
-export const { getAllRoom, createNewRoom ,getDetailRoom, roomCreateAdmin, roomActionAdmin} = roomReducer.actions;
+export const { getAllRoom, createNewRoom ,getDetailRoom, roomCreateAdmin, roomActionAdmin, roomListLocation} = roomReducer.actions;
 
 export default roomReducer.reducer;
 
@@ -177,3 +182,17 @@ export const getRoomAPiID = (id: number) => {
     }
   };
 };
+
+// Api get room api extend location 
+export const getRoomListByLocation = (id: number)=>{
+  return async (dispatch:AppDispatch)=>{
+      try{
+          const result = await http.get(`/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
+          const action = roomListLocation(result.data.content);
+          dispatch(action)
+      }
+      catch(err){
+          console.log(err)
+      }
+  }
+}

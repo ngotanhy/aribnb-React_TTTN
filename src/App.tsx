@@ -31,6 +31,8 @@ import CreateRoom from "./pages/AdminPages/TestPage/CreateRoom";
 import UpdateRoom from "./pages/AdminPages/TestPage/UpdateRoom";
 import CreateLocation from "./pages/AdminPages/TestPage/CreateLocation";
 import UpdateLocation from "./pages/AdminPages/TestPage/UpdateLocation";
+import BookingManagement from "./pages/AdminPages/TestPage/BookingManage";
+import UpdateBooking from "./pages/AdminPages/TestPage/UpdateBooking";
 
 type Props = {};
 
@@ -57,6 +59,7 @@ export default function App({}: Props) {
             <Route path="userAdmin" element={<UserManagement />} />
             <Route path="roomAdmin" element={<RoomManagement />} />
             <Route path="locationAdmin" element={<LocationManagement />} />
+            <Route path="bookingAdmin" element={<BookingManagement />} />
 
             <Route path="userAdmin/createuser" element={<CreateUser />} />
             <Route path="userAdmin/updateuser/:id" element={<UpdateUser />} />
@@ -66,6 +69,8 @@ export default function App({}: Props) {
 
             <Route path="locationAdmin/createlocation" element={<CreateLocation />} />
             <Route path="locationAdmin/updatelocation/:id" element={<UpdateLocation />} />
+
+            <Route path="bookingAdmin/updatebooking/:id" element={<UpdateBooking />} />
 
 
           </Route>

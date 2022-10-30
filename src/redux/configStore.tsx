@@ -5,6 +5,7 @@ import userAdminReducer from "./Reducers/userAdminReducer";
 import roomReducer from "./Reducers/roomReducer";
 import openModalReducer from "./Reducers/openModalReducer";
 import locationReducer from "./Reducers/locationReducer";
+import bookingReducer from "./Reducers/bookingRoomReducer";
 
 
 export const store = configureStore({
@@ -14,7 +15,8 @@ export const store = configureStore({
     userAdminReducer: userAdminReducer,
     roomReducer: roomReducer,
     openModalReducer: openModalReducer,
-    locationReducer: locationReducer
+    locationReducer: locationReducer,
+    bookingReducer: bookingReducer
   },
 });
 
