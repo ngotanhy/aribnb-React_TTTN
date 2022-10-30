@@ -133,31 +133,58 @@ import {
           <Input />
         </Form.Item>
         <Form.Item label="Máy giặt" name="mayGiat" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Bàn Là" name="banLa" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Ti Vi" name="tivi" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Điều hòa" name="dieuHoa" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Wifi" name="wifi" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Bếp" name="bep" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Đỗ xe" name="doXe" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Hồ bơi" name="hoBoi" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Bàn ủi" name="banUi" valuePropName="checked">
-          <Switch checkedChildren="1" unCheckedChildren="0" />
+          <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
         </Form.Item>
         <Form.Item label="Hình ảnh">
           <Input type="file" name="hinhAnh" onChange={hanldeChangeImage} />
