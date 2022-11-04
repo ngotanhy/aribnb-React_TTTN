@@ -98,7 +98,6 @@ export const getRoomApi = () => {
       const result = await http.get("/phong-thue");
       let roomArray: roomList[] = result.data.content;
       const action = getAllRoom(roomArray);
-      console.log(result);
       dispatch(action);
     } catch (err) {
       console.log(err);
@@ -112,7 +111,6 @@ export const getDetailRoomId = (id: any) => {
       const result = await http.get(`/phong-thue/${id}`);
       let roomID: roomList[] = result.data.content;
       const action = getDetailRoom(roomID);
-      console.log(result);
       dispatch(action);
     } catch (err) {
       console.log(err);
@@ -129,7 +127,6 @@ export const createRoomApi = (data: roomList) => {
       const result = await http.post("/phong-thue", data);
       //   let userPost: UserPost[] = result.data.content;
       const action = roomCreateAdmin(result.data.content);
-      console.log(result);
       dispatch(action);
     } catch (err: any) {
       console.log(err);
@@ -143,7 +140,6 @@ export const putRoomApi = (id: number, data: roomUpdate) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.put(`/phong-thue/${id}`, data);
-      console.log({ result });
       let action = roomActionAdmin(result.data.content);
       dispatch(action);
     } catch (error) {
@@ -175,7 +171,6 @@ export const getRoomAPiID = (id: number) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.get(`/phong-thue/${id}`);
-      console.log({ result });
       let action = roomActionAdmin(result.data.content);
       dispatch(action);
     } catch (err) {

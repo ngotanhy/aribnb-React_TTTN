@@ -49,7 +49,6 @@ export const getCommentRoomById=(id:number) =>{
                 }
                 return arr;
             },[])
-            console.log(arrCommentId);
             const action = CommentRoomId(arrCommentId);
             dispatch(action);
           }

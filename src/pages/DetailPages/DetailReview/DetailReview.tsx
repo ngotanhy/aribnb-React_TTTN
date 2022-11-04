@@ -19,7 +19,7 @@ export default function DetailReview({}: Props) {
     <div className="">
       <div className="flex items-center gap-2 font-semibold text-2xl mt-5">
         <AiFillStar />
-        <h2 className="">{2} đánh giá </h2>
+        <h2 className="">{commentById?.length} đánh giá </h2>
       </div>
       <div className="flex gap-40 mb-4 mt-2">
         <div className="">

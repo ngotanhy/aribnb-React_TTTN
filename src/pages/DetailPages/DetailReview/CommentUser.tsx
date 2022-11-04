@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { http } from "../../../utils/setting";
 
 type Props = {
@@ -16,7 +16,7 @@ interface userComment {
   avatar: string;
 }
 
-export default function CommentUser({ id, userCommentId }: Props) {
+ function CommentUser({ id, userCommentId }: Props) {
   const [userComment, setUserComment] = useState<userComment>();
   const getUserComment = async () => {
     if (id) {
@@ -29,7 +29,6 @@ export default function CommentUser({ id, userCommentId }: Props) {
     getUserComment();
   }, []);
 
- console.log(userComment)
   return (
     <div className="mt-2">
       <div className="flex gap-4 items-center mb-2">
@@ -47,3 +46,5 @@ export default function CommentUser({ id, userCommentId }: Props) {
     </div>
   );
 }
+
+export default memo(CommentUser)

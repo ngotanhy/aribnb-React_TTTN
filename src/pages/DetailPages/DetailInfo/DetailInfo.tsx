@@ -6,9 +6,11 @@ import DetailInfoCover from "./DetailInfoCover/DetailInfoCover";
 // import DetailIntroduce from "./DetailIntroduce/DetailIntroduce";
 import DetailSleepRoom from "./DetailSleepRoom/DetailSleepRoom";
 
-type Props = {};
+type Props = {
+  id:string|any;
+};
 
-export default function DetailInfoRoom({}: Props) {
+export default function DetailInfoRoom({id}: Props) {
   return (
     <div className="mt-8 flex gap-24">
       <div className="w-3/5">
@@ -20,7 +22,7 @@ export default function DetailInfoRoom({}: Props) {
         {/* <DetailCalendar/> */}
       </div>
       <div className="w-2/5 relative right-0 top-0 ">
-        <DetailBooking />
+        <DetailBooking id={id} />
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ interface RoomBooking {
 const initialState: RoomBooking = {
   roombookingList: [],
   roombookingPut: [],
-  roombookingPost: []
+  roombookingPost: [],
 };
 
 const bookingReducer = createSlice({

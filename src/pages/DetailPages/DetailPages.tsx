@@ -16,7 +16,7 @@ import HeaderDetail from "./HeaderDetail/HeaderDetail";
 type Props = {};
 
 type QuizParams = {
-  id: string ;
+  id: string;
 };
 export default function DetailPages({}: Props) {
   const { id } = useParams<QuizParams>();
@@ -44,7 +44,7 @@ export default function DetailPages({}: Props) {
             backgroundPosition: "center",
           }}>
           </div>
-          <DetailInfoRoom />
+          <DetailInfoRoom id={id}/>
           <DetailReview />
           {/* <DetailUser /> */}
           <ModalPopup />

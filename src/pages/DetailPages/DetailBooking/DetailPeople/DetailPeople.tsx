@@ -1,31 +1,15 @@
 import { Select, SelectProps, Space } from "antd";
 import React, { useState } from "react";
 
-type Props = {};
+type Props = {
+  handleCount:any;
+  adultsCount:number;
+  childCount:number;
+  babyCount: number;
 
-export default function DetailPeople({}: Props) {
-  const [childCount, setChildCount] = useState(0);
-  const [adultsCount, setAdultsCount] = useState(0);
-  const [babyCount, setBabyCount] = useState(0);
+};
 
-  const handleCount = (type: string, count: number) => {
-    switch (type) {
-      case "adults": {
-        setAdultsCount(adultsCount + count);
-        break;
-      }
-      case "child": {
-        setChildCount(childCount + count);
-        break;
-      }
-      case "baby": {
-        setBabyCount(babyCount + count);
-        break;
-      }
-      default:
-        break;
-    }
-  };
+export default function DetailPeople({handleCount,adultsCount,childCount,babyCount}: Props) {
   
   
 
