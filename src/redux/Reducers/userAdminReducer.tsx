@@ -17,9 +17,9 @@ export interface userAll {
   name: string;
   email: string;
   password: string;
-  phone: null;
+  phone: any;
   birthday: string;
-  avatar: null;
+  avatar: any;
   gender: true;
   role: string;
 }
@@ -48,6 +48,7 @@ export interface arrUser {
   arrUser: userAll[];
   userUpdate: userAll[] | any
   userPost: UserPost[];
+  userAvatar: userAll | null;
 
 }
 
@@ -55,6 +56,7 @@ const initialState: arrUser = {
   arrUser: [],
   userUpdate: [],
   userPost: [],
+  userAvatar: null,
 };
 
 const userAdminReducer = createSlice({
@@ -70,10 +72,14 @@ const userAdminReducer = createSlice({
     userCreateAdmin: (state: arrUser, action: PayloadAction<UserPost[]>) => {
       state.userPost = action.payload;
     },
+    userChangeAvatar: (state: arrUser, action: PayloadAction<userAll>) => {
+      state.userAvatar = action.payload;
+    },
+    
   },
 });
 
-export const { getAllUserAction, setUserUpdate, userCreateAdmin } = userAdminReducer.actions;
+export const { getAllUserAction, setUserUpdate, userCreateAdmin, userChangeAvatar } = userAdminReducer.actions;
 
 export default userAdminReducer.reducer;
 
@@ -140,6 +146,8 @@ return async (dispatch: AppDispatch) => {
 }
 };
 
+//Api get User extend Id 
+
 export const getUserAPiID = (id: number) => {
   return async (dispatch: AppDispatch) => {
     try {
@@ -149,6 +157,35 @@ export const getUserAPiID = (id: number) => {
       dispatch(action);
     } catch (err) {
       console.log({ err });
+    }
+  };
+};
+
+// Api pagination users
+export const getPaginationUser = (page:Number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.get(`/users/phan-trang-tim-kiem?pageIndex=${page}&pageSize=10`);
+      const arrUser: userAll[] = result.data.content;
+      const action = getAllUserAction(arrUser);
+      console.log(result);
+      dispatch(action);
+    } catch (err) {
+      console.log({ err });
+    }
+  };
+};
+
+export const Updateavatar = (data: FormData) => {
+  console.log(data);
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.post("/users/upload-avatar", data);
+      const action = userChangeAvatar(result.data.content);
+    console.log(result);
+    dispatch(action);
+    } catch (err: any) {
+      console.log(err);
     }
   };
 };

@@ -13,12 +13,13 @@ import type { DatePickerProps } from "antd";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getUserAPiID,putUseApi } from "../../../redux/Reducers/userAdminReducer";
-import { AppDispatch, RootState } from "../../../redux/configStore";
+import { getUserProfileAPi, putUseProfileApi } from "../../redux/Reducers/userReducer";
+import { AppDispatch, RootState } from "../../redux/configStore";
+import "./UpdateProfile.scss"
 
 
 
-export default function UpdateUser(): JSX.Element {
+export default function UpdateProfile(): JSX.Element {
   const param: any = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
@@ -29,27 +30,24 @@ export default function UpdateUser(): JSX.Element {
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     // console.log(moment(date).format("DD/MM/YYYY"));
   };
-  const { userUpdate } = useSelector(
-    (state: RootState) => state.userAdminReducer
+  const {userProfile} = useSelector(
+    (state: RootState) => state.userReducer
   );
-  console.log(userUpdate);
+  console.log(userProfile);
 
   useEffect(() => {
-    dispatch(getUserAPiID(param.id));
+    dispatch(getUserProfileAPi());
   }, []);
 
   const onFinish = async (values: any) => {
-    // console.log(values);
-    values.birthday = values.birthday.format("DD/MM/YYYY");
-    // values.id = param.id;
     try {
       if (values) {
         // Post APi
-        await dispatch(putUseApi( param.id, values ));
+        await dispatch(putUseProfileApi( userProfile.id, values ));
         notification.success({
           message: "Cập nhật người dùng thành công",
         });
-        navigate("/admin/dashboard/userAdmin");
+        window.location.reload();
       }
     } catch (error) {
       notification.error({
@@ -104,16 +102,16 @@ export default function UpdateUser(): JSX.Element {
     },
   };
 
-  console.log(userUpdate);
+  console.log(userProfile);
 
   useEffect(() => {
-    if (userUpdate) {
+    if (userProfile) {
       form.setFieldsValue({
-        ...userUpdate,
-        birthday: moment(userUpdate.birthday, "DD-MM-YYYY"),
+        ...userProfile,
+        birthday: moment(userProfile.birthday, "DD-MM-YYYY"),
       });
     }
-  }, [userUpdate]);
+  }, [userProfile]);
 
   let allowedDateFormats = [
     "DD/MM/YYYY",
@@ -128,8 +126,8 @@ export default function UpdateUser(): JSX.Element {
     <Form
       form={form}
       name="basic"
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 8 }}
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
       initialValues={{
         name: "",
         email: "",
@@ -183,28 +181,9 @@ export default function UpdateUser(): JSX.Element {
           <Option value={false}>Nữ</Option>
         </Select>
       </Form.Item>
-      <Form.Item
-        label="Loại người dùng"
-        name="role"
-        rules={[{ required: true, message: "Chưa chọn loại người dùng!" }]}
-      >
-        <Select style={{ width: 120 }} onChange={handleChangeTwo}>
-          <Option value="ADMIN">ADMIN</Option>
-          <Option value="USER">USER</Option>
-        </Select>
-      </Form.Item>
-      <Form.Item label="Hình ảnh">
-        <Input type="file" onChange={hanldeChangeImage} />
-        <Image
-          src={image}
-          style={{ padding: "50px" }}
-          alt=""
-          onChange={hanldeChangeImage}
-        />
-      </Form.Item>
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
-          UpdateUser 
+        <Button type="primary" htmlType="submit" className="Button_one">
+          Thay đổi
         </Button>
       </Form.Item>
     </Form>

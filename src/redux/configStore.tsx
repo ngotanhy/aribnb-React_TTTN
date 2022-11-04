@@ -11,7 +11,7 @@ import bookingReducer from "./Reducers/bookingRoomReducer";
 export const store = configureStore({
   reducer: {
     userReducer: userReducer,
-    modalReducer: modalReducer,
+    // modalReducer: modalReducer,
     userAdminReducer: userAdminReducer,
     roomReducer: roomReducer,
     openModalReducer: openModalReducer,

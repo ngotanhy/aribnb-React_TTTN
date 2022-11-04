@@ -154,13 +154,13 @@ export default function LocationManagement(): JSX.Element {
         direction="vertical"
         className="w-100 py-3"
       >
-        <Button
+        {/* <Button
           type="primary"
           loading={loadings[0]}
           onClick={() => enterLoading(0)}
         >
           Thêm vị trí
-        </Button>
+        </Button> */}
         {/* <Search
           placeholder="input search text"
           onSearch={onSearch}

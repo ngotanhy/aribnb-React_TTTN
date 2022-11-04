@@ -33,6 +33,10 @@ import CreateLocation from "./pages/AdminPages/TestPage/CreateLocation";
 import UpdateLocation from "./pages/AdminPages/TestPage/UpdateLocation";
 import BookingManagement from "./pages/AdminPages/TestPage/BookingManage";
 import UpdateBooking from "./pages/AdminPages/TestPage/UpdateBooking";
+import Profile from "./pages/Profile/Profile";
+import ModalProfile from "./HOC/ModalProfile";
+import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
+
 
 type Props = {};
 
@@ -45,6 +49,7 @@ export default function App({}: Props) {
           <Route path="/" element={<HomeTemplate />}>
             <Route index element={<Home />} />
 
+            <Route path="/Profile" element={<Profile />} />
             <Route path="detailRoom">
               <Route path=":id" element={<DetailPages />} />
             </Route>
@@ -54,7 +59,6 @@ export default function App({}: Props) {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            {/* Testing page admin  */}
           <Route path="/admin/dashboard" element={<DashBoard />}>
             <Route path="userAdmin" element={<UserManagement />} />
             <Route path="roomAdmin" element={<RoomManagement />} />

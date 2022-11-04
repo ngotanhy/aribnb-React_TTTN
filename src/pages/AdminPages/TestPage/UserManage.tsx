@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "../../../redux/configStore";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserApi } from "../../../redux/Reducers/userAdminReducer";
+import { getUserApi, getPaginationUser } from "../../../redux/Reducers/userAdminReducer";
 import { deleteUserApi } from "../../../redux/Reducers/userAdminReducer";
 // import {
 //   fetchUsersListAction,
@@ -24,7 +24,7 @@ export default function UserManagement(): JSX.Element {
   const { arrUser } = useSelector((state: RootState) => state.userAdminReducer);
 
   // useEffect(() => {
-  //   dispatch(fetchUsersListByPageAction(1));
+  //   dispatch(getPaginationUser(1));
   //   dispatch(userDetailsActions.handleRemoveUserDetail(null));
   // }, []);
 
@@ -227,17 +227,17 @@ export default function UserManagement(): JSX.Element {
   return (
     <>
       <Space
-        style={{ width: "100%" }}
+        // style={{ width: "100%" }}
         direction="vertical"
-        className="w-100 py-3"
+        className="w-1/2 py-3 rounded-sm"
       >
-        <Button
+        {/* <Button
           type="primary"
           loading={loadings[0]}
           onClick={() => enterLoading(0)}
         >
           Thêm người dùng
-        </Button>
+        </Button> */}
         <Search
           placeholder="Nhập họ tên cần tìm"
           onSearch={onSearch}
@@ -253,7 +253,7 @@ export default function UserManagement(): JSX.Element {
         //   pageSize: 10,
         //   total: 100,
         //   onChange: async (page) => {
-        //     await dispatch(fetchUsersListByPageAction(page));
+        //     await dispatch(getPaginationUser(page));
         //     setPageCurrent(page);
         //   },
         // }}

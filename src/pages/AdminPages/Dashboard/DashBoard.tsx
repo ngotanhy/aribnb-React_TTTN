@@ -18,11 +18,14 @@ import {
   TOKEN_CYBERSOFT,
   USER_LOGIN,
 } from "../../../utils/setting";
-import { RootState } from "../../../redux/configStore";
+import { AppDispatch, RootState } from "../../../redux/configStore";
+import { getUserProfileAPi } from "../../../redux/Reducers/userReducer";
+import Profile from "../../Profile/Profile";
 
 type Props = {};
 
 export default function DashBoard({}: Props) {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   type MenuItem = Required<MenuProps>["items"][number];
@@ -43,7 +46,14 @@ export default function DashBoard({}: Props) {
     } as MenuItem;
   }
 
-  const { userLogin } = useSelector((state: RootState) => state.userReducer);
+  const {userProfile} = useSelector(
+    (state: RootState) => state.userReducer
+  );
+  console.log(userProfile);
+
+  useEffect(() => {
+    dispatch(getUserProfileAPi());
+  }, []);
   // const { user } = JSON.parse(localStorage.getItem(USER_LOGIN))
 
   const onClick = (e: { key: any }) => {
@@ -121,7 +131,7 @@ export default function DashBoard({}: Props) {
   const items: MenuItem[] = [
     getItem("Quản lí người dùng", "sub1", <FiUser />, [
       getItem("Danh sách người dùng", "1"),
-      getItem("Them nguoi dung", "2"),
+      getItem("Them người dùng", "2"),
     ]),
     getItem("Quản lí vị trí", "sub2", <MdShareLocation />, [
       getItem("Danh sách vị trí", "5"),
@@ -129,7 +139,7 @@ export default function DashBoard({}: Props) {
     ]),
     getItem("Quản lí phòng", "sub3", <BsHouseDoor />, [
       getItem("Danh sách phòng", "9"),
-      getItem("Thêm phong", "10"),
+      getItem("Thêm phòng", "10"),
     ]),
     getItem("Quản lí đặt phòng ", "sub4", <BsFillPersonLinesFill/>, [
       getItem("Danh sách đặt phòng", "11"),
@@ -148,7 +158,7 @@ export default function DashBoard({}: Props) {
             <div className="h-12 w-12 rounded-xl overflow-hidden">
               <img
                 className="h-full w-full"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"
+                src={ userProfile?.avatar|| "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"} 
                 alt=""
               />
             </div>
@@ -187,13 +197,13 @@ export default function DashBoard({}: Props) {
               </span>
             </div>
             <div className="flex items-center">
-              <p className="text-base font-medium mr-5">{`Hello ${userLogin.user.name}`}</p>
+              <p className="text-base font-medium mr-5">{`Hello ${userProfile?.name}`}</p>
               <Dropdown overlay={menu} placement="bottomRight" arrow>
                 <div className="h-10 w-10 rounded-full overflow-hidden cursor-pointer">
                   <img
                     className="h-full w-full"
                     src={
-                      userLogin.user?.avatar ||
+                      userProfile?.avatar ||
                       "https://images.pexels.com/photos/13691873/pexels-photo-13691873.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                     }
                     alt=""

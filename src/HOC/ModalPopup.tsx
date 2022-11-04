@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 import { useAppDispatch, useAppSelector } from "../Hooks/HooksRedux";
-import { modalPopUp } from "../Redux/Reducers/openModalReducer";
+import { modalPopUp } from "../redux/Reducers/openModalReducer";
 
 type Props = {
 };
@@ -16,7 +16,7 @@ export default function ModalPopup({}: Props) {
   return (
     <div>
       <div>
-        <Modal
+        <Modal className="hoc_modal"
           title={<ComponentTitle/>}
           visible={openModalPopup}
           width={1000}
