@@ -206,14 +206,16 @@ export const putUseProfileApi = (id: number, data: UpdateUser) => {
   };
 };
 
-// export const getUserProfileRoomId = (id: any) => {
+
+// //GET USER BY ID 
+// export const getUserProfileById = (id: number) => {
 //   return async (dispatch: AppDispatch) => {
 //     try {
-//       const result = await http.get(`/phong-thue/${id}`);
-//       let roomArray: roomList[] = result.data.content;
-//       const action = getDetailRoom(roomArray);
-//       console.log(result);
-//       dispatch(action);
+//       const result = await http.get(`/users/${id}`);
+//       let userDetailById = result.data.content;
+//       // const action = getDetailRoom(roomArray);
+//       console.log(userDetailById);
+//       // dispatch(action);
 //     } catch (err) {
 //       console.log(err);
 //     }

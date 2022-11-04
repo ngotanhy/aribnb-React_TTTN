@@ -8,39 +8,11 @@ import DetailTotal from "./DetailTotal/DetailTotal";
 
 type Props = {};
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const config = {
-  rules: [
-    { type: "object" as const, required: true, message: "Please select time!" },
-  ],
-};
-const rangeConfig = {
-  rules: [
-    { type: "array" as const, required: true, message: "Please select time!" },
-  ],
-};
+
 
 export default function DetailBooking({}: Props) {
   const scroll: number = useScroll();
 
-  const FormItem = Form.Item;
-
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -54,7 +26,7 @@ export default function DetailBooking({}: Props) {
   return (
     <div
       className={
-        scroll >= 1540
+        scroll >= 1000
           ? ""
           : "fixed z-10 w-475px" && scroll >= 540
           ? "fixed z-10 w-475px"

@@ -3,7 +3,7 @@ import DetailBooking from "../DetailBooking/DetailBooking";
 import DetailDescription from "./DetailDescription/DetailDescription";
 import DetailEquipment from "./DetailEquipment/DetailEquipment";
 import DetailInfoCover from "./DetailInfoCover/DetailInfoCover";
-import DetailIntroduce from "./DetailIntroduce/DetailIntroduce";
+// import DetailIntroduce from "./DetailIntroduce/DetailIntroduce";
 import DetailSleepRoom from "./DetailSleepRoom/DetailSleepRoom";
 
 type Props = {};
@@ -14,7 +14,7 @@ export default function DetailInfoRoom({}: Props) {
       <div className="w-3/5">
         <DetailDescription/>
         <DetailInfoCover/>
-        <DetailIntroduce/>
+        {/* <DetailIntroduce/> */}
         <DetailSleepRoom/>
         <DetailEquipment/>
         {/* <DetailCalendar/> */}

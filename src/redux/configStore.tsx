@@ -6,6 +6,7 @@ import roomReducer from "./Reducers/roomReducer";
 import openModalReducer from "./Reducers/openModalReducer";
 import locationReducer from "./Reducers/locationReducer";
 import bookingReducer from "./Reducers/bookingRoomReducer";
+import commentReducer from "./Reducers/commentReducer";
 
 
 export const store = configureStore({
@@ -16,7 +17,8 @@ export const store = configureStore({
     roomReducer: roomReducer,
     openModalReducer: openModalReducer,
     locationReducer: locationReducer,
-    bookingReducer: bookingReducer
+    bookingReducer: bookingReducer,
+    commentReducer:commentReducer,
   },
 });
 

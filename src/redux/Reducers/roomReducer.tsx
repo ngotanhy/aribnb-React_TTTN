@@ -48,7 +48,7 @@ type roomUpdate = {
 
 export interface roomListItem {
   roomArray: roomList[];
-  roomDetail: roomList[];
+  roomDetail: roomList[]|any;
   roomPost: roomList[];
   roomPut: roomList[] | any;
   roomList: roomList[]
@@ -70,6 +70,7 @@ const roomReducer = createSlice({
       state.roomArray = action.payload;
     },
     createNewRoom: (state: roomListItem, action: PayloadAction<roomList>) => {},
+    
     getDetailRoom: (state: roomListItem, action: PayloadAction<roomList[]>) => {
       state.roomDetail = action.payload;
     },
@@ -109,8 +110,8 @@ export const getDetailRoomId = (id: any) => {
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.get(`/phong-thue/${id}`);
-      let roomArray: roomList[] = result.data.content;
-      const action = getDetailRoom(roomArray);
+      let roomID: roomList[] = result.data.content;
+      const action = getDetailRoom(roomID);
       console.log(result);
       dispatch(action);
     } catch (err) {

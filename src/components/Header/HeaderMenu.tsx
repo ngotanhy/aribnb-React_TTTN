@@ -15,7 +15,7 @@ export default function HeaderMenu({}: Props) {
   const {userProfile} = useSelector(
     (state: RootState) => state.userReducer
   );
-  console.log(userProfile);
+  // console.log(userProfile);
 
   useEffect(() => {
     dispatch(getUserProfileAPi());

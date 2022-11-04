@@ -1,21 +1,26 @@
 import { Button } from "antd";
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
+import { useAppSelector } from "../../../Hooks/HooksRedux";
 
 type Props = {};
 
 export default function DetailUser({}: Props) {
+   const {roomDetail}=useAppSelector(state => state.roomReducer)
+   const {userProfile}=useAppSelector(state => state.userReducer)
+   console.log(roomDetail);
+   console.log(userProfile) 
   return (
     <div>
       <div className="mt-8 mb-8">
         <div className="flex gap-4 items-center mb-2">
           <img
-            src="https://i.pravatar.cc/300"
+            src={userProfile?.avatar}
             alt="..."
             className="w-24 h-24 rounded-full"
           />
           <div className="text-lg">
-            <h2 className="font-medium">Chủ nhà Kittiphop</h2>
+            <h2 className="font-medium">{userProfile?.name}</h2>
             <p>Đã tham gia vào tháng 7 năm 2015</p>
           </div>
         </div>
