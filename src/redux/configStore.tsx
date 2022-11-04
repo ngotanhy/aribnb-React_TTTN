@@ -4,15 +4,19 @@ import userReducer from "./Reducers/userReducer";
 import userAdminReducer from "./Reducers/userAdminReducer";
 import roomReducer from "./Reducers/roomReducer";
 import openModalReducer from "./Reducers/openModalReducer";
+import locationReducer from "./Reducers/locationReducer";
+import bookingReducer from "./Reducers/bookingRoomReducer";
 
 
 export const store = configureStore({
   reducer: {
     userReducer: userReducer,
-    modalReducer: modalReducer,
+    // modalReducer: modalReducer,
     userAdminReducer: userAdminReducer,
     roomReducer: roomReducer,
     openModalReducer: openModalReducer,
+    locationReducer: locationReducer,
+    bookingReducer: bookingReducer
   },
 });
 

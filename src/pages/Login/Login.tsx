@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { postSignin } from "../../redux/Reducers/userReducer";
 import { AppDispatch } from "../../redux/configStore";
 
-// import './Login.scss'
-// import { postDangNhap } from '../../Slices/userAuthSlice';
 
 interface Login {
   email: string;
@@ -40,6 +38,8 @@ export default function Login({}: Props) {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
+
+  
   const onSubmit = handleSubmit((valuse) => {
     console.log(valuse);
     const action = postSignin(valuse);
@@ -74,7 +74,7 @@ export default function Login({}: Props) {
               <input
                 type="email"
                 {...register("email")}
-                className="login__input name"
+                className="login__input name focus:ring-0"
                 placeholder="Username"
               />
               {errors.email && (
@@ -90,7 +90,7 @@ export default function Login({}: Props) {
               <input
                 type="password"
                 {...register("password")}
-                className="login__input pass"
+                className="login__input pass focus:ring-0"
                 placeholder="Password"
               />
               {errors.password && (

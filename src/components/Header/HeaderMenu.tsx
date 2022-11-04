@@ -5,29 +5,31 @@ import { FaBars, FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, USER_LOGIN } from "../../utils/setting";
 import { AppDispatch, RootState } from "../../redux/configStore";
+import { getUserProfileAPi } from "../../redux/Reducers/userReducer";
 
 type Props = {};
 
 export default function HeaderMenu({}: Props) {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { userLogin } = useSelector((state: RootState) => state.userReducer);
+  const {userProfile} = useSelector(
+    (state: RootState) => state.userReducer
+  );
+  console.log(userProfile);
 
-  // useEffect(() => {
-  //   if (userLogin !== null) {
-  //     navigate("/");
-  //   }
-  // });
+  useEffect(() => {
+    dispatch(getUserProfileAPi());
+  }, []);
 
-  const [user, setUser] = useState(userLogin);
+  const [user, setUser] = useState(userProfile);
 
   const navigate = useNavigate();
   // usestate responsive
   // const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
-    setUser(userLogin);
-  }, [userLogin]);
+    setUser(userProfile);
+  }, [userProfile]);
 
   const menu = (
     <Menu
@@ -37,15 +39,15 @@ export default function HeaderMenu({}: Props) {
           key: "1",
           label: (
             <>
-              {Object.keys(userLogin).length !== 0 ? (
+              {Object.keys(userProfile).length !== 0 ? (
                 <>
                   <p
                     onClick={() => {
-                      navigate("/profile");
+                      navigate("/Profile");
                       window.location.reload();
                     }}
                     className="text-base font-medium m-0"
-                  >{`Hello ${userLogin.name}`}</p>
+                  >{`Hello ${userProfile?.name}`}</p>
                   <p
                     onClick={() => navigate("/history")}
                     className="text-base  mt-3"
@@ -70,7 +72,7 @@ export default function HeaderMenu({}: Props) {
           key: "2",
           label: (
             <>
-              {Object.keys(userLogin).length !== 0 ? (
+              {Object.keys(userProfile).length !== 0 ? (
                 <p
                   onClick={() => {
                     localStorage.removeItem(USER_LOGIN);
@@ -101,8 +103,8 @@ export default function HeaderMenu({}: Props) {
           label: (
             <p
               onClick={() => {
-                if (userLogin?.role === "ADMIN") {
-                  navigate("/register");
+                if (userProfile?.role === "ADMIN") {
+                  navigate('/admin/dashboard');
                 } else {
                   navigate("/");
                   alert("Bạn không có quyền truy cập");

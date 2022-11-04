@@ -75,7 +75,7 @@ export default function HeaderSearch(props: any) {
                   onClick={(e) => {
                     setPositionVisible(!positionVisible);
                   }}
-                  className=" w-full outline-none border-none "
+                  className=" w-full outline-none border-none focus:ring-0 "
                 />
               </div>
             }

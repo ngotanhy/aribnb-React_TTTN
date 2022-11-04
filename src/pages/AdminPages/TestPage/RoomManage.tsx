@@ -9,10 +9,10 @@ import {
 import moment from "moment";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../Redux/ConfigStore"
-import { getRoomApi } from "../../../Redux/Reducers/RoomReducer";
-// import { deleteRoomAction } from "../../store/reducers/roomsListReducer";
-// import { roomDetailsActions } from "../../store/reducers/roomDetailsReducer";
+import { AppDispatch, RootState } from "../../../redux/configStore"
+import { getRoomApi } from "../../../redux/Reducers/roomReducer";
+import { deleteRoomApi } from "../../../redux/Reducers/roomReducer";
+
 
 export default function RoomManagement(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +21,6 @@ export default function RoomManagement(): JSX.Element {
 
   useEffect(() => {
     dispatch(getRoomApi());
-    // dispatch(roomDetailsActions.handleRemoveRoomDetails(null));
   }, []);
 
   const { roomArray } = useSelector(
@@ -42,7 +41,7 @@ export default function RoomManagement(): JSX.Element {
       setLoadings((prevLoadings) => {
         const newLoadings = [...prevLoadings];
         newLoadings[index] = false;
-        navigate("/admin/room-management/create-room");
+        navigate("createroom");
         return newLoadings;
       });
     }, 1000);
@@ -130,24 +129,21 @@ export default function RoomManagement(): JSX.Element {
       title: "Tương tác",
       dataIndex: "tuongTac",
       width: "5%",
-      render: (text, object) => {
+      render: (id : number, name) => {
         return (
-          <div className="d-flex">
-            <Link
-              className="pl-4"
-              to={`/admin/room-management/${text}/edit-room`}
-            >
-              <EditOutlined />
-            </Link>
-            <a className="pl-4">
-              <DeleteOutlined
-                // onClick={() => {
-                //   dispatch(deleteRoomAction(parseInt(text)));
-                // }}
-              />
-            </a>
+          <div className="flex justify-center text-white">
+            <span onClick={() => {
+              navigate(`updateroom/${id}`)
+
+            }} className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 ">Xem & Sửa</span>
+            <span onClick={async () => {
+              await dispatch(deleteRoomApi(id));
+              window.location.reload();
+            }
+            }  
+            className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600">Xóa</span>
           </div>
-        );
+        )
       },
     },
   ];
@@ -209,17 +205,18 @@ export default function RoomManagement(): JSX.Element {
         direction="vertical"
         className="w-100 py-3"
       >
-        <Button
+        {/* <Button
           type="primary"
           loading={loadings[0]}
           onClick={() => enterLoading(0)}
         >
           Thêm phòng
-        </Button>
+        </Button> */}
         <Search
           placeholder="Nhập tên phòng cần tìm"
           onSearch={onSearch}
           enterButton
+          allowClear
         />
       </Space>
       <Table
