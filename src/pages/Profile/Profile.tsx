@@ -22,6 +22,7 @@ import {
 } from "../../utils/setting";
 import _ from "lodash";
 import UpdateAvatar from "./UpdateAvatar";
+import { MdOutlinePlaylistAddCheck } from "react-icons/md";
 // import { Updateavatar } from "../../redux/Reducers/userReducer";
 
 type Props = {};
@@ -40,9 +41,9 @@ export default function Profile({}: Props) {
 
   return (
     <div>
-      <div className="2 xl:max-w-7xl mx-auto py-24 pt-28 flex justify-center">
-        <div className="border-solid border-[5px] w-1/4 pt-10 rounded-xl">
-          <div className="flex flex-col  items-center">
+      <div className="xl:max-w-7xl mx-auto py-24 pt-28 flex justify-center">
+        <div className="border-solid border-[5px] w-1/4 pt-10 rounded-xl h-3/4 ">
+          <div className="flex flex-col items-center">
             <UpdateAvatar />
           </div>
           <div className="px-5 pt-10 leading-10">
@@ -129,17 +130,14 @@ export default function Profile({}: Props) {
             </div>
             <ModalProfile />
           </div>
-
-          <div className="flex my-5 border-solid border-b-[1px]">
-            <div className="pb-7 items-center flex">
-              <AiFillStar className="text-center" />
-              <span className="pl-1 font-medium">0 Đánh giá</span>
+          <div className="flex mt-5 border-solid h-2">
+            <div className="pb-4 items-center flex">
+              <MdOutlinePlaylistAddCheck className="text-center text-3xl" />
+              <span className="pl-2 font-extrabold text-slate-700 text-lg">Phòng bạn đã đặt</span>
             </div>
           </div>
-          <div className="border-solid border-b-[1px]">
-            <p className="pb-7 font-medium">Đánh giá của bạn</p>
-          </div>
-          {/* <RoomItem /> */}
+                {/* Booking */}
+              <RoomItem />
         </div>
       </div>
     </div>
