@@ -58,6 +58,7 @@ export default function App({}: Props) {
           </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/test1" element={<RoomItem />} />
 
           <Route path="/admin/dashboard" element={<DashBoard />}>
             <Route path="userAdmin" element={<UserManagement />} />
