@@ -136,6 +136,7 @@ export default function Profile({}: Props) {
               <span className="pl-2 font-extrabold text-slate-700 text-lg">Phòng bạn đã đặt</span>
             </div>
           </div>
+                {/* Booking */}
               <RoomItem />
         </div>
       </div>
