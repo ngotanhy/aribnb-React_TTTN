@@ -139,8 +139,7 @@ export default function Profile({}: Props) {
           <div className="border-solid border-b-[1px]">
             <p className="pb-7 font-medium">Đánh giá của bạn</p>
           </div>
-          <RoomItem />
-
+          {/* <RoomItem /> */}
         </div>
       </div>
     </div>

@@ -1,6 +1,9 @@
 import React from "react";
 import CarouselComponent from "../../components/Carousel/CarouselComponent";
 import CarouselSearchByType from "../../components/Carousel/CarouselSearchByType";
+import HeaderLocation from "../../components/HeaderLocation/HeaderLocation";
+ 
+
 
 type Props = {};
 
@@ -9,6 +12,7 @@ export default function Home({}: Props) {
     <>
       <CarouselSearchByType />
       <CarouselComponent />
+      <HeaderLocation />
     </>
   );
 }
