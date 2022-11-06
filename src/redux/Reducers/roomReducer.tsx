@@ -51,7 +51,8 @@ export interface roomListItem {
   roomDetail: roomList[]|any;
   roomPost: roomList[];
   roomPut: roomList[] | any;
-  roomList: roomList[]
+  roomList: roomList[];
+  roomListLocation:roomList[];
 }
 
 const initialState: roomListItem = {
@@ -60,6 +61,7 @@ const initialState: roomListItem = {
   roomPost: [],
   roomPut: [],
   roomList: [],
+  roomListLocation:[]
 };
 
 const roomReducer = createSlice({
@@ -81,7 +83,7 @@ const roomReducer = createSlice({
       state.roomPut = action.payload;
     },
     roomListLocation: (state: roomListItem, action: PayloadAction<roomList[]>) => {
-      state.roomPut = action.payload;
+      state.roomListLocation = action.payload;
     },
   },
 });

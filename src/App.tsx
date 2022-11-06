@@ -36,7 +36,7 @@ import UpdateBooking from "./pages/AdminPages/TestPage/UpdateBooking";
 import Profile from "./pages/Profile/Profile";
 import ModalProfile from "./HOC/ModalProfile";
 import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
-
+import DetailLocation from "./pages/DetailLocation/DetailLocation";
 
 type Props = {};
 
@@ -53,12 +53,14 @@ export default function App({}: Props) {
             <Route path="detailRoom">
               <Route path=":id" element={<DetailPages />} />
             </Route>
-
+            <Route path="/detailLocation">
+              <Route path=":id/:locationRoom" element={<DetailLocation />} />
+            </Route>
             <Route path="*" element={<Navigate to="" />} />
           </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/test1" element={<RoomItem />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/test1" element={<RoomItem />} />
 
           <Route path="/admin/dashboard" element={<DashBoard />}>
             <Route path="userAdmin" element={<UserManagement />} />
@@ -72,12 +74,19 @@ export default function App({}: Props) {
             <Route path="roomAdmin/createroom" element={<CreateRoom />} />
             <Route path="roomAdmin/updateroom/:id" element={<UpdateRoom />} />
 
-            <Route path="locationAdmin/createlocation" element={<CreateLocation />} />
-            <Route path="locationAdmin/updatelocation/:id" element={<UpdateLocation />} />
+            <Route
+              path="locationAdmin/createlocation"
+              element={<CreateLocation />}
+            />
+            <Route
+              path="locationAdmin/updatelocation/:id"
+              element={<UpdateLocation />}
+            />
 
-            <Route path="bookingAdmin/updatebooking/:id" element={<UpdateBooking />} />
-
-
+            <Route
+              path="bookingAdmin/updatebooking/:id"
+              element={<UpdateBooking />}
+            />
           </Route>
         </Routes>
       </HistoryRouter>

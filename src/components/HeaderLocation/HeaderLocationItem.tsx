@@ -5,6 +5,7 @@ import { BsFillGeoAltFill } from "react-icons/bs";
 import { FcGlobe } from "react-icons/fc";
 import { MdHotelClass } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../redux/configStore";
 
 
@@ -16,11 +17,15 @@ type Props = {
 export default function HeaderLocationItem({ location }: Props) {
   const [Status, setStatus] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
 
   return (
     <div
       onClick={() => {
+        let tenViTri=location?.tenViTri.replace(" ","_");
+        window.scroll(0,0);
+        return navigate( `/detailLocation/${location?.id}/${tenViTri}` );
       }}
       className="my-10 Header_Card hover:-translate-y-2 hoverDn rounded-xl relative cursor-pointer h-full "
     >
