@@ -3,22 +3,21 @@ import DetailBooking from "../DetailBooking/DetailBooking";
 import DetailDescription from "./DetailDescription/DetailDescription";
 import DetailEquipment from "./DetailEquipment/DetailEquipment";
 import DetailInfoCover from "./DetailInfoCover/DetailInfoCover";
-// import DetailIntroduce from "./DetailIntroduce/DetailIntroduce";
 import DetailSleepRoom from "./DetailSleepRoom/DetailSleepRoom";
 
 type Props = {
-  id:string|any;
+  id: string | any;
 };
 
-export default function DetailInfoRoom({id}: Props) {
+export default function DetailInfoRoom({ id }: Props) {
   return (
     <div className="mt-8 flex gap-24">
       <div className="w-3/5">
-        <DetailDescription/>
-        <DetailInfoCover/>
+        <DetailDescription />
+        <DetailInfoCover />
         {/* <DetailIntroduce/> */}
-        <DetailSleepRoom/>
-        <DetailEquipment/>
+        <DetailSleepRoom />
+        <DetailEquipment />
         {/* <DetailCalendar/> */}
       </div>
       <div className="w-2/5 relative right-0 top-0 ">

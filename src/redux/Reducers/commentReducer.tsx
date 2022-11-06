@@ -36,7 +36,6 @@ export default commentReducer.reducer
 
 //--------call api --------------------
 
-
 export const getCommentRoomById=(id:number) =>{
     return async (dispatch:AppDispatch)=>{
           try{
