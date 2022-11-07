@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/configStore";
 import _ from "lodash";
 import RoomInfor from "./RoomInfor";
-import { getStoreJSON, USER_LOGIN } from "../../../utils/setting";
 import { getBookingUserApi } from "../../../redux/Reducers/userReducer";
 
 type Props = {};
 
 export default function RoomItem({}: Props) {
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { userBooking } = useSelector((state: RootState) => state.userReducer);
 

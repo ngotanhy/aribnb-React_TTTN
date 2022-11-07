@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  getUserAPiID,
-  UpdateAvatarUser,
+  getUserAPiID, UpdateAvatarUser,
 } from "../../redux/Reducers/userAdminReducer";
 import { AppDispatch, RootState } from "../../redux/configStore";
 
@@ -38,7 +37,12 @@ export default function UpdateAvatar(): JSX.Element {
   };
 
   const handleOk = () => {
-    dispatch(UpdateAvatarUser(avatar));
+    const formData = new FormData();
+  
+    file && formData.append("formFile", file, file.name);
+
+    dispatch(UpdateAvatarUser(formData));
+
     setOpen(false);
     setConfirmLoading(false);
   };
@@ -51,10 +55,8 @@ export default function UpdateAvatar(): JSX.Element {
   const handleChangeAvatar = (event: any) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-
     reader.readAsDataURL(file);
     reader.onload = (e: any) => {
-      console.log(e.target.result);
       setAvatar(e.target.result);
       setFile(file);
     };
