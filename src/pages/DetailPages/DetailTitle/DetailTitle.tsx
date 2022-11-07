@@ -22,12 +22,6 @@ export default function DetailTitle({}: Props) {
             <AiFillStar />
             4.47 ·
           </div>
-          {/* <div className="font-medium ">
-            <button className="underline underline-offset-1">
-              <span className="">233 </span>
-              đánh Giá
-            </button>
-          </div> */}
           <div className="flex gap-1 items-center">
             <TbMedal2 />
             <span>Chủ nhà siêu cấp .</span>

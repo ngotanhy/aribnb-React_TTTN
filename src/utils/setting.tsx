@@ -58,7 +58,7 @@ http.interceptors.request.use(
       if( config.headers){
           config.headers  = {
               ['Token']: token,
-              ['TokenCybersoft']: TOKEN_CYBERSOFT
+              ['tokenCybersoft']: TOKEN_CYBERSOFT
           }
       }
       return config

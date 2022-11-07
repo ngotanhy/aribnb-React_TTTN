@@ -20,11 +20,7 @@ import "./UpdateProfile.scss"
 
 
 export default function UpdateProfile(): JSX.Element {
-  const param: any = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const [image, setImage] = useState<string>("");
-  const [sendfile, setSendfile] = useState<string>();
   const [form] = Form.useForm();
   const { Option } = Select;
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
@@ -33,11 +29,6 @@ export default function UpdateProfile(): JSX.Element {
   const {userProfile} = useSelector(
     (state: RootState) => state.userReducer
   );
-  console.log(userProfile);
-
-  useEffect(() => {
-    dispatch(getUserProfileAPi());
-  }, []);
 
   const onFinish = async (values: any) => {
     try {
@@ -47,7 +38,6 @@ export default function UpdateProfile(): JSX.Element {
         notification.success({
           message: "Cập nhật người dùng thành công",
         });
-        window.location.reload();
       }
     } catch (error) {
       notification.error({
@@ -63,32 +53,7 @@ export default function UpdateProfile(): JSX.Element {
   const handleChangeOne = (value: string) => {
     console.log(`selected ${value}`);
   };
-  const handleChangeTwo = (value: string) => {
-    console.log(`selected ${value}`);
-  };
 
-  const hanldeChangeImage = (event: any) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (event: any) => {
-      setImage(event.target.result);
-      setSendfile(file);
-    };
-  };
-
-  //
-
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -101,8 +66,6 @@ export default function UpdateProfile(): JSX.Element {
       },
     },
   };
-
-  console.log(userProfile);
 
   useEffect(() => {
     if (userProfile) {

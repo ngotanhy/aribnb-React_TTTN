@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Dropdown, Menu } from "antd";
-import { FaBars, FaUserCircle } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, USER_LOGIN } from "../../utils/setting";
-import { AppDispatch, RootState } from "../../redux/configStore";
-import { getUserProfileAPi } from "../../redux/Reducers/userReducer";
+import { ACCESS_TOKEN, getStoreJSON, USER_LOGIN } from "../../utils/setting";
+import { useAppSelector } from "../../Hooks/HooksRedux";
 
 type Props = {};
-
+export type User = {
+  name: string;
+  id: number | string;
+  role: string;
+  avatar: string;
+  birthday: string;
+  email: string;
+  gender: true;
+  phone: string | number;
+};
 export default function HeaderMenu({}: Props) {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const {userProfile} = useSelector(
-    (state: RootState) => state.userReducer
-  );
-  // console.log(userProfile);
-
-  useEffect(() => {
-    dispatch(getUserProfileAPi());
-  }, []);
-
-  const [user, setUser] = useState(userProfile);
+    const [userLog, setUserLog] = useState<User | null>(null);
+  const { userLogin } = useAppSelector((state) => state.userReducer);
 
   const navigate = useNavigate();
-  // usestate responsive
-  // const [isHidden, setIsHidden] = useState(true);
+
 
   useEffect(() => {
-    setUser(userProfile);
-  }, [userProfile]);
+    if (Object.keys(userLogin).length !== 0) {
+      setUserLog(userLogin);
+    }
+  }, [userLogin]);
 
   const menu = (
     <Menu
@@ -39,17 +37,26 @@ export default function HeaderMenu({}: Props) {
           key: "1",
           label: (
             <>
-              {Object.keys(userProfile).length !== 0 ? (
+              {userLog !== null ? (
                 <>
                   <p
                     onClick={() => {
-                      navigate("/Profile");
-                      window.location.reload();
+                      if (getStoreJSON(USER_LOGIN)) {
+                        navigate("/Profile");
+                      } else {
+                        navigate("/login");
+                      }
                     }}
                     className="text-base font-medium m-0"
-                  >{`Hello ${userProfile?.name}`}</p>
+                  >{`Hello ${userLog?.name}`}</p>
                   <p
-                    onClick={() => navigate("/history")}
+                    onClick={() => {
+                      if (getStoreJSON(USER_LOGIN)) {
+                        navigate("/Profile");
+                      } else {
+                        navigate("/login");
+                      }
+                    }}
                     className="text-base  mt-3"
                   >
                     Lịch sử đặt vé
@@ -72,13 +79,14 @@ export default function HeaderMenu({}: Props) {
           key: "2",
           label: (
             <>
-              {Object.keys(userProfile).length !== 0 ? (
+              {userLog !== null ? (
                 <p
-                  onClick={() => {
-                    localStorage.removeItem(USER_LOGIN);
-                    localStorage.removeItem(ACCESS_TOKEN);
-                    navigate("/");
-                    window.location.reload();
+                  onClick={async() => {
+                     localStorage.removeItem(USER_LOGIN);
+                     localStorage.removeItem(ACCESS_TOKEN);
+                    let userLogin = await getStoreJSON(USER_LOGIN);
+                    setUserLog(userLogin);
+                    navigate("/")
                   }}
                   style={{ borderBottom: "1px solid #ccc" }}
                   className="text-base   m-0 pb-2 pt-2"
@@ -103,8 +111,8 @@ export default function HeaderMenu({}: Props) {
           label: (
             <p
               onClick={() => {
-                if (userProfile?.role === "ADMIN") {
-                  navigate('/admin/dashboard');
+                if (userLog?.role === "ADMIN") {
+                  navigate("/admin/dashboard");
                 } else {
                   navigate("/");
                   alert("Bạn không có quyền truy cập");

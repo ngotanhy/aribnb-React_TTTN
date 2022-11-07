@@ -42,7 +42,7 @@ export default function PopupReview({}: Props) {
           </li>
         </ul>
       </div>
-      <div className="overflow-auto grid grid-cols-2">
+      <div className="overflow-auto h-29rem">
         {commentById?.map((item: any) => {
           return <CommentUser id={item?.maNguoiBinhLuan} userCommentId={item} />;
         })}

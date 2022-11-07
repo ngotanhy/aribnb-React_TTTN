@@ -8,7 +8,8 @@ import CommentUser from "./CommentUser";
 import PopupReview from "./PopupReview";
 import PopUpTitle from "./PopUpTitle";
 
-type Props = {};
+type Props = {
+};
 
 export default function DetailReview({}: Props) {
   const { commentById } = useAppSelector((state) => state.commentReducer);
@@ -16,12 +17,12 @@ export default function DetailReview({}: Props) {
   let user1=_.random(0, commentById.length - 1);
   let user2=_.random(0, commentById.length-1);
   return (
-    <div className="">
+    <div className="" id="review">
       <div className="flex items-center gap-2 font-semibold text-2xl mt-5">
         <AiFillStar />
         <h2 className="">{commentById?.length} đánh giá </h2>
       </div>
-      <div className="flex gap-40 mb-4 mt-2">
+      <div className="grid grid-cols-2 mb-4 mt-2">
         <div className="">
           <CommentUser id={commentById[user1]?.maNguoiBinhLuan} userCommentId={commentById[user1]} />
         </div>
@@ -44,7 +45,6 @@ export default function DetailReview({}: Props) {
         Hiện thị thêm
         <GrFormNext />
       </button>
-      {/* <ModalPopup Component={PopupReview} title={''}/> */}
     </div>
   );
 }

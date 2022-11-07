@@ -23,8 +23,11 @@ module.exports = {
       width: {
         '29rem': '29rem',
         '26rem': '26rem',
-        "30rem":'30rem',
-        '475px':'475px',
+        "30rem": '30rem',
+        '475px': '475px',
+      },
+      spacing: {
+        '135px': '135px',
       },
     },
   },

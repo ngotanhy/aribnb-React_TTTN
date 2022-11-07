@@ -55,40 +55,15 @@ interface userBooking {
   soLuongKhach: number;
   maNguoiDung: number;
 }
-
-// export interface roomUserList {
-//   id: number;
-//   tenPhong: string;
-//   khach: number;
-//   phongNgu: number;
-//   giuong: number;
-//   phongTam: number;
-//   moTa: string;
-//   giaTien: number;
-//   mayGiat: boolean;
-//   banLa: boolean;
-//   tivi: boolean;
-//   dieuHoa: boolean;
-//   wifi: boolean;
-//   bep: boolean;
-//   doXe: boolean;
-//   hoBoi: boolean;
-//   banUi: boolean;
-//   maViTri: number;
-//   hinhAnh: string;
-// }
-
 export interface userLoginState {
   userLogin: userLogin | any;
   userProfile: userProfile | any;
   userBooking: userBooking | any;
-  // roomUserList : roomUserList | any;
 }
 const initialState: userLoginState = {
   userLogin: getStoreJSON(USER_LOGIN) || {},
   userProfile: {},
   userBooking: [],
-  // roomUserList: [],
 };
 
 const userReducer = createSlice({
@@ -110,9 +85,6 @@ const userReducer = createSlice({
     ) => {
       state.userBooking = action.payload;
     },
-    // getRoomUserList: (state: userLoginState, action: PayloadAction<roomUserList[]>) => {
-    //   state.roomUserList = action.payload;
-    // },
   },
 });
 
@@ -137,24 +109,18 @@ export const postSignupUser = (data: userLogin) => {
 };
 
 // Call api  post signin
-export const postSignin = (data: UserSignIn) => {
+export const postSignIn = (data: UserSignIn) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.post("/auth/signin", data);
-      console.log({ result });
       //LƯU TOKEN VÀO LOCALSTORE
       setStore(ACCESS_TOKEN, result.data.content.token);
       // Lưu lại email
-      setStoreJSON(USER_LOGIN, result.data.content);
-      // Thay đổi page menu
-      history.replace({
-        pathname: "/",
-      });
-      window.location.reload();
+      setStoreJSON(USER_LOGIN, result.data.content.user);
+      dispatch(setUserLogin(result.data.content.user));
     } catch (error: any) {
       let err = error.response.data.content;
       alert(err);
-      console.log({ error });
     }
   };
 };
@@ -162,12 +128,8 @@ export const postSignin = (data: UserSignIn) => {
 export const getUserProfileAPi = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      let result5 = await http.get(
-        `/users/${getStoreJSON(USER_LOGIN).user.id}`
-      );
-      console.log({ result5 });
-      let action = setUserProfile(result5.data.content);
-      dispatch(action);
+      let result5 = await http.get(`/users/${getStoreJSON(USER_LOGIN).id}`);
+      dispatch(setUserProfile(result5.data.content));
     } catch (err) {
       console.log({ err });
     }
@@ -180,7 +142,7 @@ export const getBookingUserApi = () => {
       let result3 = await http.get(
         `/dat-phong/lay-theo-nguoi-dung/${getStoreJSON(USER_LOGIN).user.id}`
       );
-      console.log({ result3 });
+      console.log(result3);
       let action = setUserBooking(result3.data.content);
       dispatch(action);
     } catch (error) {
@@ -194,34 +156,11 @@ export const putUseProfileApi = (id: number, data: UpdateUser) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.put(`/users/${id}`, data);
-      console.log({ result });
-      getStoreJSON(USER_LOGIN);
-      //Chuyển về trang profile
-      // history.push("/profile");
-      let action = setUserLogin(result.data.content);
-      dispatch(action);
+      localStorage.removeItem(USER_LOGIN);
+      setStoreJSON(USER_LOGIN, result.data.content);
+      dispatch(setUserProfile(result.data.content));
     } catch (error) {
       console.log({ error });
     }
   };
 };
-
-
-// //GET USER BY ID 
-// export const getUserProfileById = (id: number) => {
-//   return async (dispatch: AppDispatch) => {
-//     try {
-//       const result = await http.get(`/users/${id}`);
-//       let userDetailById = result.data.content;
-//       // const action = getDetailRoom(roomArray);
-//       console.log(userDetailById);
-//       // dispatch(action);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// };
-
-
-
-

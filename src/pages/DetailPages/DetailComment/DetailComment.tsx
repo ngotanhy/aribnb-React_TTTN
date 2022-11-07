@@ -3,11 +3,13 @@ import TextArea from "antd/lib/input/TextArea";
 import moment from "moment";
 import React, { useState } from "react";
 import { AiFillStar, AiOutlineSend } from "react-icons/ai";
-import { http } from "../../../utils/setting";
+import { getStoreJSON, http, USER_LOGIN } from "../../../utils/setting";
+import { toast } from "react-toastify";
+import { history, toastOptionsSuccess } from "../../../App";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   idRoom: number;
-  idUserLogin: number | string | any;
 };
 
 type Star = {
@@ -15,9 +17,10 @@ type Star = {
   active: boolean;
 };
 
-export default function DetailComment({ idUserLogin, idRoom }: Props) {
+export default function DetailComment({ idRoom }: Props) {
   const [comment, setComment] = useState<string>();
   const [star, setStar] = useState<Star>();
+  const navigate = useNavigate();
   const arrStar = [
     { number: 1, active: false },
     { number: 2, active: false },
@@ -30,15 +33,23 @@ export default function DetailComment({ idUserLogin, idRoom }: Props) {
     if (newComment !== "") {
       if (star) {
         const date = moment(new Date()).format("DD/MM/YYYY");
-        let data = {
-          maPhong: idRoom,
-          maNguoiBinhLuan: idUserLogin,
-          ngayBinhLuan: date.toString(),
-          noiDung: comment,
-          saoBinhLuan: star.number,
-        };
-        let result = await http.post("/binh-luan", data);
-        console.log(result);
+        let userLogin = getStoreJSON(USER_LOGIN);
+        if (userLogin) {
+          let data = {
+            maPhong: idRoom,
+            maNguoiBinhLuan: userLogin?.id,
+            ngayBinhLuan: date.toString(),
+            noiDung: comment,
+            saoBinhLuan: star.number,
+          };
+          let result = await http.post("/binh-luan", data);
+          if (result.status === 201) {
+            toast.success("Bình luận thành công", toastOptionsSuccess);
+          }
+        }else{
+          // navigate("/login")
+          history.push("/login");
+        }
       }
     } else {
       alert("hay nhap du lieu");

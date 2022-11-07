@@ -13,7 +13,7 @@ import { AppDispatch } from "../configStore";
 // import { nguoiDungModel } from "../models/nguoiDungModel";
 
 export interface userAll {
-  id : number;
+  id: number;
   name: string;
   email: string;
   password: string;
@@ -46,10 +46,9 @@ export interface UserPost {
 
 export interface arrUser {
   arrUser: userAll[];
-  userUpdate: userAll[] | any
+  userUpdate: userAll[] | any;
   userPost: UserPost[];
   userAvatar: userAll | null;
-
 }
 
 const initialState: arrUser = {
@@ -75,11 +74,15 @@ const userAdminReducer = createSlice({
     userChangeAvatar: (state: arrUser, action: PayloadAction<userAll>) => {
       state.userAvatar = action.payload;
     },
-    
   },
 });
 
-export const { getAllUserAction, setUserUpdate, userCreateAdmin, userChangeAvatar } = userAdminReducer.actions;
+export const {
+  getAllUserAction,
+  setUserUpdate,
+  userCreateAdmin,
+  userChangeAvatar,
+} = userAdminReducer.actions;
 
 export default userAdminReducer.reducer;
 
@@ -119,34 +122,33 @@ export const putUseApi = (id: number, data: UpdateUser) => {
 
 export const createUserApi = (data: UserPost) => {
   console.log(data);
-return async (dispatch: AppDispatch) => {
-  try {
-    const result = await http.post("/users", data);
-  //   let userPost: UserPost[] = result.data.content;
-    const action = userCreateAdmin(result.data.content);
-    console.log(result);
-    dispatch(action);
-  } catch (err: any) {
-    console.log(err);
-  }
-};
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.post("/users", data);
+      //   let userPost: UserPost[] = result.data.content;
+      const action = userCreateAdmin(result.data.content);
+      console.log(result);
+      dispatch(action);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
 };
 
 export const deleteUserApi = (id: number) => {
-return async (dispatch: AppDispatch) => {
-  try {
-    const result = await http.delete(`/users?id=${id}`);
-    // const action = userCreateAdmin(result.data.content)
-    // console.log(result);
-    // dispatch(action);
-  }
-  catch (err: any) {
-    console.log(err);
-  }
-}
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.delete(`/users?id=${id}`);
+      // const action = userCreateAdmin(result.data.content)
+      // console.log(result);
+      // dispatch(action);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
 };
 
-//Api get User extend Id 
+//Api get User extend Id
 
 export const getUserAPiID = (id: number) => {
   return async (dispatch: AppDispatch) => {
@@ -162,10 +164,12 @@ export const getUserAPiID = (id: number) => {
 };
 
 // Api pagination users
-export const getPaginationUser = (page:Number) => {
+export const getPaginationUser = (page: Number) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const result = await http.get(`/users/phan-trang-tim-kiem?pageIndex=${page}&pageSize=10`);
+      const result = await http.get(
+        `/users/phan-trang-tim-kiem?pageIndex=${page}&pageSize=10`
+      );
       const arrUser: userAll[] = result.data.content;
       const action = getAllUserAction(arrUser);
       console.log(result);
@@ -176,14 +180,13 @@ export const getPaginationUser = (page:Number) => {
   };
 };
 
-export const Updateavatar = (data: FormData) => {
-  console.log(data);
+export const UpdateAvatarUser = (avatar: any) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const result = await http.post("/users/upload-avatar", data);
+      const result = await http.post("/users/upload-avatar", avatar);
+      console.log(result);
       const action = userChangeAvatar(result.data.content);
-    console.log(result);
-    dispatch(action);
+      dispatch(action);
     } catch (err: any) {
       console.log(err);
     }

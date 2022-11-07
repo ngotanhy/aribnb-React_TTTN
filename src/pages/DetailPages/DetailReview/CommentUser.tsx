@@ -3,7 +3,7 @@ import React, { memo, useEffect, useState } from "react";
 import { http } from "../../../utils/setting";
 
 type Props = {
-  id: number|string;
+  id: number | string;
   userCommentId: {
     noiDung: string;
     ngayBinhLuan: string;
@@ -16,7 +16,7 @@ interface userComment {
   avatar: string;
 }
 
- function CommentUser({ id, userCommentId }: Props) {
+function CommentUser({ id, userCommentId }: Props) {
   const [userComment, setUserComment] = useState<userComment>();
   const getUserComment = async () => {
     if (id) {
@@ -31,13 +31,17 @@ interface userComment {
 
   return (
     <div className="mt-2">
-      <div className="flex gap-4 items-center mb-2">
+      <div className="flex items-center mb-2 ">
         <img
-          src={userComment?.avatar? userComment.avatar:`https://picsum.photos/200/300?random=${_.random(1,1000)}`}
+          src={
+            userComment?.avatar
+              ? userComment.avatar
+              : `https://picsum.photos/200/300?random=${_.random(1, 1000)}`
+          }
           alt="..."
           className="w-20 h-20 rounded-full"
         />
-        <div className="text-lg">
+        <div className="text-lg ml-3">
           <h2 className="font-medium">{userComment?.name}</h2>
           <p>{userCommentId?.ngayBinhLuan}</p>
         </div>
@@ -47,4 +51,4 @@ interface userComment {
   );
 }
 
-export default memo(CommentUser)
+export default memo(CommentUser);
