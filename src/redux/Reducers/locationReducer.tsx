@@ -1,14 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { history } from "../../App";
-import {
-  ACCESS_TOKEN,
-  getStoreJSON,
-  http,
-  setStore,
-  setStoreJSON,
-  TOKEN_CYBERSOFT,
-  USER_LOGIN,
-} from "../../utils/setting";
+import { http } from "../../utils/setting";
 import { AppDispatch } from "../configStore";
 
 export interface Location {
@@ -23,7 +14,7 @@ export interface locationAdmin {
   locationList: Location[];
   locationPut: Location[] | any;
   locationpost: Location[];
-  localDetail: Location[]| any;
+  localDetail: Location[] | any;
 }
 
 const initialState: locationAdmin = {
@@ -80,9 +71,7 @@ export const getLocationApi = () => {
       const result = await http.get("/vi-tri");
       let locationList: Location[] = result.data.content;
       const action = getAllLocation(locationList);
-      console.log(result);
       dispatch(action);
-      console.log(action);
     } catch (err) {
       console.log(err);
     }
@@ -95,7 +84,6 @@ export const putlocationApi = (id: number, data: Location) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.put(`/vi-tri/${id}`, data);
-      console.log({ result });
       let action = locationActionAdmin(result.data.content);
       dispatch(action);
     } catch (error) {
@@ -125,7 +113,6 @@ export const getlocationApiID = (id: number) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.get(`/vi-tri/${id}`);
-      console.log({ result });
       let action = locationActionAdmin(result.data.content);
       dispatch(action);
     } catch (err) {
@@ -140,7 +127,6 @@ export const createLocationApi = (data: Location) => {
     try {
       const result = await http.post("/vi-tri", data);
       const action = locationCreateAdmin(result.data.content);
-      console.log(result);
       dispatch(action);
     } catch (err: any) {
       console.log(err);
