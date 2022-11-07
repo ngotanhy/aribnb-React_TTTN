@@ -181,7 +181,6 @@ export const getPaginationUser = (page: Number) => {
 };
 
 export const UpdateAvatarUser = (data: FormData) => {
-  console.log(data);
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.post("/users/upload-avatar", data);

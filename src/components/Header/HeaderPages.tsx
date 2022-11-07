@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineGlobal } from "react-icons/ai";
 import classNames from "classnames";
-// import HeaderMenu from "./HeaderMenu";
 import HeaderSearch from "../HeaderSearch/HeaderSearch";
 import HeaderMenu from "./HeaderMenu";
 
@@ -48,18 +47,6 @@ export default function HeaderPage({}: Props) {
                     </div>
                   </button>
                 </div>
-
-                {/* <div
-                  className="inline-flex sm:hidden cursor-pointer  p-2   items-center "
-                  style={{
-                    width: "30px",
-                    height: "30px",
-                    borderRadius: "99999px",
-                    background: "#ff385c",
-                  }}
-                >
-                  <FaSearch className="text-white inline-block text-sm  " />
-                </div> */}
               </div>
               <div className=" flex justify-end items-center host relative">
                 <a

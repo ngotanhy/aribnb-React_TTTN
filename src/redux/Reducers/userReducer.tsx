@@ -128,8 +128,8 @@ export const postSignIn = (data: UserSignIn) => {
 export const getUserProfileAPi = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      let result5 = await http.get(`/users/${getStoreJSON(USER_LOGIN).id}`);
-      dispatch(setUserProfile(result5.data.content));
+      let result = await http.get(`/users/${getStoreJSON(USER_LOGIN).id}`);
+      dispatch(setUserProfile(result.data.content));
     } catch (err) {
       console.log({ err });
     }
@@ -159,10 +159,23 @@ export const putUseProfileApi = (id: number, data: UpdateUser) => {
     try {
       let result = await http.put(`/users/${id}`, data);
       localStorage.removeItem(USER_LOGIN);
-      setStoreJSON(USER_LOGIN, result.data.content);
-      dispatch(setUserProfile(result.data.content));
+      await setStoreJSON(USER_LOGIN, result.data.content);
+      dispatch(setUserLogin(result.data.content));
     } catch (error) {
       console.log({ error });
+    }
+  };
+};
+
+//change avatar
+export const UpdateAvatarUser = (data: FormData) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.post("/users/upload-avatar", data);
+      const action = setUserProfile(result.data.content);
+      dispatch(action);
+    } catch (err: any) {
+      console.log(err);
     }
   };
 };

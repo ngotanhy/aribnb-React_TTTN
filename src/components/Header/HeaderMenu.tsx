@@ -3,7 +3,8 @@ import { Dropdown, Menu } from "antd";
 import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, getStoreJSON, USER_LOGIN } from "../../utils/setting";
-import { useAppSelector } from "../../Hooks/HooksRedux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/HooksRedux";
+import { getUserProfileAPi } from "../../redux/Reducers/userReducer";
 
 type Props = {};
 export type User = {
@@ -17,16 +18,19 @@ export type User = {
   phone: string | number;
 };
 export default function HeaderMenu({}: Props) {
-    const [userLog, setUserLog] = useState<User | null>(null);
+  const [userLog, setUserLog] = useState<User | null>(null);
   const { userLogin } = useAppSelector((state) => state.userReducer);
-
+  const { userProfile } = useAppSelector((state) => state.userReducer);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    if (Object.keys(userLogin).length !== 0) {
-      setUserLog(userLogin);
-    }
+    (async () => {
+      if (Object.keys(userLogin).length !== 0) {
+        await setUserLog(userLogin);
+      }
+      await dispatch(getUserProfileAPi());
+    })();
   }, [userLogin]);
 
   const menu = (
@@ -81,12 +85,12 @@ export default function HeaderMenu({}: Props) {
             <>
               {userLog !== null ? (
                 <p
-                  onClick={async() => {
-                     localStorage.removeItem(USER_LOGIN);
-                     localStorage.removeItem(ACCESS_TOKEN);
+                  onClick={async () => {
+                    localStorage.removeItem(USER_LOGIN);
+                    localStorage.removeItem(ACCESS_TOKEN);
                     let userLogin = await getStoreJSON(USER_LOGIN);
                     setUserLog(userLogin);
-                    navigate("/")
+                    navigate("/");
                   }}
                   style={{ borderBottom: "1px solid #ccc" }}
                   className="text-base   m-0 pb-2 pt-2"
@@ -111,7 +115,7 @@ export default function HeaderMenu({}: Props) {
           label: (
             <p
               onClick={() => {
-                if (userLog?.role === "ADMIN") {
+                if (userProfile?.role === "ADMIN") {
                   navigate("/admin/dashboard");
                 } else {
                   navigate("/");
@@ -149,7 +153,11 @@ export default function HeaderMenu({}: Props) {
             <div>
               <img
                 className="rounded-full w-8 h-8"
-                src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src={
+                  userProfile?.avatar
+                    ? userProfile.avatar
+                    : "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=600"
+                }
                 alt=""
               />
             </div>

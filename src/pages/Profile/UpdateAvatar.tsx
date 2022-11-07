@@ -1,17 +1,15 @@
 import { Card, Form, Input, Modal, Image } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
-  getUserAPiID, UpdateAvatarUser,
+  getUserAPiID
 } from "../../redux/Reducers/userAdminReducer";
 import { AppDispatch, RootState } from "../../redux/configStore";
+import { UpdateAvatarUser } from "../../redux/Reducers/userReducer";
 
 export default function UpdateAvatar(): JSX.Element {
   const params = useParams();
-
-  const navigate = useNavigate();
-
   const dispatch = useDispatch<AppDispatch>();
 
   const [avatar, setAvatar] = useState<string | any>();
