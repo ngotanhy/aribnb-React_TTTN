@@ -19,6 +19,7 @@ module.exports = {
         '29rem': '29rem',
         '26rem': '26rem',
         '40rem': '40rem',
+        "100vh":'100vh',
       },
       width: {
         '29rem': '29rem',

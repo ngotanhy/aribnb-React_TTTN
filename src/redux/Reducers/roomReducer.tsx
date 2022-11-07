@@ -194,3 +194,15 @@ export const getRoomListByLocation = (id: number)=>{
       }
   }
 }
+
+
+// export const getBookingUserApi=(id:number)=>{
+//   return async (dispatch:AppDispatch)=>{
+//     try{
+//       let result = await http.get(`/dat-phong/lay-theo-nguoi-dung/${id}`)
+//       console.log(result)
+//     }catch(err){
+//       console.log(err);
+//     }
+//   }
+// }

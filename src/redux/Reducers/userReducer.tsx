@@ -139,12 +139,14 @@ export const getUserProfileAPi = () => {
 export const getBookingUserApi = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      let result3 = await http.get(
-        `/dat-phong/lay-theo-nguoi-dung/${getStoreJSON(USER_LOGIN).user.id}`
-      );
-      console.log(result3);
-      let action = setUserBooking(result3.data.content);
-      dispatch(action);
+      let idUserLogin = await getStoreJSON(USER_LOGIN).id;
+      if (idUserLogin) {
+        let result3 = await http.get(
+          `/dat-phong/lay-theo-nguoi-dung/${idUserLogin}`
+        );
+        let action = setUserBooking(result3.data.content);
+        dispatch(action);
+      }
     } catch (error) {
       console.log({ error });
     }
