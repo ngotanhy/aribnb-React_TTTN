@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import useScroll from "../../Hooks/UseScroll";
+import { AppDispatch, RootState } from "../../redux/configStore";
+import { MdLocationOn, MdOutlineLocationOn } from "react-icons/md";
+import { getRoomAPiID } from "../../redux/Reducers/roomReducer";
 
 
 export default function HeaderSearch(props: any) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { locationList } = useSelector((state: RootState) => state.locationReducer)
   const { searchVisible, setSearchVisible } = props;
   const [positionVisible, setPositionVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   // const { positionArray } = useSelector((state) => state.position);
+  // const 
 
   const scroll = useScroll();
   useEffect(() => {
@@ -22,36 +27,34 @@ export default function HeaderSearch(props: any) {
   }, [scroll]);
   const { TabPane } = Tabs;
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  // const renderPosition = () => {
-  //   const fillPositionArray = positionArray?.filter((item) =>
-  //     item.name?.toLowerCase().includes(searchValue.toLowerCase())
-  //   );
-  //   return fillPositionArray?.map((position, index) => {
-  //     return (
-  //       <div
-  //         onClick={() => {
-  //           navigate({
-  //             pathname: "/rooms",
-  //             search: "?position=" + position._id,
-  //           });
-  //         }}
-  //         className="p-3 flex items-center cursor-pointer  hover:bg-slate-400 transition-all  duration-300"
-  //         key={index}
-  //       >
-  //         <div className="inline-block p-2 mr-2 bg-gray-200 rounded-md">
-  //           <MdLocationOn />
-  //         </div>
+  const renderPosition = () => {
+    const fillPositionArray = locationList?.filter((item) =>
+      item.tenViTri?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return fillPositionArray?.map((item, index) => {
+      return (
+        <div
+        onClick={() => {
+          // dispatch(getRoomAPiID(item.id))
+          let tenViTri = item?.tenViTri.replace(" ", "_");
+          window.scroll(0, 0);
+          navigate(`/detailLocation/${item?.id}/${tenViTri}`);
+        }}
+          className="p-3 flex items-center cursor-pointer  hover:bg-zinc-400 transition-all  duration-300"
+          key={index}
+        >
+          <div className="inline-block p-2 mr-2 bg-orange-200 rounded-md text-red-600">
+            <MdOutlineLocationOn />
+          </div>
 
-  //         <div>
-  //           <span>{position.name}</span>-<span>{position.province}</span>-
-  //           <span>{position.country}</span>
-  //         </div>
-  //       </div>
-  //     );
-  //   });
-  // };
+          <div>
+            <span>{item.tenViTri}</span> - Thành phố <span>{item.tinhThanh}</span> - <span>{item.quocGia}</span>
+          </div>
+        </div>
+      );
+    });
+  };
   return (
     <div>
       <div
@@ -89,13 +92,13 @@ export default function HeaderSearch(props: any) {
                 boxShadow: "0 2px 2px 2px rgba(0,0,0,0.2)",
               }}
               className={classnames(
-                "rounded-2xl  absolute z-10 overflow-y-scroll animate__fadeInDownBig animate__animated w-11/12 lg:w-6/12 ",
+                "rounded-2xl absolute z-10 overflow-y-scroll animate__fadeInDownBig animate__animated w-11/12 lg:w-6/12 ",
                 {
                   hidden: !positionVisible,
                 }
               )}
             >
-              {/* {renderPosition()} */}
+              {renderPosition()}
             </div>
           </TabPane>
           <TabPane

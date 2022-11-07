@@ -1,39 +1,25 @@
 import { SiAdguard } from "react-icons/si";
 import { BsCheck } from "react-icons/bs";
-import { AiFillStar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/configStore";
 import dayjs from "dayjs";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import {
   getUserProfileAPi,
 } from "../../redux/Reducers/userReducer";
 import ModalProfile from "../../HOC/ModalProfile";
 import RoomItem from "./RoomProfile/RoomItem";
-import {
-  ACCESS_TOKEN,
-  getStoreJSON,
-  http,
-  setStore,
-  setStoreJSON,
-  TOKEN_CYBERSOFT,
-  USER_LOGIN,
-} from "../../utils/setting";
+
 import _ from "lodash";
 import UpdateAvatar from "./UpdateAvatar";
 import { MdOutlinePlaylistAddCheck } from "react-icons/md";
-// import { Updateavatar } from "../../redux/Reducers/userReducer";
+
 
 type Props = {};
 
 export default function Profile({}: Props) {
-  // const params: any = useParams();
-
   const dispatch = useDispatch<AppDispatch>();
-
   const { userProfile } = useSelector((state: RootState) => state.userReducer);
-  console.log({ userProfile });
 
   useEffect(() => {
     dispatch(getUserProfileAPi());

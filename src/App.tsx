@@ -13,6 +13,7 @@ export const history = createBrowserHistory({ window });
 import "antd/dist/antd.css";
 
 //scss
+import "react-toastify/dist/ReactToastify.css";
 import "../src/assets/scss/style.scss";
 
 import Home from "./pages/Home/Home";
@@ -36,10 +37,24 @@ import UpdateBooking from "./pages/AdminPages/TestPage/UpdateBooking";
 import Profile from "./pages/Profile/Profile";
 import ModalProfile from "./HOC/ModalProfile";
 import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
-
+import DetailLocation from "./pages/DetailLocation/DetailLocation";
+import Loading from "./components/Loading/Loading";
 
 type Props = {};
-
+export const toastOptionsErr:{} = {
+  position: "bottom-right",
+  autoClose: 8000,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
+export const toastOptionsSuccess:{} = {
+  position: "bottom-right",
+  autoClose: 8000,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "light",
+};
 export default function App({}: Props) {
   return (
     <>
@@ -47,18 +62,22 @@ export default function App({}: Props) {
         {/* <RouterProvider router={router} /> */}
         <Routes>
           <Route path="/" element={<HomeTemplate />}>
+          {/* <Route path="/" element={<Loading />}> */}
+
             <Route index element={<Home />} />
 
             <Route path="/Profile" element={<Profile />} />
             <Route path="detailRoom">
               <Route path=":id" element={<DetailPages />} />
             </Route>
-
+            <Route path="/detailLocation">
+              <Route path=":id/:nameLocationRoom" element={<DetailLocation />} />
+            </Route>
             <Route path="*" element={<Navigate to="" />} />
           </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/test1" element={<RoomItem />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/test1" element={<RoomItem />} />
 
           <Route path="/admin/dashboard" element={<DashBoard />}>
             <Route path="userAdmin" element={<UserManagement />} />
@@ -72,12 +91,19 @@ export default function App({}: Props) {
             <Route path="roomAdmin/createroom" element={<CreateRoom />} />
             <Route path="roomAdmin/updateroom/:id" element={<UpdateRoom />} />
 
-            <Route path="locationAdmin/createlocation" element={<CreateLocation />} />
-            <Route path="locationAdmin/updatelocation/:id" element={<UpdateLocation />} />
+            <Route
+              path="locationAdmin/createlocation"
+              element={<CreateLocation />}
+            />
+            <Route
+              path="locationAdmin/updatelocation/:id"
+              element={<UpdateLocation />}
+            />
 
-            <Route path="bookingAdmin/updatebooking/:id" element={<UpdateBooking />} />
-
-
+            <Route
+              path="bookingAdmin/updatebooking/:id"
+              element={<UpdateBooking />}
+            />
           </Route>
         </Routes>
       </HistoryRouter>

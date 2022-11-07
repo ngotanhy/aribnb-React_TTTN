@@ -58,7 +58,7 @@ http.interceptors.request.use(
       if( config.headers){
           config.headers  = {
               ['Token']: token,
-              ['TokenCybersoft']: TOKEN_CYBERSOFT
+              ['tokenCybersoft']: TOKEN_CYBERSOFT
           }
       }
       return config
@@ -81,7 +81,7 @@ http.interceptors.request.use(
 // // Cấu hình kết quả trả về
 http.interceptors.response.use(
   (response) => {
-    console.log(response);
+    // console.log(response);
     return response;
   },
   (err) => {

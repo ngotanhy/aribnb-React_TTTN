@@ -3,15 +3,18 @@ import { BsTranslate, BsHeart } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import { TbMedal2 } from "react-icons/tb";
 import { FiShare } from "react-icons/fi";
+import { useAppSelector } from "../../../Hooks/HooksRedux";
 
 type Props = {};
 
 export default function DetailTitle({}: Props) {
+  const {roomDetail}=useAppSelector((state)=>state.roomReducer)
+  const {localDetail}=useAppSelector((state)=>state.locationReducer)
   return (
     <>
       <div className="flex text-3xl font-medium ">
         <BsTranslate className="mr-2" />
-        Hoa Damwon (Học viện Hoa Damwon)
+        {roomDetail?.tenPhong}
       </div>
       <div className="flex mt-3 justify-start text-sm">
         <div className="flex gap-3 basis-2/3">
@@ -19,19 +22,13 @@ export default function DetailTitle({}: Props) {
             <AiFillStar />
             4.47 ·
           </div>
-          <div className="font-medium ">
-            <button className="underline underline-offset-1">
-              <span className="">233 </span>
-              đánh Giá
-            </button>
-          </div>
           <div className="flex gap-1 items-center">
             <TbMedal2 />
             <span>Chủ nhà siêu cấp .</span>
           </div>
           <div className="font-medium text">
             <button className="underline underline-offset-1">
-              Cheomdangwahak-ro, Jeongeup-si, North Jeolla Province, Hàn Quốc
+              {localDetail?.tenViTri +' '+ localDetail?.tinhThanh +' '+localDetail?.quocGia}
             </button>
           </div>
         </div>

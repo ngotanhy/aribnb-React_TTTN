@@ -48,10 +48,11 @@ type roomUpdate = {
 
 export interface roomListItem {
   roomArray: roomList[];
-  roomDetail: roomList[];
+  roomDetail: roomList[]|any;
   roomPost: roomList[];
   roomPut: roomList[] | any;
-  roomList: roomList[]
+  roomList: roomList[];
+  roomListLocation:roomList[];
 }
 
 const initialState: roomListItem = {
@@ -60,6 +61,7 @@ const initialState: roomListItem = {
   roomPost: [],
   roomPut: [],
   roomList: [],
+  roomListLocation:[]
 };
 
 const roomReducer = createSlice({
@@ -70,6 +72,7 @@ const roomReducer = createSlice({
       state.roomArray = action.payload;
     },
     createNewRoom: (state: roomListItem, action: PayloadAction<roomList>) => {},
+    
     getDetailRoom: (state: roomListItem, action: PayloadAction<roomList[]>) => {
       state.roomDetail = action.payload;
     },
@@ -80,7 +83,7 @@ const roomReducer = createSlice({
       state.roomPut = action.payload;
     },
     roomListLocation: (state: roomListItem, action: PayloadAction<roomList[]>) => {
-      state.roomPut = action.payload;
+      state.roomListLocation = action.payload;
     },
   },
 });
@@ -97,7 +100,6 @@ export const getRoomApi = () => {
       const result = await http.get("/phong-thue");
       let roomArray: roomList[] = result.data.content;
       const action = getAllRoom(roomArray);
-      console.log(result);
       dispatch(action);
     } catch (err) {
       console.log(err);
@@ -109,9 +111,8 @@ export const getDetailRoomId = (id: any) => {
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.get(`/phong-thue/${id}`);
-      let roomArray: roomList[] = result.data.content;
-      const action = getDetailRoom(roomArray);
-      console.log(result);
+      let roomID: roomList[] = result.data.content;
+      const action = getDetailRoom(roomID);
       dispatch(action);
     } catch (err) {
       console.log(err);
@@ -128,7 +129,6 @@ export const createRoomApi = (data: roomList) => {
       const result = await http.post("/phong-thue", data);
       //   let userPost: UserPost[] = result.data.content;
       const action = roomCreateAdmin(result.data.content);
-      console.log(result);
       dispatch(action);
     } catch (err: any) {
       console.log(err);
@@ -142,7 +142,6 @@ export const putRoomApi = (id: number, data: roomUpdate) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.put(`/phong-thue/${id}`, data);
-      console.log({ result });
       let action = roomActionAdmin(result.data.content);
       dispatch(action);
     } catch (error) {
@@ -174,7 +173,6 @@ export const getRoomAPiID = (id: number) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.get(`/phong-thue/${id}`);
-      console.log({ result });
       let action = roomActionAdmin(result.data.content);
       dispatch(action);
     } catch (err) {
@@ -196,3 +194,15 @@ export const getRoomListByLocation = (id: number)=>{
       }
   }
 }
+
+
+// export const getBookingUserApi=(id:number)=>{
+//   return async (dispatch:AppDispatch)=>{
+//     try{
+//       let result = await http.get(`/dat-phong/lay-theo-nguoi-dung/${id}`)
+//       console.log(result)
+//     }catch(err){
+//       console.log(err);
+//     }
+//   }
+// }

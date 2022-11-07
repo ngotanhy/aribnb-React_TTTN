@@ -4,8 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { string, object } from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postSignin } from "../../redux/Reducers/userReducer";
+import { postSignIn } from "../../redux/Reducers/userReducer";
 import { AppDispatch } from "../../redux/configStore";
+import { getStoreJSON, USER_LOGIN } from "../../utils/setting";
 
 
 interface Login {
@@ -24,12 +25,6 @@ export default function Login({}: Props) {
     password: string().required("Mật khẩu không được để trống"),
   });
 
-  // useEffect(() => {
-  //   if (userLogin !== null) {
-  //     navigate("/");
-  //   }
-  // });
-
   const {
     register,
     handleSubmit,
@@ -38,12 +33,13 @@ export default function Login({}: Props) {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
-
   
-  const onSubmit = handleSubmit((valuse) => {
-    console.log(valuse);
-    const action = postSignin(valuse);
-    dispatch(action);
+  const onSubmit = handleSubmit(async (values) => {
+    await dispatch(postSignIn(values));
+    let userLogin=await getStoreJSON(USER_LOGIN)
+    if(userLogin){
+      navigate("/")
+    }
   });
 
   return (
@@ -51,7 +47,6 @@ export default function Login({}: Props) {
       <div
         onClick={() => {
           navigate("/");
-          window.location.reload();
         }}
         style={{
           position: "absolute",

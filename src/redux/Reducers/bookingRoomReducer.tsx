@@ -1,13 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { history } from "../../App";
 import {
-  ACCESS_TOKEN,
-  getStoreJSON,
   http,
-  setStore,
-  setStoreJSON,
-  TOKEN_CYBERSOFT,
-  USER_LOGIN,
 } from "../../utils/setting";
 import { AppDispatch } from "../configStore";
 
@@ -29,7 +22,7 @@ interface RoomBooking {
 const initialState: RoomBooking = {
   roombookingList: [],
   roombookingPut: [],
-  roombookingPost: []
+  roombookingPost: [],
 };
 
 const bookingReducer = createSlice({
