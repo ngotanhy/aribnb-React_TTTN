@@ -1,39 +1,43 @@
-.admin{
-    height:100vh;
-    .tab-admin{
-        color : #bdbdc7;
-        padding : 13px 20px;
+.admin {
+    height: 100vh;
+    .admin_slidebar {
+        background-color: #f8f8fb;
+    }
+    .tab-admin {
+        color: #bdbdc7;
+        padding: 13px 20px;
         cursor: pointer;
         transition: all linear 0.4s;
         &:hover {
             background-color: #355c7d;
         }
     }
-    .ant-menu-root{
-        .ant-menu-submenu{
-            color : #bdbdc7 !important;
-            .ant-menu-sub{
+    .ant-menu-root {
+        .ant-menu-submenu {
+            color: #747171 !important;
+            .ant-menu-sub {
                 // background-color: #343957 !important;
             }
         }
-        .ant-menu-submenu-title{
-            &:hover{
 
-            color: #bdbdc7 !important;
+        .ant-menu-submenu-title {
+            &:hover {
+                font-weight: 500;
+                color: #eb5757 !important;
             }
         }
-        background-color: #343957 !important;
-        font-size: 20px;
-        
-        .ant-menu-submenu-arrow{
-        color: #bdbdc7 !important;
+        .ant-menu-submenu-selected {
+            font-weight: 500;
+            color: #eb5757 !important;
+        }
+
+        background-color: #f8f8fb !important;
+        font-size: 18px;
+
+        .ant-menu-submenu-arrow {
+            &:hover {
+                color: #eb5757 !important;
+            }
         }
     }
-    
 }
-
-// .ant-input {
-//     --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-//     --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-//     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-// }

@@ -2,14 +2,13 @@
     width: 100%;
     height: 100vh;
     background-size:100% 100% ;
-            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/slider-2.jpg');
+            background-image: url('https://images.pexels.com/photos/346271/exposure-long-photography-rotterdam-346271.jpeg?cs=srgb&dl=pexels-skitterphoto-346271.jpg&fm=jpg&_gl=1*3hijv4*_ga*MTY0ODc5MDM3OS4xNjY2NDMwOTMz*_ga_8JE65Q40S6*MTY2Nzg5OTU0NS42LjEuMTY2Nzg5OTczMC4wLjAuMA..g');
     svg {
             display: inline-block;
             width: 2rem;
             height: 2rem;
             overflow: visible;
         }
-    
         .svg-icon {
             cursor: pointer;
     
@@ -19,7 +18,6 @@
                 stroke-width: 1;
             }
         }
-    
         input,
         button {
             outline: none;
@@ -435,7 +433,6 @@
                         opacity: 0;
                     }
                 }
-    
                 &-icon {
                     position: absolute;
                     width: 3rem;
