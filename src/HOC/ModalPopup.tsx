@@ -10,9 +10,7 @@ export default function ModalPopup({}: Props) {
   const {ComponentContent,ComponentTitle, openModalPopup } = useAppSelector((state) => state.openModalReducer);
 
   const dispatch = useAppDispatch();
-  // useEffect(()=>{
-  //    console.log(openModalPopup);
-  // },[openModalPopup])
+  
   return (
     <div>
       <div>

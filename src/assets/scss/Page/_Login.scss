@@ -9,19 +9,25 @@
             height: 2rem;
             overflow: visible;
         }
+    
         .svg-icon {
             cursor: pointer;
+    
             path {
                 stroke: rgba(255, 255, 255, 0.9);
                 fill: none;
                 stroke-width: 1;
             }
         }
+    
         input,
         button {
             outline: none;
             border: none;
-        }   
+        }
+    
+       
+    
         .demo {
             position: absolute;
             top: 71%;
@@ -429,6 +435,7 @@
                         opacity: 0;
                     }
                 }
+    
                 &-icon {
                     position: absolute;
                     width: 3rem;

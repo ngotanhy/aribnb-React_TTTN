@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
   .hoverDn {
     @apply cursor-pointer transition-all duration-300;
@@ -20,4 +19,5 @@
 @import "../scss/components/Hoc/_Hoc.scss";
 @import "../scss/Page/AdminPages/DashBoard/_DashBoard.scss";
 @import "../scss/Page/AdminPages/TestPage/Antd.scss";
-@import "../scss/components/HeaderLocation/HeaderLocationItem"
+@import "../scss/components/HeaderLocation/HeaderLocationItem";
+@import "../scss/pages/ChatBoxScss/ChatBox";

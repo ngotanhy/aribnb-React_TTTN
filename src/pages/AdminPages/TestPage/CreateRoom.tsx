@@ -115,61 +115,67 @@ export default function CreateRoom(): JSX.Element {
         rules={[{ required: true, message: "Chưa nhập giá tiền!" }]}
       >
         <Input />
-      </Form.Item>
-      <Form.Item label="Máy giặt" name="mayGiat" valuePropName="checked">
-        <Switch
+      </Form.Item >
+      <div className="flex justify-start ml-28 ">
+        <div className="mr-24"> 
+        <Form.Item label="Máy giặt" name="mayGiat" valuePropName="checked" labelCol={{ span: 16 }} >
+        <Switch className="fix_icon" 
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Bàn Là" name="banLa" valuePropName="checked">
+      <Form.Item label="Bàn Là" name="banLa" valuePropName="checked" labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Ti Vi" name="tivi" valuePropName="checked">
+      <Form.Item label="Ti Vi" name="tivi" valuePropName="checked" labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Điều hòa" name="dieuHoa" valuePropName="checked">
+      <Form.Item label="Điều hòa" name="dieuHoa" valuePropName="checked" labelCol={{ span: 16 }}>
+         <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+        />
+      </Form.Item> 
+        <Form.Item label="Wifi" name="wifi" valuePropName="checked" labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Wifi" name="wifi" valuePropName="checked">
+      </div>
+        <div>
+      <Form.Item label="Bếp" name="bep" valuePropName="checked" labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Bếp" name="bep" valuePropName="checked">
+      <Form.Item label="Đỗ xe" name="doXe" valuePropName="checked" labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Đỗ xe" name="doXe" valuePropName="checked">
+      <Form.Item label="Hồ bơi" name="hoBoi" valuePropName="checked" labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Hồ bơi" name="hoBoi" valuePropName="checked">
+      <Form.Item label="Bàn ủi" name="banUi" valuePropName="checked"labelCol={{ span: 16 }}>
          <Switch
           checkedChildren={<CheckOutlined />}
           unCheckedChildren={<CloseOutlined />}
         />
       </Form.Item>
-      <Form.Item label="Bàn ủi" name="banUi" valuePropName="checked">
-         <Switch
-          checkedChildren={<CheckOutlined />}
-          unCheckedChildren={<CloseOutlined />}
-        />
-      </Form.Item>
+        </div>
+      </div>
       <Form.Item label="Hình ảnh">
         <Input type="file" name="hinhAnh" onChange={hanldeChangeImage} />
         <Image

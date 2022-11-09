@@ -5,8 +5,14 @@ const defaultComponent = () => {
     <div>OpenModalReducer</div>
   )
 }
+type State={
+  openModal: boolean;
+  openModalPopup: boolean;
+  ComponentTitle:any;
+  ComponentContent:any;
+}
 
-const initialState = {
+const initialState:State = {
   openModal: false,
   openModalPopup: false,
   ComponentTitle:defaultComponent,

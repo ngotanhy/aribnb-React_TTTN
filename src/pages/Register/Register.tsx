@@ -74,7 +74,7 @@ export default function Register({}: Props) {
     mode: "onTouched",
   });
 
-  const onSubmit = handleSubmit((values:any) => {
+  const onSubmit = handleSubmit((values: any) => {
     console.log(values);
     const action = postSignupUser(values);
     dispatch(action);
@@ -231,14 +231,15 @@ export default function Register({}: Props) {
             </a>
           </div>
         </div>
-        <div className="text-grey-dark mt-6 text-white">
-          Already have an account?
-          <a
-            className="no-underline border-b border-blue text-blue"
-            href="../login"
-          >
+        <div className="text-grey-dark mt-6 text-slate-700 text-xl">
+          <button className="mr-2">Already have an account?</button>
+          <button className="hover:text-blue-700"
+             onClick={()=>{
+              navigate('/login/2');
+             }}
+             >
             Log in
-          </a>
+          </button>
           .
         </div>
       </div>

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { AiFillStar, AiOutlineSend } from "react-icons/ai";
 import { getStoreJSON, http, USER_LOGIN } from "../../../utils/setting";
 import { toast } from "react-toastify";
-import { history, toastOptionsSuccess } from "../../../App";
+import { toastOptionsSuccess } from "../../../App";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -46,9 +46,8 @@ export default function DetailComment({ idRoom }: Props) {
           if (result.status === 201) {
             toast.success("Bình luận thành công", toastOptionsSuccess);
           }
-        }else{
-          // navigate("/login")
-          history.push("/login");
+        } else {
+          navigate("/login/1");
         }
       }
     } else {

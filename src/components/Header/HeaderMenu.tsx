@@ -17,13 +17,13 @@ export type User = {
   gender: true;
   phone: string | number;
 };
+
 export default function HeaderMenu({}: Props) {
   const [userLog, setUserLog] = useState<User | null>(null);
   const { userLogin } = useAppSelector((state) => state.userReducer);
   const { userProfile } = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   useEffect(() => {
     (async () => {
       if (Object.keys(userLogin).length !== 0) {
@@ -48,7 +48,7 @@ export default function HeaderMenu({}: Props) {
                       if (getStoreJSON(USER_LOGIN)) {
                         navigate("/Profile");
                       } else {
-                        navigate("/login");
+                        navigate("/login/1");
                       }
                     }}
                     className="text-base font-medium m-0"
@@ -99,7 +99,7 @@ export default function HeaderMenu({}: Props) {
                 </p>
               ) : (
                 <p
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/login/1")}
                   className="text-base   m-0 pb-4 pt-3"
                   style={{ borderBottom: "1px solid #ccc" }}
                 >
