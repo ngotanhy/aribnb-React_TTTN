@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
   .hoverDn {
     @apply cursor-pointer transition-all duration-300;
@@ -18,4 +17,11 @@
 @import "../scss/components/Carousel/_Carousel.scss";
 @import "./pages/Login";
 @import "../scss/components/Hoc/_Hoc.scss";
+<<<<<<< Updated upstream
 @import "./components/MapGg/MapGg";
+=======
+@import "../scss/Page/AdminPages/DashBoard/_DashBoard.scss";
+@import "../scss/Page/AdminPages/TestPage/Antd.scss";
+@import "../scss/components/HeaderLocation/HeaderLocationItem";
+@import "../scss/Page/ChatBox/ChatBox";
+>>>>>>> Stashed changes

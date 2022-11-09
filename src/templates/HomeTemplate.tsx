@@ -11,6 +11,10 @@ export default function HomeTemplate({}: Props) {
     <div className="relative">
       <HeaderPage />
       <Outlet />
+<<<<<<< Updated upstream
+=======
+      <Chat/>
+>>>>>>> Stashed changes
       <PageFooter />
       <DetailImageModal />
     </div>

@@ -33,6 +33,11 @@ export default function App({}: Props) {
         {/* <RouterProvider router={router} /> */}
         <Routes>
           <Route path="/" element={<HomeTemplate />}>
+<<<<<<< Updated upstream
+=======
+          {/* <Route path="/" element={<Loading />}> */}
+         
+>>>>>>> Stashed changes
             <Route index element={<Home />} />
 
             <Route path="detailRoom">
