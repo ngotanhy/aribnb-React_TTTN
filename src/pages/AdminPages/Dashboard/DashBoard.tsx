@@ -160,11 +160,11 @@ export default function DashBoard({}: Props) {
 
   return (
     <div className="grid grid-cols-12 admin ">
-    <div className="col-span-2  ">
-      <div className="h-full admin_slidebar">
-        <div
-          className="h-20 px-5 py-4 flex items-center "
-          style={{ boxShadow: " 0px 4px 12px rgba(0, 0, 0, 0.1)" }}
+      <div className="col-span-2  ">
+        <div className="h-full admin_slidebar">
+          <div
+            className="h-20 px-5 py-4 flex items-center "
+            style={{ boxShadow: " 0px 4px 12px rgba(0, 0, 0, 0.1)" }}
         >
           <div className="h-12 w-12 rounded-xl overflow-hidden">
             <img
@@ -173,7 +173,6 @@ export default function DashBoard({}: Props) {
               alt=""
             />
           </div>
-
           <span
             className="text-2xl font-semibold ml-2 text-rose-400"
           >
