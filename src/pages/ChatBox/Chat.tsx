@@ -56,7 +56,7 @@ export default function Chat() {
   useEffect(() => {
     (async () => {
       if (!getStoreJSON(CURRENT_USER)) {
-        navigate("/login");
+        navigate("/login/1");
       } else {
         setCurrentUser(await getStoreJSON(CURRENT_USER));
       }
@@ -91,6 +91,7 @@ export default function Chat() {
         if (currentUser.role === "USER") {
           let admin = await axios.get(getUserAdmin);
           setCurrentChat(admin.data);
+          console.log(admin.data);
         } else {
           setIsOpen(true);
         }
@@ -143,7 +144,7 @@ export default function Chat() {
                       {currentUser?.username}
                     </p>
                   </div>
-                  <button className="text-3xl text-slate-100 " onClick={()=>setIsOpen(false)}>
+                  <button className="text-3xl text-slate-100  " onClick={()=>setIsOpen(false)}>
                     <AiOutlineCloseCircle />
                   </button>
                 </Header>
@@ -152,7 +153,7 @@ export default function Chat() {
             </Layout>
           </Layout>
         ) : (
-          <button className="text-4xl absolute right-4 bottom-4" onClick={() => setIsOpen(true)}>
+          <button className="text-4xl fixed z-50 right-1 bottom-4" onClick={() => setIsOpen(true)}>
             <AiFillMessage/>
           </button>
         )}

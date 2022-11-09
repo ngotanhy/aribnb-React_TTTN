@@ -75,7 +75,9 @@ export default function App({}: Props) {
             </Route>
             <Route path="*" element={<Navigate to="" />} />
           </Route>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" >
+             <Route path=":number" element={<Login />} />
+          </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/test1" element={<RoomItem />} />
 

@@ -12,8 +12,8 @@ export default function HomeTemplate({}: Props) {
   return (
     <div className="relative">
       <HeaderPage />
+      <Chat/>
       <Outlet />
-      {/* <Chat/> */}
       <PageFooter />
       <DetailImageModal />
     </div>
