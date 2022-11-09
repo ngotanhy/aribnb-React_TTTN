@@ -17,13 +17,13 @@ export type User = {
   gender: true;
   phone: string | number;
 };
+
 export default function HeaderMenu({}: Props) {
   const [userLog, setUserLog] = useState<User | null>(null);
   const { userLogin } = useAppSelector((state) => state.userReducer);
   const { userProfile } = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   useEffect(() => {
     (async () => {
       if (Object.keys(userLogin).length !== 0) {

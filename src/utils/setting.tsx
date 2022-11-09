@@ -28,11 +28,13 @@ export const configs = {
   },
   ACCESS_TOKEN: "accessToken",
   USER_LOGIN: "userLogin",
+  CURRENT_USER:"currentUser",
 };
 
 export const {
   ACCESS_TOKEN,
   USER_LOGIN,
+  CURRENT_USER,
   setStore,
   getStore,
   setStoreJSON,

@@ -11,7 +11,6 @@ export default function DetailLocationRoom({}: Props) {
   const { roomListLocation } = useAppSelector((state) => state.roomReducer);
   const dispatch = useAppDispatch();
   const { id } = useParams<string>();
-  console.log(roomListLocation);
   useEffect(() => {
     const action = getRoomListByLocation(Number(id));
     dispatch(action);

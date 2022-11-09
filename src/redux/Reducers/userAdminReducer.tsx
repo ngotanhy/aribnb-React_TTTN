@@ -1,16 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { history } from "../../App";
-import {
-  ACCESS_TOKEN,
-  getStoreJSON,
-  http,
-  setStore,
-  setStoreJSON,
-  TOKEN_CYBERSOFT,
-  USER_LOGIN,
-} from "../../utils/setting";
+import { http } from "../../utils/setting";
 import { AppDispatch } from "../configStore";
-// import { nguoiDungModel } from "../models/nguoiDungModel";
 
 export interface userAll {
   id: number;

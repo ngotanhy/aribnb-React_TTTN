@@ -116,7 +116,17 @@ export const postSignIn = (data: UserSignIn) => {
       //LƯU TOKEN VÀO LOCALSTORE
       setStore(ACCESS_TOKEN, result.data.content.token);
       // Lưu lại email
-      setStoreJSON(USER_LOGIN, result.data.content.user);
+      let userLogin = result.data.content.user;
+      let useLoginSetStore = {
+        avatar: userLogin.avatar,
+        birthday: userLogin.birthday,
+        email: userLogin.email,
+        gender: userLogin.gender,
+        id: userLogin.id,
+        name: userLogin.name,
+        role: userLogin.role,
+      };
+      setStoreJSON(USER_LOGIN, useLoginSetStore);
       dispatch(setUserLogin(result.data.content.user));
     } catch (error: any) {
       let err = error.response.data.content;
