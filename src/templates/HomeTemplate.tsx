@@ -5,14 +5,16 @@ import HeaderPage from "../components/Header/HeaderPages";
 import Loading from "../components/Loading/Loading";
 import Chat from "../pages/ChatBox/Chat";
 import DetailImageModal from "../pages/DetailPages/DetailImage/DetailImageModal/DetailImageModal";
+import { CURRENT_USER, getStoreJSON } from "../utils/setting";
 
 type Props = {};
 
 export default function HomeTemplate({}: Props) {
+  let currentUser = getStoreJSON(CURRENT_USER);
   return (
     <div className="relative">
       <HeaderPage />
-      <Chat/>
+      {currentUser?.role === "USER" ? <Chat /> : ""}
       <Outlet />
       <PageFooter />
       <DetailImageModal />

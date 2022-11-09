@@ -39,6 +39,7 @@ import ModalProfile from "./HOC/ModalProfile";
 import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
 import DetailLocation from "./pages/DetailLocation/DetailLocation";
 import Loading from "./components/Loading/Loading";
+import Chat from "./pages/ChatBox/Chat";
 
 type Props = {};
 export const toastOptionsErr:{} = {
@@ -82,6 +83,7 @@ export default function App({}: Props) {
           <Route path="/test1" element={<RoomItem />} />
 
           <Route path="/admin/dashboard" element={<DashBoard />}>
+            <Route path="chat" element={<Chat />} />
             <Route path="userAdmin" element={<UserManagement />} />
             <Route path="roomAdmin" element={<RoomManagement />} />
             <Route path="locationAdmin" element={<LocationManagement />} />

@@ -56,7 +56,7 @@ export default function Chat() {
   useEffect(() => {
     (async () => {
       if (!getStoreJSON(CURRENT_USER)) {
-        navigate("/login/1");
+        // navigate("/login/1");
       } else {
         setCurrentUser(await getStoreJSON(CURRENT_USER));
       }
