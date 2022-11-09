@@ -14,7 +14,7 @@ export default function HomeTemplate({}: Props) {
   return (
     <div className="relative">
       <HeaderPage />
-      {currentUser?.role === "USER" ? <Chat /> : ""}
+      {/* {currentUser?.role === "USER" ? <Chat /> : ""} */}
       <Outlet />
       <PageFooter />
       <DetailImageModal />

@@ -102,7 +102,8 @@ export default function DashBoard({}: Props) {
         }
         break;
 
-      default: break;
+      default:
+        break;
     }
   };
   const menu = (
@@ -154,7 +155,7 @@ export default function DashBoard({}: Props) {
     getItem("Quản lí đặt phòng ", "sub4", <BsFillPersonLinesFill />, [
       getItem("Danh sách đặt phòng", "11"),
     ]),
-    getItem("Tương tác người dùng ", "12", <BsFillChatDotsFill />)
+    getItem("Tương tác người dùng ", "12", <BsFillChatDotsFill />),
   ];
   // const userRole = JSON.parse(localStorage.getItem(USER_LOGIN)).user.role
 
@@ -165,70 +166,68 @@ export default function DashBoard({}: Props) {
           <div
             className="h-20 px-5 py-4 flex items-center "
             style={{ boxShadow: " 0px 4px 12px rgba(0, 0, 0, 0.1)" }}
-        >
-          <div className="h-12 w-12 rounded-xl overflow-hidden">
-            <img
-              className="h-full w-full"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"
-              alt=""
-            />
-          </div>
-          <span
-            className="text-2xl font-semibold ml-2 text-rose-400"
           >
-            Airbnb Admin 
-          </span>
+            <div className="h-12 w-12 rounded-xl overflow-hidden">
+              <img
+                className="h-full w-full"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"
+                alt=""
+              />
+            </div>
+            <span className="text-2xl font-semibold ml-2 text-rose-400">
+              Airbnb Admin
+            </span>
+          </div>
+          <div className="mt-10">
+            <Menu
+              onClick={onClick}
+              style={{
+                width: 254,
+              }}
+              defaultSelectedKeys={[""]}
+              defaultOpenKeys={[""]}
+              mode="inline"
+              items={items}
+            />
+            ,
+          </div>
         </div>
-        <div className="mt-10">
-          <Menu
-            onClick={onClick}
-            style={{
-              width: 254,
-            }}
-            defaultSelectedKeys={[""]}
-            defaultOpenKeys={[""]}
-            mode="inline"
-            items={items}
-          />
-          ,
+      </div>
+      <div className="col-span-10 ">
+        <div>
+          <div
+            className="h-20 px-8  flex items-center justify-between"
+            style={{ boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)" }}
+          >
+            <div>
+              <span>
+                <FaBars className="text-3xl" />
+              </span>
+            </div>
+            <div className="flex items-center">
+              <p className="text-base font-medium mr-5">{`Hello ${userProfile?.name}`}</p>
+              <Dropdown overlay={menu} placement="bottomRight" arrow>
+                <div className="h-10 w-10 rounded-full overflow-hidden cursor-pointer">
+                  <img
+                    className="h-full w-full"
+                    src={
+                      userProfile?.avatar ||
+                      "https://images.pexels.com/photos/13691873/pexels-photo-13691873.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    }
+                    alt=""
+                  />
+                </div>
+              </Dropdown>
+              <span>
+                <IoMdArrowDropdown className="text-2xl" />
+              </span>
+            </div>
+          </div>
+          <div className=" px-8 mt-10">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
-    <div className="col-span-10 ">
-      <div>
-        <div
-          className="h-20 px-8  flex items-center justify-between"
-          style={{ boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)" }}
-        >
-          <div>
-            <span>
-              <FaBars className="text-3xl" />
-            </span>
-          </div>
-          <div className="flex items-center">
-            <p className="text-base font-medium mr-5">{`Hello ${userProfile?.name}`}</p>
-            <Dropdown overlay={menu} placement="bottomRight" arrow>
-              <div className="h-10 w-10 rounded-full overflow-hidden cursor-pointer">
-                <img
-                  className="h-full w-full"
-                  src={
-                    userProfile?.avatar ||
-                    "https://images.pexels.com/photos/13691873/pexels-photo-13691873.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                  }
-                  alt=""
-                />
-              </div>
-            </Dropdown>
-            <span>
-              <IoMdArrowDropdown className="text-2xl" />
-            </span>
-          </div>
-        </div>
-        <div className=" px-8 mt-10">
-          <Outlet />
-        </div>
-      </div>
-    </div>
-  </div>
   );
 }
