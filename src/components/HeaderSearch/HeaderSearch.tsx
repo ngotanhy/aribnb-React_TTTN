@@ -109,7 +109,6 @@ export default function HeaderSearch(props: any) {
             tab={
               <div className="flex flex-col  ">
                 <span className="font-semibold">Nhận phòng</span>
-                <span className="font-sans text-gray-500">Thêm ngày</span>
               </div>
             }
             key="2"
@@ -119,7 +118,6 @@ export default function HeaderSearch(props: any) {
             tab={
               <div className="flex flex-col ">
                 <span className="font-semibold">Trả phòng</span>
-                <span className="font-sans text-gray-500">Thêm ngày</span>
               </div>
             }
             key="3"

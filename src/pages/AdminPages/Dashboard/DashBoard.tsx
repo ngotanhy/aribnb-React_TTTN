@@ -101,6 +101,11 @@ export default function DashBoard({}: Props) {
           navigate("chat");
         }
         break;
+      case "13":
+        {
+          navigate("DashBoardInfor");
+        }
+        break;
 
       default:
         break;
@@ -140,6 +145,7 @@ export default function DashBoard({}: Props) {
     />
   );
   const items: MenuItem[] = [
+    getItem("DashBoard ", "13", <BsFillChatDotsFill />),
     getItem("Quản lí người dùng", "sub1", <FiUser />, [
       getItem("Danh sách người dùng", "1"),
       getItem("Them người dùng", "2"),
@@ -184,8 +190,8 @@ export default function DashBoard({}: Props) {
               style={{
                 width: 254,
               }}
-              defaultSelectedKeys={[""]}
-              defaultOpenKeys={[""]}
+              defaultSelectedKeys={["sub0"]}
+              defaultOpenKeys={["13"]}
               mode="inline"
               items={items}
             />

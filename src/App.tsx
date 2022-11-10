@@ -40,6 +40,7 @@ import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
 import DetailLocation from "./pages/DetailLocation/DetailLocation";
 import Loading from "./components/Loading/Loading";
 import Chat from "./pages/ChatBox/Chat";
+import DashBoardInfor from "./pages/AdminPages/Dashboard/DashBoardInfor";
 
 type Props = {};
 export const toastOptionsErr:{} = {
@@ -84,6 +85,7 @@ export default function App({}: Props) {
 
           <Route path="/admin/dashboard" element={<DashBoard />}>
             <Route path="chat" element={<Chat />} />
+            <Route path="DashBoardInfor" element={<DashBoardInfor />} />
             <Route path="userAdmin" element={<UserManagement />} />
             <Route path="roomAdmin" element={<RoomManagement />} />
             <Route path="locationAdmin" element={<LocationManagement />} />
