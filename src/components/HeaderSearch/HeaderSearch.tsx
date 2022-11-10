@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Tabs } from "antd";
+import { DatePicker, Space, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
@@ -8,15 +8,18 @@ import { AppDispatch, RootState } from "../../redux/configStore";
 import { MdLocationOn, MdOutlineLocationOn } from "react-icons/md";
 import { getRoomAPiID } from "../../redux/Reducers/roomReducer";
 
-
 export default function HeaderSearch(props: any) {
   const dispatch = useDispatch<AppDispatch>();
-  const { locationList } = useSelector((state: RootState) => state.locationReducer)
+  const { locationList } = useSelector(
+    (state: RootState) => state.locationReducer
+  );
   const { searchVisible, setSearchVisible } = props;
   const [positionVisible, setPositionVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   // const { positionArray } = useSelector((state) => state.position);
-  // const 
+  // const
+
+  const { RangePicker } = DatePicker;
 
   const scroll = useScroll();
   useEffect(() => {
@@ -35,12 +38,12 @@ export default function HeaderSearch(props: any) {
     return fillPositionArray?.map((item, index) => {
       return (
         <div
-        onClick={() => {
-          // dispatch(getRoomAPiID(item.id))
-          let tenViTri = item?.tenViTri.replace(" ", "_");
-          window.scroll(0, 0);
-          navigate(`/detailLocation/${item?.id}/${tenViTri}`);
-        }}
+          onClick={() => {
+            // dispatch(getRoomAPiID(item.id))
+            let tenViTri = item?.tenViTri.replace(" ", "_");
+            window.scroll(0, 0);
+            navigate(`/detailLocation/${item?.id}/${tenViTri}`);
+          }}
           className="p-3 flex items-center cursor-pointer  hover:bg-zinc-400 transition-all  duration-300"
           key={index}
         >
@@ -49,7 +52,8 @@ export default function HeaderSearch(props: any) {
           </div>
 
           <div>
-            <span>{item.tenViTri}</span> - Thành phố <span>{item.tinhThanh}</span> - <span>{item.quocGia}</span>
+            <span>{item.tenViTri}</span> - Thành phố{" "}
+            <span>{item.tinhThanh}</span> - <span>{item.quocGia}</span>
           </div>
         </div>
       );
@@ -60,7 +64,7 @@ export default function HeaderSearch(props: any) {
       <div
         onClick={setSearchVisible}
         className={classnames(
-          "headerSearch absolute z-10 animate__animated animate__bounceInDown transition-all duration-300 ",
+          "headerSearch absolute z-10 transition-all duration-300 ",
           {
             hidden: !searchVisible,
           }
@@ -110,7 +114,6 @@ export default function HeaderSearch(props: any) {
             }
             key="2"
           >
-            Content of Tab Pane 2
           </TabPane>
           <TabPane
             tab={
@@ -121,7 +124,6 @@ export default function HeaderSearch(props: any) {
             }
             key="3"
           >
-            Content of Tab Pane 3
           </TabPane>
           <TabPane
             tab={

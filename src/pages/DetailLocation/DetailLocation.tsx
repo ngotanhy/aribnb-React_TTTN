@@ -12,7 +12,7 @@ export default function DetailLocation({}: Props) {
           <DetailLocationRoom  />
         </div>
         <div className="basis-1/3">
-          <MapLocation />
+          <MapLocation  />
         </div>
       </div>
     </div>
