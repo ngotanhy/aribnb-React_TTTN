@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import type { MenuProps } from "antd";
-import { BsFillDoorOpenFill, BsHouseDoor, BsFillPersonLinesFill } from "react-icons/bs";
+import {
+  BsFillDoorOpenFill,
+  BsHouseDoor,
+  BsFillPersonLinesFill,
+} from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -46,9 +50,7 @@ export default function DashBoard({}: Props) {
     } as MenuItem;
   }
 
-  const {userProfile} = useSelector(
-    (state: RootState) => state.userReducer
-  );
+  const { userProfile } = useSelector((state: RootState) => state.userReducer);
   console.log(userProfile);
 
   useEffect(() => {
@@ -68,31 +70,38 @@ export default function DashBoard({}: Props) {
           navigate("userAdmin/createuser");
         }
         break;
-      case '5': {
-        navigate('locationAdmin')
+      case "5":
+        {
+          navigate("locationAdmin");
+        }
+        break;
+      case "6":
+        {
+          navigate("locationAdmin/createlocation");
+        }
+        break;
+      case "9":
+        {
+          navigate("roomAdmin");
+        }
+        break;
+      case "10":
+        {
+          navigate("roomAdmin/createroom");
+        }
+        break;
+      case "11":
+        {
+          navigate("bookingAdmin");
+        }
+        break;
+      case "12":
+        {
+          navigate("chat");
+        }
+        break;
 
-      }
-        break;
-      case '6': {
-        navigate('locationAdmin/createlocation')
-
-      }
-        break;
-      case "9": {
-        navigate("roomAdmin");
-      }
-        break;
-      case "10": {
-        navigate("roomAdmin/createroom");
-      }
-        break;
-      case "11": {
-        navigate("bookingAdmin");
-      }
-        break;
-
-      default: {
-      }
+      default: break;
     }
   };
   const menu = (
@@ -141,9 +150,10 @@ export default function DashBoard({}: Props) {
       getItem("Danh sách phòng", "9"),
       getItem("Thêm phòng", "10"),
     ]),
-    getItem("Quản lí đặt phòng ", "sub4", <BsFillPersonLinesFill/>, [
+    getItem("Quản lí đặt phòng ", "sub4", <BsFillPersonLinesFill />, [
       getItem("Danh sách đặt phòng", "11"),
     ]),
+    getItem("Chat cung user ", "12", <BsFillPersonLinesFill />,),
   ];
   // const userRole = JSON.parse(localStorage.getItem(USER_LOGIN)).user.role
 
@@ -158,7 +168,10 @@ export default function DashBoard({}: Props) {
             <div className="h-12 w-12 rounded-xl overflow-hidden">
               <img
                 className="h-full w-full"
-                src={ userProfile?.avatar|| "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"} 
+                src={
+                  userProfile?.avatar ||
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"
+                }
                 alt=""
               />
             </div>

@@ -92,6 +92,7 @@ export default function DetailBooking({ id }: Props) {
         );
       } else {
         if (totalDay !== 0) {
+          if((adultsCount + babyCount + childCount)!==0){
           let booking = {
             maPhong: id,
             ngayDen: date[0],
@@ -102,13 +103,16 @@ export default function DetailBooking({ id }: Props) {
           let result = await http.post(`/dat-phong`, booking);
           if (result.status === 201) {
             toast.success(`Thêm thành công `, toastOptionsSuccess);
+          }}
+          else{
+            toast.error("Vui lòng chọn số lượng khách",toastOptionsErr);
           }
         }else{
           toast.error("Hãy chọn lại ngày đến và đi", toastOptionsErr);
         }
       }
     } else {
-      navigate("/login");
+      navigate("/login/1");
     }
   };
 
