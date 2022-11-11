@@ -193,8 +193,8 @@ export default function DashBoard({}: Props) {
               style={{
                 width: 254,
               }}
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
+              defaultSelectedKeys={["13"]}
+              defaultOpenKeys={["sub0"]}
               mode="inline"
               items={items}
             />
