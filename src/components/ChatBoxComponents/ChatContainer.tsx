@@ -1,15 +1,18 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Layout } from "antd";
 import InputChat from "./InputChat";
 import ContentChat from "./ContentChat";
 import { CURRENT_USER, getStoreJSON } from "../../utils/setting";
 import { user } from "../../pages/ChatBox/Chat";
 import { receiveMessageRoute, sendMessageRoute } from "../../utils/APIRoutes";
+import _ from "lodash";
 const { Footer, Content } = Layout;
+
 type Props = {
-  currentChat: any;
+  currentChat: user | null;
   socket: React.MutableRefObject<any>;
+  arrUser: user[] | null;
 };
 
 type Message = {
@@ -17,11 +20,21 @@ type Message = {
   message: string;
 };
 
-export default function ChatContainer({ currentChat, socket }: Props) {
-  const [arrMessage, setArrMessage] = useState<any>();
-  const [arrivalMessage, setArrivalMessage] = useState<{}>();
+type ArrMessage = Message[] | null;
+
+export default function ChatContainer({ currentChat, socket, arrUser }: Props) {
+  const [arrMessage, setArrMessage] = useState<ArrMessage>(null);
+  const [arrivalMessage, setArrivalMessage] = useState<Message>();
   const [currentUser, setCurrentUser] = useState<user>();
   const scrollRef = useRef<any>();
+
+  // const [userSend, setUserSend] = useState<user | null>(null);
+  // const findUserSend = (id: number) => {
+  //   let findUser = arrUser?.find((user: user) => user.id === id);
+  //   if (findUser) {
+  //     setUserSend(findUser);
+  //   }
+  // };
 
   useEffect(() => {
     (async () => {
@@ -43,19 +56,19 @@ export default function ChatContainer({ currentChat, socket }: Props) {
 
   const handleSendMsg = async (msg: string) => {
     let currentUser = getStoreJSON(CURRENT_USER);
-    if (msg) {
+    if (msg.trim() !== "") {
       socket.current.emit("send-msg", {
-        to: currentChat.id,
+        to: currentChat?.id,
         from: currentUser.id,
         msg,
       });
       await axios.post(sendMessageRoute, {
         from: currentUser.id,
-        to: currentChat.id,
+        to: currentChat?.id,
         message: msg,
       });
 
-      let msgs = [...arrMessage];
+      let msgs = [...(arrMessage || [])];
       msgs.push({ fromSelf: true, message: msg });
       setArrMessage(msgs);
     }
@@ -63,12 +76,15 @@ export default function ChatContainer({ currentChat, socket }: Props) {
 
   useEffect(() => {
     if (socket.current) {
-      socket.current.on("msg-receive", (msg: string) => {
-        console.log(msg);
-        setArrivalMessage({ fromSelf: false, message: msg });
-      });
+      socket.current.on(
+        "msg-receive",
+        (data: { from: string; msg: string }) => {
+          // findUserSend(Number(data.from));
+          setArrivalMessage({ fromSelf: false, message: data.msg });
+        }
+      );
     }
-  },[socket.current]);
+  }, []);
 
   useEffect(() => {
     arrivalMessage && setArrMessage((prev: any) => [...prev, arrivalMessage]);
@@ -82,10 +98,10 @@ export default function ChatContainer({ currentChat, socket }: Props) {
     <>
       <Content
         className={
-          currentUser?.role === "user" ? "bg-slate-200 h-64" : "bg-slate-400"
+          currentUser?.role === "user" ? "bg-slate-200 " : "bg-slate-400"
         }
       >
-        <div className="overflow-auto h-full px-6 mt-2">
+        <div className="overflow-auto h-full px-6 mt-2 h-200px">
           {arrMessage?.map((message: Message, index: number) => {
             return (
               <div key={index} ref={scrollRef}>

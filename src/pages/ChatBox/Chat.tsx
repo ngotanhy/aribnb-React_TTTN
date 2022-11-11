@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import { Layout } from "antd";
-import { AiOutlineCloseCircle,AiFillMessage } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiFillMessage } from "react-icons/ai";
 import { CURRENT_USER, getStoreJSON } from "../../utils/setting";
 import { allUsersRoute, getUserAdmin, host } from "../../utils/APIRoutes";
 import SilderAdminUser from "../../components/ChatBoxComponents/SilderAdminUser";
@@ -18,15 +18,16 @@ export interface user {
   username: string;
 }
 
+type ArrUser = user[];
+
 export default function Chat() {
   const navigate = useNavigate();
   const socket = useRef<any>();
-  const [currentChat, setCurrentChat] = useState<user>();
+  const [currentChat, setCurrentChat] = useState<user | null>(null);
   const [currentUser, setCurrentUser] = useState<user>();
-  const [allUser, setAllUser] = useState<any>();
+  const [allUser, setAllUser] = useState<ArrUser | null>(null);
   const [isLoadInterface, setIsLoadInterface] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
- 
 
   useEffect(() => {
     let currentUser = getStoreJSON(CURRENT_USER);
@@ -55,9 +56,7 @@ export default function Chat() {
 
   useEffect(() => {
     (async () => {
-      if (!getStoreJSON(CURRENT_USER)) {
-        // navigate("/login/1");
-      } else {
+      if (getStoreJSON(CURRENT_USER)) {
         setCurrentUser(await getStoreJSON(CURRENT_USER));
       }
     })();
@@ -72,14 +71,16 @@ export default function Chat() {
 
   const handleSelectUser = async (userSelect: user) => {
     if (currentUser?.role === "ADMIN") {
-      let allUserNew = allUser.map((user: user) => {
+      let allUserNew = allUser?.map((user: user) => {
         if (user.id === userSelect.id) {
           return { ...user, active: true };
         } else {
           return { ...user, active: false };
         }
       });
-      setAllUser(allUserNew);
+      if (allUserNew) {
+        setAllUser(allUserNew);
+      }
       setCurrentChat(userSelect);
     }
   };
@@ -107,54 +108,82 @@ export default function Chat() {
         {isOpen ? (
           <Layout>
             {isLoadInterface ? (
-              <Sider className="">
-                <SilderAdminUser
-                  arrUser={allUser}
-                  handleSelectUser={handleSelectUser}
-                />
-              </Sider>
+              <SilderAdminUser
+                currentChat={currentChat}
+                arrUser={allUser}
+                handleSelectUser={handleSelectUser}
+              />
             ) : (
               ""
             )}
             <Layout className="bg-White">
               {isLoadInterface ? (
-                <Header className="bg-slate-600 flex items-center gap-4 ">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img
-                      src="https://i.pravatar.cc/300"
-                      alt="..."
-                      className="w-full h-full"
+                currentChat !== null ? (
+                  <>
+                    <Header className="bg-slate-600 flex items-center gap-4 ">
+                      <div className="w-12 h-12 rounded-full overflow-hidden">
+                        <img
+                          src="https://i.pravatar.cc/300"
+                          alt="..."
+                          className="w-full h-full"
+                        />
+                      </div>
+                      <p className="text-lg font-semibold text-lime-600">
+                        {currentChat?.username}
+                      </p>
+                    </Header>
+                    <ChatContainer
+                      currentChat={currentChat}
+                      socket={socket}
+                      arrUser={allUser}
                     />
-                  </div>
-                  <p className="text-lg font-semibold text-lime-600">
-                    {currentChat?.username}
-                  </p>
-                </Header>
+                  </>
+                ) : (
+                  " "
+                )
               ) : (
-                <Header className="bg-slate-600 flex items-center justify-between p-0 px-4 rounded-tl-xl rounded-tr-xl">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden">
-                      <img
-                        src="https://i.pravatar.cc/300"
-                        alt="..."
-                        className="w-full h-full"
-                      />
+                <>
+                  <Header className="bg-slate-600 flex items-center justify-between p-0 px-4 rounded-tl-xl rounded-tr-xl">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full overflow-hidden">
+                        <img
+                          src="https://i.pravatar.cc/300"
+                          alt="..."
+                          className="w-full h-full"
+                        />
+                      </div>
+                      <p className="text-lg font-semibold text-lime-600">
+                        {currentUser?.username}
+                      </p>
                     </div>
-                    <p className="text-lg font-semibold text-lime-600">
-                      {currentUser?.username}
-                    </p>
-                  </div>
-                  <button className="text-3xl text-slate-100  " onClick={()=>setIsOpen(false)}>
-                    <AiOutlineCloseCircle />
-                  </button>
-                </Header>
+                    <button
+                      className="text-3xl text-slate-100  "
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <AiOutlineCloseCircle />
+                    </button>
+                  </Header>
+                  <ChatContainer
+                    currentChat={currentChat}
+                    socket={socket}
+                    arrUser={allUser}
+                  />
+                </>
               )}
-              <ChatContainer currentChat={currentChat} socket={socket} />
             </Layout>
           </Layout>
         ) : (
-          <button className="text-4xl fixed z-50 right-1 bottom-4" onClick={() => setIsOpen(true)}>
-            <AiFillMessage/>
+          <button
+            className="text-4xl fixed z-50 right-1 bottom-4"
+            onClick={() => {
+              if (getStoreJSON(CURRENT_USER)) {
+                setIsOpen(true);
+              } else {
+                navigate("/login/1");
+              }
+            }}
+          >
+            <AiFillMessage />
           </button>
         )}
       </div>
