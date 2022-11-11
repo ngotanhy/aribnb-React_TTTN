@@ -26,6 +26,7 @@ import {
 import { AppDispatch, RootState } from "../../../redux/configStore";
 import { getUserProfileAPi } from "../../../redux/Reducers/userReducer";
 import Profile from "../../Profile/Profile";
+import { AiFillSignal } from "react-icons/ai";
 
 type Props = {};
 
@@ -145,7 +146,9 @@ export default function DashBoard({}: Props) {
     />
   );
   const items: MenuItem[] = [
-    getItem("DashBoard ", "13", <BsFillChatDotsFill />),
+    getItem("Tổng quan", "Sub0", <AiFillSignal />, [
+      getItem("Thông tin tổng quan", "13"),
+    ]),
     getItem("Quản lí người dùng", "sub1", <FiUser />, [
       getItem("Danh sách người dùng", "1"),
       getItem("Them người dùng", "2"),
@@ -190,8 +193,8 @@ export default function DashBoard({}: Props) {
               style={{
                 width: 254,
               }}
-              defaultSelectedKeys={["sub0"]}
-              defaultOpenKeys={["13"]}
+              defaultSelectedKeys={["1"]}
+              defaultOpenKeys={["sub1"]}
               mode="inline"
               items={items}
             />

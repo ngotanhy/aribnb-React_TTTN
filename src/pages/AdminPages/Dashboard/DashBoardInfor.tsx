@@ -21,6 +21,8 @@ import { getUserApi } from "../../../redux/Reducers/userAdminReducer";
 import { getRoomApi } from "../../../redux/Reducers/roomReducer";
 import { getLocationApi } from "../../../redux/Reducers/locationReducer";
 import { getBookingApi } from "../../../redux/Reducers/bookingRoomReducer";
+import LineChart from "./Chart/ElineChart";
+import Echart from "./Chart/Echart";
 
 type Props = {}
 
@@ -127,19 +129,19 @@ export default function DashBoardInfor({}: Props) {
             </Col>
           ))}
         </Row>
-{/* 
+
         <Row gutter={[24, 0]}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
+          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24 bg-sky-50 py-3">
             <Card bordered={false} className="criclebox h-full">
               <Echart />
             </Card>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
+          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24 bg-sky-50 py-3">
             <Card bordered={false} className="criclebox h-full">
               <LineChart />
             </Card>
           </Col>
-        </Row> */}
+        </Row>
     </div>
     </>
   )
