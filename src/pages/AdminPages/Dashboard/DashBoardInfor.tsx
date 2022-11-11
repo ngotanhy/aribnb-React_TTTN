@@ -109,16 +109,16 @@ export default function DashBoardInfor({}: Props) {
               className="mb-24"
             >
               <Card bordered={false} className="criclebox ">
-                <div className="number bg-sky-50 rounded-2xl w-full h-32 mt-10 pl-1 pr-1">
+                <div className="number bg-sky-50 rounded-2xl w-full h-32 mt-10 pl-1 pr-1 shadow-slate-300 shadow-lg">
                   <Row align="middle" gutter={[24, 0]} className="w-full">
                     <Col xs={18} className="mt-7">
-                      <span className="text-neutral-500 text-xl font-bold ml-5 leading-normal " >{c.today}</span>
+                      <span className="text-neutral-500 text-2xl font-bold ml-5 leading-normal " >{c.today}</span>
                       <Title level={3}>
-                        <span className="ml-5"> {c.title} </span> 
-                        <span className="text-lime-400 ml-2">{c.persent}</span>
+                        <span className="ml-5 text-2xl"> {c.title} </span> 
+                        <span className="text-lime-400 ml-2 text-xl">{c.persent}</span>
                       </Title>
                     </Col>
-                    <Col xs={6} className="mt-7">
+                    <Col xs={6} className="mt-7 ">
                       <div className="icon-box w-14 h-14 rounded-full mx-auto bg-gray-50 relative">
                         <span className="text-4xl absolute top-2 right-2">{c.icon}</span>
                         </div>
@@ -131,12 +131,12 @@ export default function DashBoardInfor({}: Props) {
         </Row>
 
         <Row gutter={[24, 0]}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24 bg-sky-50 py-3">
+          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24 bg-sky-50 py-3 shadow-slate-300 shadow-lg ml-0">
             <Card bordered={false} className="criclebox h-full">
               <Echart />
             </Card>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24 bg-sky-50 py-3">
+          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24 bg-sky-50 py-3 shadow-slate-300 shadow-lg">
             <Card bordered={false} className="criclebox h-full">
               <LineChart />
             </Card>

@@ -16,6 +16,7 @@ import "antd/dist/antd.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../src/assets/scss/style.scss";
 
+// -- Link page packup -------
 // import Home from "./pages/Home/Home";
 // import Login from "./pages/Login/Login";
 // import DashBoard from "./pages/AdminPages/Dashboard/DashBoard";
@@ -41,6 +42,8 @@ import ModalProfile from "./HOC/ModalProfile";
 import Loading from "./components/Loading/Loading";
 // import Chat from "./pages/ChatBox/Chat";
 // import DashBoardInfor from "./pages/AdminPages/Dashboard/DashBoardInfor";
+
+// ----- Lazy loading --------------------------------
 
 const Home = lazy(() => import('./pages/Home/Home'))
 const Login = lazy(() => import('./pages/Login/Login'));
