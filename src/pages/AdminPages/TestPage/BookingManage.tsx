@@ -11,8 +11,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/configStore";
 import { getBookingApi, deleteRoomBookingApi } from "../../../redux/Reducers/bookingRoomReducer"
+import Search from "antd/lib/input/Search";
 
 export default function BookingManagement(): JSX.Element {
+
+  const [searchState, setSearchState] = useState<DataType[]>([]);
+
   const dispatch = useDispatch<AppDispatch>();
   const { roombookingList } = useSelector(
     (state: RootState) => state.bookingReducer
@@ -144,6 +148,16 @@ export default function BookingManagement(): JSX.Element {
     };
   });
 
+  const onSearch = (value: string) => {
+    let newValue=Number(value);
+    let searchData = data.filter((ele) => {
+       return ele.maPhong === newValue;
+    });
+    console.log(searchData);
+
+    setSearchState(searchData);
+  };
+
   const onChange: TableProps<DataType>["onChange"] = (
     pagination,
     filters,
@@ -159,15 +173,14 @@ export default function BookingManagement(): JSX.Element {
         direction="vertical"
         className="w-100 py-3"
       >
-        {/* <Button
-          type="primary"
-          loading={loadings[0]}
-          onClick={() => enterLoading(0)}
-        >
-          Đặt phòng
-        </Button> */}
+        <Search
+          placeholder="Nhập mã phòng cần tìm kiếm "
+          onSearch={onSearch}
+          enterButton
+          allowClear
+        />
       </Space>
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={searchState.length > 0 ? searchState : data} onChange={onChange} />
     </>
   );
 }

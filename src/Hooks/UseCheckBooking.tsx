@@ -13,7 +13,7 @@ export default function UseCheckBooking() {
   
       useEffect(()=>{
           dispatch(getBookingApi())
-      })
+      },[])
     const handleCheckBooKing = (e: any)=>{
         // const timeRef.current: number; 
        clearTimeout(timeRef.current)

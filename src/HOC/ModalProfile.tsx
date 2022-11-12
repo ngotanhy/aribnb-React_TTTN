@@ -10,14 +10,14 @@ export default function ModalProfile({}: Props) {
   return (
     <>
       <p
-        className="bg-red-400 text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-3/5 text-center"
+        className="bg-red-400 text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-3/5 text-center "
         onClick={() => setShowModal(true)}
       >
         Chỉnh sửa hồ sơ
       </p>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
             <div className="relative w-5/12 my-6 mx-auto max-w-5xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -34,7 +34,7 @@ export default function ModalProfile({}: Props) {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
+                <div className="relative p-6 flex-auto ">
                   <UpdateProfile />
                 </div>
                 {/*footer*/}

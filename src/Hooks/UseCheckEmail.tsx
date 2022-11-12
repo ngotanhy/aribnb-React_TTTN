@@ -12,7 +12,7 @@ export default function UseCheckEmail() {
   
       useEffect(()=>{
           dispatch(getUserApi())
-      })
+      },[])
     const handleCheckEmail = (e: any)=>{
         // const timeRef.current: number; 
        clearTimeout(timeRef.current)
