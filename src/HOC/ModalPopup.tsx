@@ -14,7 +14,7 @@ export default function ModalPopup({}: Props) {
   return (
     <div>
       <div>
-        <Modal className="hoc_modal"
+        <Modal className="hoc_modal transition"
           title={<ComponentTitle/>}
           visible={openModalPopup}
           width={1000}

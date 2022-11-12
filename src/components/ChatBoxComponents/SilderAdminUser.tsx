@@ -43,9 +43,11 @@ export default function SilderAdminUser({
                       />{" "}
                     </button>
                     <p
-                      className={user.active ? "text-red-700 bg-slate-300 " : ""}
+                      className={
+                        user.active ? "text-red-700 bg-slate-300 " : ""
+                      }
                     >
-                      {user.username.slice(0,10)+'...'}
+                      {user.username.slice(0, 10) + "..."}
                     </p>
                   </>
                 );
@@ -61,15 +63,14 @@ export default function SilderAdminUser({
               index: number
             ) => {
               return (
-                <div className="flex gap-2 mb-2 bg-slate-200 py-2">
-                  <button
-                    className="pl-2"
-                    key={index}
-                    onClick={() => {
-                      handleSelectUser(user);
-                    }}
-                  >
-                    {" "}
+                <button
+                  className="flex gap-2 mb-2 bg-slate-200 py-2 w-full"
+                  key={index}
+                  onClick={() => {
+                    handleSelectUser(user);
+                  }}
+                >
+                  <div className="pl-2">
                     <img
                       src={
                         user.avatar ? user.avatar : "https://i.pravatar.cc/300"
@@ -77,7 +78,7 @@ export default function SilderAdminUser({
                       alt="..."
                       className="w-full h-full rounded-full h-16 w-16  "
                     />
-                  </button>
+                  </div>
                   <p
                     className={
                       user.active ? "text-red-700 bg-slate-300 pt-2 " : " pt-2"
@@ -85,7 +86,7 @@ export default function SilderAdminUser({
                   >
                     {user.username}
                   </p>
-                </div>
+                </button>
               );
             }
           )}

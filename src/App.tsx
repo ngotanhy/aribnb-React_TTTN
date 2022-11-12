@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -16,30 +16,58 @@ import "antd/dist/antd.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../src/assets/scss/style.scss";
 
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import DashBoard from "./pages/AdminPages/Dashboard/DashBoard";
-import DetailPages from "./pages/DetailPages/DetailPages";
-import Register from "./pages/Register/Register";
-import QuanLiNguoiDung from "./pages/AdminPages/TestPage/UserManage";
-import RoomManagement from "./pages/AdminPages/TestPage/RoomManage";
-import HomeTemplate from "./templates/HomeTemplate";
-import UserManagement from "./pages/AdminPages/TestPage/UserManage";
-import LocationManagement from "./pages/AdminPages/TestPage/LocationManage";
-import CreateUser from "./pages/AdminPages/TestPage/CreateUser";
-import UpdateUser from "./pages/AdminPages/TestPage/UpdateUser";
-import CreateRoom from "./pages/AdminPages/TestPage/CreateRoom";
-import UpdateRoom from "./pages/AdminPages/TestPage/UpdateRoom";
-import CreateLocation from "./pages/AdminPages/TestPage/CreateLocation";
-import UpdateLocation from "./pages/AdminPages/TestPage/UpdateLocation";
-import BookingManagement from "./pages/AdminPages/TestPage/BookingManage";
-import UpdateBooking from "./pages/AdminPages/TestPage/UpdateBooking";
-import Profile from "./pages/Profile/Profile";
-import ModalProfile from "./HOC/ModalProfile";
-import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
-import DetailLocation from "./pages/DetailLocation/DetailLocation";
+// -- Link page packup -------
+// import Home from "./pages/Home/Home";
+// import Login from "./pages/Login/Login";
+// import DashBoard from "./pages/AdminPages/Dashboard/DashBoard";
+// import DetailPages from "./pages/DetailPages/DetailPages";
+// import Register from "./pages/Register/Register";
+// import QuanLiNguoiDung from "./pages/AdminPages/TestPage/UserManage";
+// import RoomManagement from "./pages/AdminPages/TestPage/RoomManage";
+// import HomeTemplate from "./templates/HomeTemplate";
+// import UserManagement from "./pages/AdminPages/TestPage/UserManage";
+// import LocationManagement from "./pages/AdminPages/TestPage/LocationManage";
+// import CreateUser from "./pages/AdminPages/TestPage/CreateUser";
+// import UpdateUser from "./pages/AdminPages/TestPage/UpdateUser";
+// import CreateRoom from "./pages/AdminPages/TestPage/CreateRoom";
+// import UpdateRoom from "./pages/AdminPages/TestPage/UpdateRoom";
+// import CreateLocation from "./pages/AdminPages/TestPage/CreateLocation";
+// import UpdateLocation from "./pages/AdminPages/TestPage/UpdateLocation";
+// import BookingManagement from "./pages/AdminPages/TestPage/BookingManage";
+// import UpdateBooking from "./pages/AdminPages/TestPage/UpdateBooking";
+// import Profile from "./pages/Profile/Profile";
+// import ModalProfile from "./HOC/ModalProfile";
+// import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
+// import DetailLocation from "./pages/DetailLocation/DetailLocation";
 import Loading from "./components/Loading/Loading";
-import Chat from "./pages/ChatBox/Chat";
+// import Chat from "./pages/ChatBox/Chat";
+// import DashBoardInfor from "./pages/AdminPages/Dashboard/DashBoardInfor";
+
+// ----- Lazy loading --------------------------------
+
+const Home = lazy(() => import('./pages/Home/Home'))
+const Login = lazy(() => import('./pages/Login/Login'));
+const DashBoard = lazy(() => import("./pages/AdminPages/Dashboard/DashBoard"));
+const DetailPages = lazy(() => import("./pages/DetailPages/DetailPages"));
+const Register = lazy(() => import("./pages/Register/Register"));
+const RoomManagement = lazy(() => import("./pages/AdminPages/TestPage/RoomManage"));
+const HomeTemplate = lazy(() => import("./templates/HomeTemplate"));
+const UserManagement = lazy(() => import("./pages/AdminPages/TestPage/UserManage"));
+const LocationManagement = lazy(() => import("./pages/AdminPages/TestPage/LocationManage"));
+const CreateUser = lazy(() => import("./pages/AdminPages/TestPage/CreateUser"));
+const UpdateUser = lazy(() => import("./pages/AdminPages/TestPage/UpdateUser"));
+const CreateRoom = lazy(() => import("./pages/AdminPages/TestPage/CreateRoom"));
+const UpdateRoom = lazy(() => import("./pages/AdminPages/TestPage/UpdateRoom"));
+const CreateLocation = lazy(() => import("./pages/AdminPages/TestPage/CreateLocation"));
+const UpdateLocation = lazy(() => import("./pages/AdminPages/TestPage/UpdateLocation"));
+const BookingManagement = lazy(() => import("./pages/AdminPages/TestPage/BookingManage"));
+const UpdateBooking = lazy(() => import("./pages/AdminPages/TestPage/UpdateBooking"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
+const RoomItem = lazy(() => import("./pages/Profile/RoomProfile/RoomItem"));
+const DetailLocation = lazy(() => import("./pages/DetailLocation/DetailLocation"));
+const Chat = lazy(() => import("./pages/ChatBox/Chat"));
+const DashBoardInfor = lazy(() => import("./pages/AdminPages/Dashboard/DashBoardInfor"));
+
 
 type Props = {};
 export const toastOptionsErr:{} = {
@@ -58,7 +86,8 @@ export const toastOptionsSuccess:{} = {
 };
 export default function App({}: Props) {
   return (
-    <>
+    <> 
+      <Suspense fallback={<div><Loading /></div>}>
       <HistoryRouter history={history}>
         {/* <RouterProvider router={router} /> */}
         <Routes>
@@ -84,6 +113,7 @@ export default function App({}: Props) {
 
           <Route path="/admin/dashboard" element={<DashBoard />}>
             <Route path="chat" element={<Chat />} />
+            <Route path="DashBoardInfor" element={<DashBoardInfor />} />
             <Route path="userAdmin" element={<UserManagement />} />
             <Route path="roomAdmin" element={<RoomManagement />} />
             <Route path="locationAdmin" element={<LocationManagement />} />
@@ -111,6 +141,7 @@ export default function App({}: Props) {
           </Route>
         </Routes>
       </HistoryRouter>
+    </Suspense>
     </>
   );
 }

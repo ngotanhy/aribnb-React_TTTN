@@ -12,6 +12,8 @@ import DetailTotal from "./DetailTotal/DetailTotal";
 import { toastOptionsErr, toastOptionsSuccess } from "../../../App";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import UseCheckBooking from "../../../Hooks/UseCheckBooking";
+import { RoomBookingInfo } from "../../../redux/Reducers/bookingRoomReducer";
 
 type Props = {
   id: string;
@@ -27,6 +29,7 @@ export default function DetailBooking({ id }: Props) {
   const [date, setDate] = useState([]);
   const [totalDay, setTotalDay] = useState<number>(0);
   const navigate = useNavigate();
+
   const handleCount = (type: string, count: number) => {
     const handleCount = (prev: number) => {
       let temp = prev + count;
@@ -92,22 +95,22 @@ export default function DetailBooking({ id }: Props) {
         );
       } else {
         if (totalDay !== 0) {
-          if((adultsCount + babyCount + childCount)!==0){
-          let booking = {
-            maPhong: id,
-            ngayDen: date[0],
-            ngayDi: date[1],
-            soLuongKhach: adultsCount + babyCount + childCount,
-            maNguoiDung: user.id,
-          };
-          let result = await http.post(`/dat-phong`, booking);
-          if (result.status === 201) {
-            toast.success(`Thêm thành công `, toastOptionsSuccess);
-          }}
-          else{
-            toast.error("Vui lòng chọn số lượng khách",toastOptionsErr);
+          if (adultsCount + babyCount + childCount !== 0) {
+            let booking = {
+              maPhong: id,
+              ngayDen: date[0],
+              ngayDi: date[1],
+              soLuongKhach: adultsCount + babyCount + childCount,
+              maNguoiDung: user.id,
+            };
+            let result = await http.post(`/dat-phong`, booking);
+            if (result.status === 201) {
+              toast.success(`Thêm thành công `, toastOptionsSuccess);
+            }
+          } else {
+            toast.error("Vui lòng chọn số lượng khách", toastOptionsErr);
           }
-        }else{
+        } else {
           toast.error("Hãy chọn lại ngày đến và đi", toastOptionsErr);
         }
       }

@@ -6,7 +6,12 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { postSignIn } from "../../redux/Reducers/userReducer";
 import { AppDispatch } from "../../redux/configStore";
-import { CURRENT_USER, getStoreJSON, setStoreJSON, USER_LOGIN } from "../../utils/setting";
+import {
+  CURRENT_USER,
+  getStoreJSON,
+  setStoreJSON,
+  USER_LOGIN,
+} from "../../utils/setting";
 import { loginRoute } from "../../utils/APIRoutes";
 import axios from "axios";
 
@@ -36,14 +41,13 @@ export default function Login({}: Props) {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    console.log(values);
     await dispatch(postSignIn(values));
-    let user_login={
-      username:values.email,
-      password:values.password 
-    }
-    let currentUser = await axios.post(loginRoute,user_login);
-    await setStoreJSON(CURRENT_USER,currentUser.data.content);
+    let user_login = {
+      username: values.email,
+      password: values.password,
+    };
+    let currentUser = await axios.post(loginRoute, user_login);
+    await setStoreJSON(CURRENT_USER, currentUser.data.content);
     let userLogin = await getStoreJSON(USER_LOGIN);
     if (userLogin) {
       navigate(-Number(number));
