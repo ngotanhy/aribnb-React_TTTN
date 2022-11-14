@@ -107,6 +107,11 @@ export default function DashBoard({}: Props) {
           navigate("DashBoardInfor");
         }
         break;
+      case "14":
+        {
+          navigate("commentAdmin");
+        }
+        break;
 
       default:
         break;
@@ -152,6 +157,8 @@ export default function DashBoard({}: Props) {
     getItem("Quản lí người dùng", "sub1", <FiUser />, [
       getItem("Danh sách người dùng", "1"),
       getItem("Them người dùng", "2"),
+      getItem("Danh sách bình luận", "14"),
+
     ]),
     getItem("Quản lí vị trí", "sub2", <MdShareLocation />, [
       getItem("Danh sách vị trí", "5"),

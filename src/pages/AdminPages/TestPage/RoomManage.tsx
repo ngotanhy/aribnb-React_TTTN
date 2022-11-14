@@ -138,7 +138,7 @@ export default function RoomManagement(): JSX.Element {
             }} className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 ">Xem & Sửa</span>
             <span onClick={async () => {
               await dispatch(deleteRoomApi(id));
-              window.location.reload();
+              dispatch(getRoomApi())
             }
             }  
             className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600">Xóa</span>

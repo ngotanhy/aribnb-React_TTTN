@@ -115,7 +115,7 @@ export default function LocationManagement(): JSX.Element {
             <span
               onClick={async () => {
                 await dispatch(deletelocationApi(id));
-                window.location.reload();
+                dispatch(getLocationApi())
               }}
               className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
             >

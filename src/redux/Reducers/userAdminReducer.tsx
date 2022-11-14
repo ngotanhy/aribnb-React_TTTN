@@ -162,7 +162,7 @@ export const getPaginationUser = (page: Number) => {
       );
       const arrUser: userAll[] = result.data.content;
       const action = getAllUserAction(arrUser);
-      console.log(result);
+      console.log("main1",result);
       dispatch(action);
     } catch (err) {
       console.log({ err });
@@ -181,3 +181,17 @@ export const UpdateAvatarUser = (data: FormData) => {
     }
   };
 };
+
+export const SearchUser = (name: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.get(`/users/search/${name}`);
+      const arrUser: userAll[] = result.data.content;
+      const action = getAllUserAction(arrUser);
+      console.log(result);
+      dispatch(action);
+    } catch (err) {
+      console.log({ err });
+    }
+  };
+}

@@ -38,9 +38,9 @@ import {
     }, [roombookingPut]);
   
     const onFinish = async (values: any) => {
-      values.id = 0;
+      // values.id = 0;
       if (values) {
-        await dispatch(putRoomBookingApi( params.id,values));
+        await dispatch(putRoomBookingApi(params.id,values));
         notification.success({
           message: "Cập nhật đặt phòng thành công",
         });

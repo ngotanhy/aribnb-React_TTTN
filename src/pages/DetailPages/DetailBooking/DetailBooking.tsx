@@ -112,7 +112,7 @@ export default function DetailBooking({ id }: Props) {
         }
       }
     } else {
-      navigate("/login/1");
+      navigate("/login");
     }
   };
 

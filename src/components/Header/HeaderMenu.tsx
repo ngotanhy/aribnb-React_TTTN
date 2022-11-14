@@ -48,7 +48,7 @@ export default function HeaderMenu({}: Props) {
                       if (getStoreJSON(USER_LOGIN)) {
                         navigate("/Profile");
                       } else {
-                        navigate("/login/1");
+                        navigate("/login");
                       }
                     }}
                     className="text-base font-medium m-0"
@@ -99,7 +99,7 @@ export default function HeaderMenu({}: Props) {
                 </p>
               ) : (
                 <p
-                  onClick={() => navigate("/login/1")}
+                  onClick={() => navigate("/login")}
                   className="text-base   m-0 pb-4 pt-3"
                   style={{ borderBottom: "1px solid #ccc" }}
                 >

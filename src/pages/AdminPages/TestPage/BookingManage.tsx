@@ -26,23 +26,6 @@ export default function BookingManagement(): JSX.Element {
   }, []);
 
   const navigate = useNavigate();
-//   const [loadings, setLoadings] = useState<boolean[]>([]);
-//   const enterLoading = (index: number) => {
-//     setLoadings((prevLoadings) => {
-//       const newLoadings = [...prevLoadings];
-//       newLoadings[index] = true;
-//       return newLoadings;
-//     });
-
-//     setTimeout(() => {
-//       setLoadings((prevLoadings) => {
-//         const newLoadings = [...prevLoadings];
-//         newLoadings[index] = false;
-//         navigate("/admin/themdatphong");
-//         return newLoadings;
-//       });
-//     }, 1000);
-//   };
 
 
   interface DataType {
@@ -65,20 +48,6 @@ export default function BookingManagement(): JSX.Element {
       title: "Mã Phòng",
       dataIndex: "maPhong",
       width: "5%",
-      //   filters: [
-      //     {
-      //       text: "Joe",
-      //       value: "Joe",
-      //     },
-      //     {
-      //       text: "Jim",
-      //       value: "Jim",
-      //     },
-      //   ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      //   onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-      // sorter: (a, b) => a.name.length - b.name.length,
       sortDirections: ["descend"],
     },
     {
@@ -123,7 +92,7 @@ export default function BookingManagement(): JSX.Element {
             <span
               onClick={async () => {
                 await dispatch(deleteRoomBookingApi(id));
-                window.location.reload();
+                dispatch(getBookingApi())
               }}
               className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
             >

@@ -46,7 +46,7 @@ export default function Login({}: Props) {
     // await setStoreJSON(CURRENT_USER,currentUser.data.content);
     let userLogin = await getStoreJSON(USER_LOGIN);
     if (userLogin) {
-      navigate(-Number(number));
+      navigate('/');
     }
   });
 
@@ -60,7 +60,7 @@ export default function Login({}: Props) {
           padding: "9px 12px",
         }}
         onClick={() => {
-          navigate(-Number(number));
+          navigate('/');
         }}
         className="text-lg cursor-pointer transition-all hover:-translate-y-2 text-white font-medium rounded-full bg-primary"
       >

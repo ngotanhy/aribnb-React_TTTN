@@ -40,6 +40,7 @@ import ModalProfile from "./HOC/ModalProfile";
 // import RoomItem from "./pages/Profile/RoomProfile/RoomItem";
 // import DetailLocation from "./pages/DetailLocation/DetailLocation";
 import Loading from "./components/Loading/Loading";
+import CommentManagement from "./pages/AdminPages/TestPage/CommentManage";
 // import Chat from "./pages/ChatBox/Chat";
 // import DashBoardInfor from "./pages/AdminPages/Dashboard/DashBoardInfor";
 
@@ -105,9 +106,7 @@ export default function App({}: Props) {
             </Route>
             <Route path="*" element={<Navigate to="" />} />
           </Route>
-          <Route path="/login" >
-             <Route path=":number" element={<Login />} />
-          </Route>
+          <Route path="/login" element={<Login />} ></Route>
           <Route path="/register" element={<Register />} />
           <Route path="/test1" element={<RoomItem />} />
 
@@ -116,6 +115,8 @@ export default function App({}: Props) {
             <Route path="DashBoardInfor" element={<DashBoardInfor />} />
             <Route path="userAdmin" element={<UserManagement />} />
             <Route path="roomAdmin" element={<RoomManagement />} />
+            <Route path="commentAdmin" element={<CommentManagement />} />
+
             <Route path="locationAdmin" element={<LocationManagement />} />
             <Route path="bookingAdmin" element={<BookingManagement />} />
 

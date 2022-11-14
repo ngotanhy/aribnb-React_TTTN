@@ -213,15 +213,11 @@ export default function Register({}: Props) {
               </div>
             </div>
           </div>
-
           <button
             type="submit"
             className="w-full text-center py-3 rounded bg-green-500 text-white text-lg hover:bg-green-dark focus:outline-none my-1"
-            onClick={() => {
-              navigate('/login/2');
-            }}
           >
-            Create Account
+             Create Account
           </button>
           <div className="text-center text-sm text-grey-dark mt-4">
             By signing up, you agree to the
@@ -244,7 +240,7 @@ export default function Register({}: Props) {
           <button className="mr-2">Already have an account?</button>
           <button className="hover:text-blue-700"
              onClick={()=>{
-              navigate('/login/2');
+              navigate('/login');
              }}
              >
             Log in
