@@ -90,7 +90,7 @@ export default function CommentManagement(): JSX.Element {
               dispatch(getCommentApi())
             }
             }  
-            className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600">
+            className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300">
                 Xóa Bình luận </span>
           </div>
         )

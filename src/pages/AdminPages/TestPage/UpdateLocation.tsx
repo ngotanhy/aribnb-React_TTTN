@@ -32,7 +32,7 @@ export default function UpdateLocation(): JSX.Element {
     if (values) {
       await dispatch(putlocationApi( params.id, values ));
       notification.success({
-        message: "Thêm vị trí thành công",
+        message: "Cập nhật vị trí thành công",
       });
     }
     navigate("/admin/dashboard/locationAdmin");

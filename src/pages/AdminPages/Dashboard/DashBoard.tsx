@@ -183,15 +183,15 @@ export default function DashBoard({}: Props) {
             className="h-20 px-5 py-4 flex items-center "
             style={{ boxShadow: " 0px 4px 12px rgba(0, 0, 0, 0.1)" }}
           >
-            <div className="h-12 w-12 rounded-xl overflow-hidden">
+            {/* <div className="h-12 w-12 rounded-xl overflow-hidden">
               <img
                 className="h-full w-full"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-0CXiCSzYB7Qls6acs-5VZHEewRNH3DUyA&usqp=CAU"
                 alt=""
               />
-            </div>
-            <span className="text-2xl font-semibold ml-2 text-rose-400">
-              Airbnb Admin
+            </div> */}
+            <span className="text-xl font-semibold ml-1  text-rose-400">
+              Admin UTHBooking
             </span>
           </div>
           <div className="mt-10">

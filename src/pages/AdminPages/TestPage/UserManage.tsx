@@ -107,7 +107,7 @@ export default function UserManagement(): JSX.Element {
               onClick={() => {
                 navigate(`updateuser/${id}`);
               }}
-              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 "
+              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 shadow-lg shadow-green-300"
             >
               Xem & Sửa
             </span>
@@ -116,7 +116,7 @@ export default function UserManagement(): JSX.Element {
                 await dispatch(deleteUserApi(id));
                 dispatch(getUserApi())
               }}
-              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
+              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300"
             >
               Xóa
             </span>

@@ -44,7 +44,7 @@ import {
       if (values) {
         await dispatch(putRoomApi(params.id, values));
         notification.success({
-          message: "Thêm thông tin phòng thành công",
+          message: "Cập nhật thông tin phòng thành công",
         });
       }
       navigate("/admin/dashboard/roomAdmin");

@@ -23,11 +23,12 @@ export default function HeaderPage({}: Props) {
                 className="w-2/12 cursor-pointer hidden md:block"
                 onClick={() => navigate("/")}
               >
-                <img
+                <p className="text-ellipsis font-sans text-2xl text-red-400 font-extrabold">UTHBooking</p>
+                {/* <img
                   className="w-3/5 h-11"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png"
                   alt=""
-                />
+                /> */}
               </div>
               <div className="  flex justify-between items-center  ">
                 <div className="rounded-full searchBox hidden sm:block">

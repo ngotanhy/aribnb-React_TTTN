@@ -135,13 +135,13 @@ export default function RoomManagement(): JSX.Element {
             <span onClick={() => {
               navigate(`updateroom/${id}`)
 
-            }} className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 ">Xem & Sửa</span>
+            }} className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 shadow-lg shadow-green-300">Xem & Sửa</span>
             <span onClick={async () => {
               await dispatch(deleteRoomApi(id));
               dispatch(getRoomApi())
             }
             }  
-            className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600">Xóa</span>
+            className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300">Xóa</span>
           </div>
         )
       },

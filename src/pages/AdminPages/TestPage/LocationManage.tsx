@@ -18,6 +18,8 @@ export default function LocationManagement(): JSX.Element {
   const { locationList } = useSelector(
     (state: RootState) => state.locationReducer
   );
+  console.log("Danh sách vị trí ", locationList);
+
   useEffect(() => {
     dispatch(getLocationApi());
   }, []);
@@ -108,7 +110,7 @@ export default function LocationManagement(): JSX.Element {
               onClick={() => {
                 navigate(`updatelocation/${id}`);
               }}
-              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 "
+              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 shadow-lg shadow-green-300"
             >
               Xem & Sửa
             </span>
@@ -117,7 +119,7 @@ export default function LocationManagement(): JSX.Element {
                 await dispatch(deletelocationApi(id));
                 dispatch(getLocationApi())
               }}
-              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
+              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300"
             >
               Xóa
             </span>

@@ -85,7 +85,7 @@ export default function BookingManagement(): JSX.Element {
               onClick={() => {
                 navigate(`updatebooking/${id}`);
               }}
-              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 "
+              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 shadow-lg shadow-green-300"
             >
               Thay đổi
             </span>
@@ -94,7 +94,7 @@ export default function BookingManagement(): JSX.Element {
                 await dispatch(deleteRoomBookingApi(id));
                 dispatch(getBookingApi())
               }}
-              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
+              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300 "
             >
               Xóa
             </span>
