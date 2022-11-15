@@ -160,8 +160,7 @@ export const getPaginationUser = (page: Number) => {
       const result = await http.get(
         `/users/phan-trang-tim-kiem?pageIndex=${page}&pageSize=10`
       );
-      const arrUser: userAll[] = result.data.content;
-      const action = getAllUserAction(arrUser);
+      const action = getAllUserAction(result.data.content.data);
       console.log("main1",result);
       dispatch(action);
     } catch (err) {

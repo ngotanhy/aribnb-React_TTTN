@@ -95,8 +95,8 @@ export default function UpdateLocation(): JSX.Element {
         />
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" className="px-4 py-2 bg-green-400 text-white rounded-lg hover:bg-green-700 transition-all duration-300 h-10 shadow-lg shadow-green-300">
+          Cập nhật vị trí 
         </Button>
       </Form.Item>
     </Form>

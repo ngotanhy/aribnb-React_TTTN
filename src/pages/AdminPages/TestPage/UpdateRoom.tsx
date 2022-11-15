@@ -68,8 +68,12 @@ import {
       <Form
         form={form}
         name="basic"
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 8 }}
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 10,
+        }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -202,8 +206,8 @@ import {
           />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button type="primary" htmlType="submit" className="px-4 py-2 bg-green-400 text-white rounded-lg hover:bg-green-700 transition-all duration-300 h-10 shadow-lg shadow-green-300">
+            Cập nhật phòng
           </Button>
         </Form.Item>
       </Form>

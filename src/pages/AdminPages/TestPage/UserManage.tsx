@@ -18,6 +18,12 @@ export default function UserManagement(): JSX.Element {
 
   const { arrUser } = useSelector((state: RootState) => state.userAdminReducer);
 
+  // -------------Api phan trang 
+  // useEffect(() => {
+  //   dispatch(getPaginationUser(1));
+  // }, []);
+  //
+
   useEffect(() => {
     dispatch(getUserApi());
   }, []);
@@ -115,6 +121,7 @@ export default function UserManagement(): JSX.Element {
               onClick={async () => {
                 await dispatch(deleteUserApi(id));
                 dispatch(getUserApi())
+                // dispatch(getPaginationUser(pageCurrent))
               }}
               className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300"
             >
@@ -184,6 +191,7 @@ export default function UserManagement(): JSX.Element {
         columns={columns}
         dataSource={searchState.length > 0 ? searchState : data}
         onChange={onChange}
+        // ------------ Phân trang sử dụng Api 
         // pagination={{
         //   pageSize: 10,
         //   total: 100,
@@ -192,6 +200,7 @@ export default function UserManagement(): JSX.Element {
         //     setPageCurrent(page);
         //   },
         // }}
+        // -------------------
       />
     </>
   );
