@@ -147,3 +147,16 @@ export const getLocationDetailById = (id: number) => {
     }
   };
 };
+
+// Change image location 
+// export const UpdateImageLocation = (data: FormData, id: number) => {
+//   return async (dispatch: AppDispatch) => {
+//     try {
+//       const result = await http.post(`/vi-tri/upload-hinh-vitri?maViTri=${id}`, data);
+//       let action = locationActionAdmin(result.data.content);
+//       dispatch(action);
+//     } catch (err) {
+//       console.log({ err });
+//     }
+//   };
+// };

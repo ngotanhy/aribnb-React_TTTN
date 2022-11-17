@@ -11,8 +11,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/configStore";
 import { getBookingApi, deleteRoomBookingApi } from "../../../redux/Reducers/bookingRoomReducer"
+import Search from "antd/lib/input/Search";
 
 export default function BookingManagement(): JSX.Element {
+
+  const [searchState, setSearchState] = useState<DataType[]>([]);
+
   const dispatch = useDispatch<AppDispatch>();
   const { roombookingList } = useSelector(
     (state: RootState) => state.bookingReducer
@@ -22,23 +26,6 @@ export default function BookingManagement(): JSX.Element {
   }, []);
 
   const navigate = useNavigate();
-//   const [loadings, setLoadings] = useState<boolean[]>([]);
-//   const enterLoading = (index: number) => {
-//     setLoadings((prevLoadings) => {
-//       const newLoadings = [...prevLoadings];
-//       newLoadings[index] = true;
-//       return newLoadings;
-//     });
-
-//     setTimeout(() => {
-//       setLoadings((prevLoadings) => {
-//         const newLoadings = [...prevLoadings];
-//         newLoadings[index] = false;
-//         navigate("/admin/themdatphong");
-//         return newLoadings;
-//       });
-//     }, 1000);
-//   };
 
 
   interface DataType {
@@ -61,20 +48,6 @@ export default function BookingManagement(): JSX.Element {
       title: "Mã Phòng",
       dataIndex: "maPhong",
       width: "5%",
-      //   filters: [
-      //     {
-      //       text: "Joe",
-      //       value: "Joe",
-      //     },
-      //     {
-      //       text: "Jim",
-      //       value: "Jim",
-      //     },
-      //   ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      //   onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-      // sorter: (a, b) => a.name.length - b.name.length,
       sortDirections: ["descend"],
     },
     {
@@ -112,16 +85,16 @@ export default function BookingManagement(): JSX.Element {
               onClick={() => {
                 navigate(`updatebooking/${id}`);
               }}
-              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 "
+              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 shadow-lg shadow-green-300"
             >
               Thay đổi
             </span>
             <span
               onClick={async () => {
                 await dispatch(deleteRoomBookingApi(id));
-                window.location.reload();
+                dispatch(getBookingApi())
               }}
-              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
+              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300 "
             >
               Xóa
             </span>
@@ -144,6 +117,16 @@ export default function BookingManagement(): JSX.Element {
     };
   });
 
+  const onSearch = (value: string) => {
+    let newValue=Number(value);
+    let searchData = data.filter((ele) => {
+       return ele.maPhong === newValue;
+    });
+    console.log(searchData);
+
+    setSearchState(searchData);
+  };
+
   const onChange: TableProps<DataType>["onChange"] = (
     pagination,
     filters,
@@ -159,15 +142,14 @@ export default function BookingManagement(): JSX.Element {
         direction="vertical"
         className="w-100 py-3"
       >
-        {/* <Button
-          type="primary"
-          loading={loadings[0]}
-          onClick={() => enterLoading(0)}
-        >
-          Đặt phòng
-        </Button> */}
+        <Search
+          placeholder="Nhập mã phòng cần tìm kiếm "
+          onSearch={onSearch}
+          enterButton
+          allowClear
+        />
       </Space>
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={searchState.length > 0 ? searchState : data} onChange={onChange} />
     </>
   );
 }

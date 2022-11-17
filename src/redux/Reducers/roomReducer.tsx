@@ -44,24 +44,44 @@ type roomUpdate = {
   banUi: boolean;
   maViTri: number;
   hinhAnh: string;
-}
+};
 
 export interface roomListItem {
   roomArray: roomList[];
-  roomDetail: roomList[]|any;
+  roomDetail: roomList|any;
   roomPost: roomList[];
   roomPut: roomList[] | any;
   roomList: roomList[];
-  roomListLocation:roomList[];
+  roomListLocation: roomList[];
 }
 
 const initialState: roomListItem = {
   roomArray: [],
-  roomDetail: [],
+  roomDetail: {
+    id: 0,
+    tenPhong: "",
+    khach: 0,
+    phongNgu: 0,
+    giuong: 0,
+    phongTam: 0,
+    moTa: "",
+    giaTien: 0,
+    mayGiat: false,
+    banLa: false,
+    tivi: false,
+    dieuHoa: false,
+    wifi: false,
+    bep: false,
+    doXe: false,
+    hoBoi: false,
+    banUi: false,
+    maViTri: 0 ,
+    hinhAnh: "",
+  },
   roomPost: [],
   roomPut: [],
   roomList: [],
-  roomListLocation:[]
+  roomListLocation: [],
 };
 
 const roomReducer = createSlice({
@@ -72,23 +92,39 @@ const roomReducer = createSlice({
       state.roomArray = action.payload;
     },
     createNewRoom: (state: roomListItem, action: PayloadAction<roomList>) => {},
-    
+
     getDetailRoom: (state: roomListItem, action: PayloadAction<roomList[]>) => {
       state.roomDetail = action.payload;
     },
-    roomCreateAdmin: ( state: roomListItem, action: PayloadAction<roomList[]>) => {
+    roomCreateAdmin: (
+      state: roomListItem,
+      action: PayloadAction<roomList[]>
+    ) => {
       state.roomPost = action.payload;
     },
-    roomActionAdmin: (state: roomListItem, action: PayloadAction<roomList[]>) => {
+    roomActionAdmin: (
+      state: roomListItem,
+      action: PayloadAction<roomList[]>
+    ) => {
       state.roomPut = action.payload;
     },
-    roomListLocation: (state: roomListItem, action: PayloadAction<roomList[]>) => {
+    roomListLocation: (
+      state: roomListItem,
+      action: PayloadAction<roomList[]>
+    ) => {
       state.roomListLocation = action.payload;
     },
   },
 });
 
-export const { getAllRoom, createNewRoom ,getDetailRoom, roomCreateAdmin, roomActionAdmin, roomListLocation} = roomReducer.actions;
+export const {
+  getAllRoom,
+  createNewRoom,
+  getDetailRoom,
+  roomCreateAdmin,
+  roomActionAdmin,
+  roomListLocation,
+} = roomReducer.actions;
 
 export default roomReducer.reducer;
 
@@ -111,9 +147,10 @@ export const getDetailRoomId = (id: any) => {
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.get(`/phong-thue/${id}`);
-      let roomID: roomList[] = result.data.content;
-      const action = getDetailRoom(roomID);
-      dispatch(action);
+      if (result) {
+        const action = getDetailRoom(result.data.content);
+        dispatch(action);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -136,7 +173,7 @@ export const createRoomApi = (data: roomList) => {
   };
 };
 
-// Api change room 
+// Api change room
 
 export const putRoomApi = (id: number, data: roomUpdate) => {
   return async (dispatch: AppDispatch) => {
@@ -159,13 +196,11 @@ export const deleteRoomApi = (id: number) => {
       // const action = userCreateAdmin(result.data.content)
       // console.log(result);
       // dispatch(action);
-    }
-    catch (err: any) {
+    } catch (err: any) {
       console.log(err);
     }
-  }
-
-}
+  };
+};
 
 // Api get room api extend id
 
@@ -181,20 +216,20 @@ export const getRoomAPiID = (id: number) => {
   };
 };
 
-// Api get room api extend location 
-export const getRoomListByLocation = (id: number)=>{
-  return async (dispatch:AppDispatch)=>{
-      try{
-          const result = await http.get(`/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
-          const action = roomListLocation(result.data.content);
-          dispatch(action)
-      }
-      catch(err){
-          console.log(err)
-      }
-  }
-}
-
+// Api get room api extend location
+export const getRoomListByLocation = (id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.get(
+        `/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`
+      );
+      const action = roomListLocation(result.data.content);
+      dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 // export const getBookingUserApi=(id:number)=>{
 //   return async (dispatch:AppDispatch)=>{

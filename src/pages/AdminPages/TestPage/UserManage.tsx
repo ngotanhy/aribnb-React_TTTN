@@ -7,65 +7,32 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserApi, getPaginationUser } from "../../../redux/Reducers/userAdminReducer";
 import { deleteUserApi } from "../../../redux/Reducers/userAdminReducer";
-// import {
-//   fetchUsersListAction,
-//   fetchUsersListByPageAction,
-// } from "../../store/reducers/usersListReducer";
-// import { userDetailsActions } from "../../store/reducers/userDetailsReducer";
-// import { User } from "../../interfaces/user";
+
 
 export default function UserManagement(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
 
-  const [pageCurrent, setPageCurrent] = useState<number>(1);
+  // const [pageCurrent, setPageCurrent] = useState<number>(1);
 
   const [searchState, setSearchState] = useState<DataType[]>([]);
 
   const { arrUser } = useSelector((state: RootState) => state.userAdminReducer);
 
+  // -------------Api phan trang 
   // useEffect(() => {
   //   dispatch(getPaginationUser(1));
-  //   dispatch(userDetailsActions.handleRemoveUserDetail(null));
   // }, []);
+  //
 
   useEffect(() => {
     dispatch(getUserApi());
-    // dispatch(userDetailsActions.handleRemoveUserDetail(null));
   }, []);
 
   console.log(arrUser);
 
   const navigate = useNavigate();
 
-  const [loadings, setLoadings] = useState<boolean[]>([]);
-
-  const enterLoading = (index: number) => {
-    setLoadings((prevLoadings) => {
-      const newLoadings = [...prevLoadings];
-      newLoadings[index] = true;
-      return newLoadings;
-    });
-
-    setTimeout(() => {
-      setLoadings((prevLoadings) => {
-        const newLoadings = [...prevLoadings];
-        newLoadings[index] = false;
-        navigate("createuser");
-        return newLoadings;
-      });
-    }, 1000);
-  };
-
   const { Search } = Input;
-
-  // const onSearch = (value: string) => {
-  //   if (value !== "") {
-  //     dispatch(fetchUsersSearchListAction(value));
-  //   } else {
-  //     dispatch(fetchUsersListByPageAction(1));
-  //   }
-  // };
-
   interface DataType {
     key: React.Key;
     id: number;
@@ -91,19 +58,6 @@ export default function UserManagement(): JSX.Element {
       title: "Họ tên",
       dataIndex: "name",
       width: "10%",
-      //   filters: [
-      //     {
-      //       text: "Joe",
-      //       value: "Joe",
-      //     },
-      //     {
-      //       text: "Jim",
-      //       value: "Jim",
-      //     },
-      //   ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      //   onFilter: (value, record) => record.name.indexOf(value as string) === 0,
       sorter: (a, b) => a.name.length - b.name.length,
       sortDirections: ["descend"],
     },
@@ -118,12 +72,6 @@ export default function UserManagement(): JSX.Element {
       width: "10%",
       defaultSortOrder: "descend",
     },
-
-    // {
-    //   title: "Password",
-    //   dataIndex: "password",
-    //   width: "5%",
-    // },
 
     {
       title: "Ngày sinh",
@@ -165,16 +113,17 @@ export default function UserManagement(): JSX.Element {
               onClick={() => {
                 navigate(`updateuser/${id}`);
               }}
-              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 "
+              className="inline-block py-1 px-2 bg-green-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-green-600 mx-2 shadow-lg shadow-green-300"
             >
               Xem & Sửa
             </span>
             <span
               onClick={async () => {
                 await dispatch(deleteUserApi(id));
-                window.location.reload();
+                dispatch(getUserApi())
+                // dispatch(getPaginationUser(pageCurrent))
               }}
-              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600"
+              className="inline-block py-1 px-2 bg-red-500 rounded-md cursor-pointer transition-all duration-300 hover:bg-red-600 shadow-lg shadow-red-300"
             >
               Xóa
             </span>
@@ -231,13 +180,6 @@ export default function UserManagement(): JSX.Element {
         direction="vertical"
         className="w-1/2 py-3 rounded-sm"
       >
-        {/* <Button
-          type="primary"
-          loading={loadings[0]}
-          onClick={() => enterLoading(0)}
-        >
-          Thêm người dùng
-        </Button> */}
         <Search
           placeholder="Nhập họ tên cần tìm"
           onSearch={onSearch}
@@ -249,6 +191,7 @@ export default function UserManagement(): JSX.Element {
         columns={columns}
         dataSource={searchState.length > 0 ? searchState : data}
         onChange={onChange}
+        // ------------ Phân trang sử dụng Api 
         // pagination={{
         //   pageSize: 10,
         //   total: 100,
@@ -257,6 +200,7 @@ export default function UserManagement(): JSX.Element {
         //     setPageCurrent(page);
         //   },
         // }}
+        // -------------------
       />
     </>
   );

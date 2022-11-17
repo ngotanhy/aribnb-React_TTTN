@@ -4,7 +4,11 @@ import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, getStoreJSON, USER_LOGIN } from "../../utils/setting";
 import { useAppDispatch, useAppSelector } from "../../Hooks/HooksRedux";
-import { getUserProfileAPi } from "../../redux/Reducers/userReducer";
+import {
+  getUserProfileAPi,
+  setUserLogin,
+  setUserProfile,
+} from "../../redux/Reducers/userReducer";
 
 type Props = {};
 export type User = {
@@ -58,7 +62,7 @@ export default function HeaderMenu({}: Props) {
                       if (getStoreJSON(USER_LOGIN)) {
                         navigate("/Profile");
                       } else {
-                        navigate("/login");
+                        navigate("/login/1");
                       }
                     }}
                     className="text-base  mt-3"
@@ -90,6 +94,10 @@ export default function HeaderMenu({}: Props) {
                     localStorage.removeItem(ACCESS_TOKEN);
                     let userLogin = await getStoreJSON(USER_LOGIN);
                     setUserLog(userLogin);
+                    const action1 = setUserLogin(getStoreJSON(USER_LOGIN));
+                    const action2 = setUserProfile(getStoreJSON(USER_LOGIN));
+                    dispatch(action1);
+                    dispatch(action2);
                     navigate("/");
                   }}
                   style={{ borderBottom: "1px solid #ccc" }}

@@ -11,7 +11,6 @@ import DetailComment from "./DetailComment/DetailComment";
 import DetailInfoRoom from "./DetailInfo/DetailInfo";
 import DetailReview from "./DetailReview/DetailReview";
 import DetailTitle from "./DetailTitle/DetailTitle";
-import { getStoreJSON, USER_LOGIN } from "../../utils/setting";
 
 type Props = {};
 
@@ -22,15 +21,21 @@ function DetailPages({}: Props) {
   const { id } = useParams<QuizParams>();
   const dispatch = useAppDispatch();
   const { roomDetail } = useAppSelector((state) => state.roomReducer);
+  useEffect(() => {
+    (async () => {
+      const action1 = getDetailRoomId(id);
+      await dispatch(action1);
+      const action3 = getCommentRoomById(Number(id));
+      await dispatch(action3);
+    })();
+  }, []);
 
   useEffect(() => {
-    const action1 = getDetailRoomId(id);
-    dispatch(action1);
-    const action2 = getLocationDetailById(Number(id));
-    dispatch(action2);
-    const action3 = getCommentRoomById(Number(id));
-    dispatch(action3);
-  }, []);
+    if (roomDetail) {
+      const action = getLocationDetailById(roomDetail.maViTri);
+      dispatch(action);
+    }
+  }, [roomDetail]);
 
   return (
     <div className="relative">
@@ -49,11 +54,11 @@ function DetailPages({}: Props) {
           ></div>
           <DetailInfoRoom id={id} />
           <DetailReview />
-          <DetailComment idRoom={roomDetail?.id}  />
+          <DetailComment idRoom={Number(roomDetail?.id)} />
 
           {/* <DetailUser /> */}
           <ModalPopup />
-      <ToastContainer />
+          <ToastContainer />
           <BackToTop />
         </div>
       </div>

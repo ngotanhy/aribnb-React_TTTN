@@ -10,6 +10,7 @@ type Props = {};
 export default function DetailTitle({}: Props) {
   const {roomDetail}=useAppSelector((state)=>state.roomReducer)
   const {localDetail}=useAppSelector((state)=>state.locationReducer)
+  // console.log(localDetail)
   return (
     <>
       <div className="flex text-3xl font-medium ">

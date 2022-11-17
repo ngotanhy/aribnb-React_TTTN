@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useAppDispatch } from "../../../../Hooks/HooksRedux";
 import { modalPopUp } from "../../../../redux/Reducers/openModalReducer";
 import PopUpInfoCover from "./PopUpInfoCover";
@@ -6,7 +6,7 @@ import PopUPTitle from "./PopUPTitle";
 
 type Props = {};
 
-export default function DetailInfoCover({}: Props) {
+ function DetailInfoCover({}: Props) {
   const dispatch = useAppDispatch();
   return (
     <div className="mt-8 border-b border-slate-400 pb-5">
@@ -34,3 +34,4 @@ export default function DetailInfoCover({}: Props) {
     </div>
   );
 }
+export default memo(DetailInfoCover)

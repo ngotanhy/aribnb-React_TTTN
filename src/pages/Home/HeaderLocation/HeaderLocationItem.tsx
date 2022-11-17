@@ -55,7 +55,7 @@ export default function HeaderLocationItem({ location }: Props) {
             <MdHotelClass />
           </span>
           <span className="font-semibold text-base inline-block ml-2 ">
-            Khu du lịch {location.tenViTri || "Khu du lịch"}
+            Địa điểm du lịch {location.tenViTri || "Khu du lịch"}
           </span>
         </div>
         <div className="m-0 text-gray-500 text-sm flex justify-start">
@@ -63,7 +63,7 @@ export default function HeaderLocationItem({ location }: Props) {
             <BsFillGeoAltFill />
           </span>
           <span className="ml-2">
-            Tỉnh {location.tinhThanh || " Tinh Thanh"}{" "}
+            Tỉnh/Thành phố {location.tinhThanh || " Tinh Thanh"}{" "}
           </span>
         </div>
         <div className="m-0 text-gray-500 text-sm flex justify-start">

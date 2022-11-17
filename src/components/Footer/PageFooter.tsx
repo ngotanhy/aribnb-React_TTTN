@@ -11,11 +11,11 @@ export default function PageFooter() {
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Col className="gutter-row" span={6}>
             <div>
-              <ul className="text-left list-none p-0">
-                <h1 className="mb-2.5">GIỚI THIỆU</h1>
+              <ul className="text-left list-none p-0 ml-10">
+                <h1 className="mb-2.5 font-bold text-base text-gray-800 ">GIỚI THIỆU</h1>
                 <li className="mb-2.5">
                   <NavLink className="{{no-underline}}" to="/">
-                    Phương thức hoạt động của AirBnB
+                    Phương thức hoạt động của UTHBooking
                   </NavLink>
                 </li>
                 <li className="mb-2.5">
@@ -25,16 +25,16 @@ export default function PageFooter() {
                   <NavLink to="/">Nhà đầu tư</NavLink>
                 </li>
                 <li className="mb-2.5">
-                  <NavLink to="/">Airbnb plus</NavLink>
+                  <NavLink to="/">UTHBooking plus</NavLink>
                 </li>
                 <li className="mb-2.5">
-                  <NavLink to="/">Airbnb luxe</NavLink>
+                  <NavLink to="/">UTHBooking luxe</NavLink>
                 </li>
                 <li className="mb-2.5">
                   <NavLink to="/">HotelTonight</NavLink>
                 </li>
                 <li className="mb-2.5">
-                  <NavLink to="/">Airbnb for Work</NavLink>
+                  <NavLink to="/">UTHBooking for Work</NavLink>
                 </li>
                 <li className="mb-2.5">
                   <NavLink to="/">Nhờ có host, mọi điều đều có thể</NavLink>
@@ -50,8 +50,8 @@ export default function PageFooter() {
           </Col>
           <Col className="gutter-row" span={6}>
             <div>
-              <ul className="text-left list-none p-0">
-                <h5 className="mb-4">CỘNG ĐỒNG</h5>
+              <ul className="text-left list-none p-0 ml-10">
+                <h5 className="mb-2.5 font-bold text-base text-gray-800">CỘNG ĐỒNG</h5>
                 <li className="mb-2.5">
                   <NavLink to="/">Sự đa dạng và cảm giác thân thuộc</NavLink>
                 </li>
@@ -61,7 +61,7 @@ export default function PageFooter() {
                   </NavLink>
                 </li>
                 <li className="mb-2.5">
-                  <NavLink to="/">Đối tác liên kết Airbnb</NavLink>
+                  <NavLink to="/">Đối tác liên kết UTHBooking</NavLink>
                 </li>
                 <li className="mb-2.5">
                   <NavLink to="/">Chỗ ở cho tuyến đầu</NavLink>
@@ -70,15 +70,15 @@ export default function PageFooter() {
                   <NavLink to="/">Lượt giới thiệu của khách</NavLink>
                 </li>
                 <li className="mb-2.5">
-                  <NavLink to="/">Airbnb.org</NavLink>
+                  <NavLink to="/">UTHBooking.org</NavLink>
                 </li>
               </ul>
             </div>
           </Col>
           <Col className="gutter-row" span={6}>
             <div>
-              <ul className="text-left list-none p-0">
-                <h5 className="mb-4">ĐÓN TIẾP KHÁCH</h5>
+              <ul className="text-left list-none p-0 ml-5">
+                <h5 className="mb-2.5 font-bold text-base text-gray-800">ĐÓN TIẾP KHÁCH</h5>
                 <li className="mb-2.5">
                   <NavLink to="/">Cho thuê nhà</NavLink>
                 </li>
@@ -102,11 +102,11 @@ export default function PageFooter() {
           </Col>
           <Col className="gutter-row" span={6}>
             <div>
-              <ul className="text-left list-none p-0">
-                <h5 className="mb-4">HỖ TRỢ</h5>
+              <ul className="text-left list-none p-0 ">
+                <h5 className="mb-2.5 font-bold text-base text-gray-800">HỖ TRỢ</h5>
                 <li className="mb-2.5">
                   <NavLink to="/">
-                    Biện pháp ứng phó với đại dịch COVID-19 của chúng tôi
+                    Biện pháp ứng phó với đại dịch COVID-19 
                   </NavLink>
                 </li>
                 <li className="mb-2.5">
@@ -129,9 +129,9 @@ export default function PageFooter() {
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Col className="gutter-row" span={12}>
             <div className="text-left">
-              <ul className="w-100 text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:text-white">
+              <ul className="w-100 text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:text-white ml-10">
                 <li className="list-none mr-6 float-left">
-                  @2021 Airbnb, Inc. All rights reserved
+                  @2022 UTHBooking, Inc. All rights reserved
                 </li>
                 <li className="mr-6 float-left">Quyền riêng tư</li>
                 <li className="mr-6 float-left">Điều khoản</li>

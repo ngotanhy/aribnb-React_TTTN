@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { memo } from "react";
 import { Modal } from "antd";
 import { useAppDispatch, useAppSelector } from "../Hooks/HooksRedux";
 import { modalPopUp } from "../redux/Reducers/openModalReducer";
 
-type Props = {
-};
+type Props = {};
 
-export default function ModalPopup({}: Props) {
-  const {ComponentContent,ComponentTitle, openModalPopup } = useAppSelector((state) => state.openModalReducer);
-
+function ModalPopup({}: Props) {
+  const { ComponentContent, ComponentTitle, openModalPopup } = useAppSelector(
+    (state) => state.openModalReducer
+  );
   const dispatch = useAppDispatch();
-  
   return (
     <div>
       <div>
-        <Modal className="hoc_modal transition"
-          title={<ComponentTitle/>}
+        <Modal
+          className="hoc_modal transition"
+          title={<ComponentTitle />}
           visible={openModalPopup}
           width={1000}
-          style={{borderRadius:'100%'}}
+          style={{ borderRadius: "100%" }}
           onOk={() => {
             const action = modalPopUp(false);
             dispatch(action);
@@ -28,9 +28,11 @@ export default function ModalPopup({}: Props) {
             dispatch(action);
           }}
         >
-           <ComponentContent />
+          <ComponentContent />
         </Modal>
       </div>
     </div>
   );
 }
+
+export default memo(ModalPopup);

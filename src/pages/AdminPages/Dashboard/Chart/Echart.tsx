@@ -18,8 +18,6 @@ export default function Echart({}: Props) {
     (state: RootState) => state.bookingReducer
   );
   const roombookingListCount = roombookingList.length;
-  
-
   const { Title, Paragraph } = Typography;
 
   const options: ApexOptions = {

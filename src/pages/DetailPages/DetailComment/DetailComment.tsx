@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { AiFillStar, AiOutlineSend } from "react-icons/ai";
 import { getStoreJSON, http, USER_LOGIN } from "../../../utils/setting";
 import { toast } from "react-toastify";
-import { toastOptionsSuccess } from "../../../App";
+import { toastOptionsErr, toastOptionsSuccess } from "../../../App";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -51,7 +51,7 @@ export default function DetailComment({ idRoom }: Props) {
         }
       }
     } else {
-      alert("hay nhap du lieu");
+      toast.error("Hãy nhập dữ liệu bình luận", toastOptionsErr);
     }
     setComment(" ");
   };

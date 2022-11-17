@@ -52,8 +52,12 @@ export default function CreateRoom(): JSX.Element {
   return (
     <Form
       name="basic"
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 8 }}
+      labelCol={{
+        span: 4,
+      }}
+      wrapperCol={{
+        span: 8,
+      }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
@@ -180,14 +184,14 @@ export default function CreateRoom(): JSX.Element {
         <Input type="file" name="hinhAnh" onChange={hanldeChangeImage} />
         <Image
           src={image}
-          style={{ padding: "50px" }}
-          alt="pic"
+          style={{ padding: "20px" }}
+          alt="Hinh Anh "
           onChange={hanldeChangeImage}
         />
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" className="px-4 py-2 bg-green-400 text-white rounded-lg hover:bg-green-700 transition-all duration-300 h-10 shadow-lg shadow-green-300">
+          Thêm phòng mới 
         </Button>
       </Form.Item>
     </Form>

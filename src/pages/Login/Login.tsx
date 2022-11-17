@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { string, object } from "yup";
@@ -22,7 +22,7 @@ interface Login {
 
 type Props = {};
 
-export default function Login({}: Props) {
+function Login({}: Props) {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const { number } = useParams();
@@ -46,11 +46,11 @@ export default function Login({}: Props) {
       username: values.email,
       password: values.password,
     };
-    let currentUser = await axios.post(loginRoute, user_login);
-    await setStoreJSON(CURRENT_USER, currentUser.data.content);
+    // let currentUser = await axios.post(loginRoute, user_login);
+    // await setStoreJSON(CURRENT_USER, currentUser.data.content);
     let userLogin = await getStoreJSON(USER_LOGIN);
     if (userLogin) {
-      navigate(-Number(number));
+      navigate(`/${-Number(number)}`);
     }
   });
 
@@ -64,7 +64,7 @@ export default function Login({}: Props) {
           padding: "9px 12px",
         }}
         onClick={() => {
-          navigate(-Number(number));
+          navigate('/');
         }}
         className="text-lg cursor-pointer transition-all hover:-translate-y-2 text-white font-medium rounded-full bg-primary"
       >
@@ -119,3 +119,5 @@ export default function Login({}: Props) {
     </form>
   );
 }
+
+export default  memo(Login)

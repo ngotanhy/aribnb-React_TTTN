@@ -128,8 +128,12 @@ export default function UpdateUser(): JSX.Element {
     <Form
       form={form}
       name="basic"
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 8 }}
+      labelCol={{
+        span: 4,
+      }}
+      wrapperCol={{
+        span: 10,
+      }}
       initialValues={{
         name: "",
         email: "",
@@ -193,7 +197,7 @@ export default function UpdateUser(): JSX.Element {
           <Option value="USER">USER</Option>
         </Select>
       </Form.Item>
-      <Form.Item label="Hình ảnh">
+      {/* <Form.Item label="Hình ảnh">
         <Input type="file" onChange={hanldeChangeImage} />
         <Image
           src={image}
@@ -201,10 +205,10 @@ export default function UpdateUser(): JSX.Element {
           alt=""
           onChange={hanldeChangeImage}
         />
-      </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
-          UpdateUser 
+      </Form.Item> */}
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit" className="px-4 py-2 bg-green-400 text-white rounded-lg hover:bg-green-700 transition-all duration-300 h-10 shadow-lg shadow-green-300">
+          Cập nhật người dùng
         </Button>
       </Form.Item>
     </Form>

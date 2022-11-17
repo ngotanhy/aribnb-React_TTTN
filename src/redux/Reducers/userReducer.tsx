@@ -94,12 +94,11 @@ export default userReducer.reducer;
 
 /// Call api post signup
 export const postSignupUser = (data: userLogin) => {
-  console.log({ data });
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.post("/auth/signup", data);
-      console.log({ result });
-      history.push("/login");
+      // setStoreJSON(USER_LOGIN, data);
+      history.push("/");
     } catch (error: any) {
       console.log({ error });
       alert(error.response.data.content);

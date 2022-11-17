@@ -33,7 +33,7 @@ export default function HeaderSearch(props: any) {
 
   const renderPosition = () => {
     const fillPositionArray = locationList?.filter((item) =>
-      item.tenViTri?.toLowerCase().includes(searchValue.toLowerCase())
+      item.tenViTri?.toLowerCase().includes(searchValue.toLowerCase()) || item.tinhThanh?.toLowerCase().includes(searchValue.toLowerCase())
     );
     return fillPositionArray?.map((item, index) => {
       return (
@@ -78,6 +78,7 @@ export default function HeaderSearch(props: any) {
                 <input
                   placeholder="Bạn sắp đi đâu ?"
                   type={"text"}
+                  // value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   onClick={(e) => {
                     setPositionVisible(!positionVisible);

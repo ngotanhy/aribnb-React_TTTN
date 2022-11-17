@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React from "react";
+import React, { memo } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { GrFormNext } from "react-icons/gr";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/HooksRedux";
@@ -11,7 +11,7 @@ import PopUpTitle from "./PopUpTitle";
 type Props = {
 };
 
-export default function DetailReview({}: Props) {
+ function DetailReview({}: Props) {
   const { commentById } = useAppSelector((state) => state.commentReducer);
   const dispatch = useAppDispatch();
   let user1=_.random(0, commentById.length - 1);
@@ -48,3 +48,5 @@ export default function DetailReview({}: Props) {
     </div>
   );
 }
+
+export default memo(DetailReview)

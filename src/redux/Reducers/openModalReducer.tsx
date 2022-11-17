@@ -1,22 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const defaultComponent = () => {
-  return (
-    <div>OpenModalReducer</div>
-  )
-}
-type State={
+  return <></>;
+};
+
+type State = {
   openModal: boolean;
   openModalPopup: boolean;
-  ComponentTitle:any;
-  ComponentContent:any;
-}
+  ComponentTitle: () => JSX.Element;
+  ComponentContent: () => JSX.Element;
+};
 
-const initialState:State = {
+const initialState: State = {
   openModal: false,
   openModalPopup: false,
-  ComponentTitle:defaultComponent,
-  ComponentContent:defaultComponent,
+  ComponentTitle: defaultComponent,
+  ComponentContent: defaultComponent,
 };
 
 const openModalReducer = createSlice({
@@ -27,10 +26,10 @@ const openModalReducer = createSlice({
       state.openModal = action.payload;
     },
     modalPopUp: (state, action: PayloadAction<any>) => {
-      let{ComponentContent,openModalPopup,ComponentTitle} = action.payload;
+      let { ComponentContent, openModalPopup, ComponentTitle } = action.payload;
       state.openModalPopup = openModalPopup;
-      state.ComponentContent= ComponentContent;
-      state.ComponentTitle= ComponentTitle;
+      state.ComponentContent = ComponentContent;
+      state.ComponentTitle = ComponentTitle;
     },
   },
 });
@@ -38,4 +37,3 @@ const openModalReducer = createSlice({
 export const { modal, modalPopUp } = openModalReducer.actions;
 
 export default openModalReducer.reducer;
-

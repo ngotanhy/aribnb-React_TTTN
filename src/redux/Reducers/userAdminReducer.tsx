@@ -162,9 +162,8 @@ export const getPaginationUser = (page: Number) => {
       const result = await http.get(
         `/users/phan-trang-tim-kiem?pageIndex=${page}&pageSize=10`
       );
-      const arrUser: userAll[] = result.data.content;
-      const action = getAllUserAction(arrUser);
-      console.log(result);
+      const action = getAllUserAction(result.data.content.data);
+      console.log("main1",result);
       dispatch(action);
     } catch (err) {
       console.log({ err });
@@ -183,3 +182,17 @@ export const UpdateAvatarUser = (data: FormData) => {
     }
   };
 };
+
+export const SearchUser = (name: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.get(`/users/search/${name}`);
+      const arrUser: userAll[] = result.data.content;
+      const action = getAllUserAction(arrUser);
+      console.log(result);
+      dispatch(action);
+    } catch (err) {
+      console.log({ err });
+    }
+  };
+}
