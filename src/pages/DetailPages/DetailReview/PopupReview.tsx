@@ -12,7 +12,7 @@ export default function PopupReview({}: Props) {
       return total + item.saoBinhLuan
   },0)
   return (
-    <div className="grid grid-cols-2 gap-1">
+    <div className="sm:grid grid-cols-2 gap-1">
       <div className="overflow-hidden">
         <ul className="mt-2 py-2">
           <li className="py-2">

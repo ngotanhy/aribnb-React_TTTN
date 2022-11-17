@@ -22,7 +22,7 @@ type Props = {
         <AiFillStar />
         <h2 className="">{commentById?.length} đánh giá </h2>
       </div>
-      <div className="grid grid-cols-2 mb-4 mt-2">
+      <div className="sm:grid grid-cols-2 mb-4 mt-2">
         <div className="">
           <CommentUser id={commentById[user1]?.maNguoiBinhLuan} userCommentId={commentById[user1]} />
         </div>

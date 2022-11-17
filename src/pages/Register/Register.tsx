@@ -10,24 +10,15 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import dayjs from "dayjs";
 import classNames from "classnames";
 import { AppDispatch } from "../../redux/configStore";
-import { postSignupUser } from "../../redux/Reducers/userReducer";
+import { postSignupUser, userLogin } from "../../redux/Reducers/userReducer";
 import { getUserApi } from "../../redux/Reducers/userAdminReducer";
 import UseCheckEmail from "../../Hooks/UseCheckEmail";
 import axios from "axios";
 import { registerRoute } from "../../utils/APIRoutes";
+import { toastOptionsErr, toastOptionsSuccess } from "../../App";
+import { toast } from "react-toastify";
 
 type Props = {};
-
-interface Register {
-  id?: string | number;
-  name?: string;
-  email?: string;
-  password?: string;
-  phone?: string;
-  birthday?: string;
-  gender?: boolean;
-  role?: string;
-}
 
 export default function Register({}: Props) {
   const dispatch: AppDispatch = useDispatch();
@@ -41,58 +32,56 @@ export default function Register({}: Props) {
 
   const { isExitEmail, handleCheckEmail } = UseCheckEmail();
 
-  const schema = object({
-    email: string()
-      .required("Email không được để trống")
-      .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, {
-        message: "Email phải có định dạng test@gmail.com",
-      }),
-    password: string()
-      .required("Mật khẩu không được để trống")
-      .matches(/(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,50})$/g, {
-        message:
-          "Mật khẩu tối thiểu 8 kí tự , gồm ít nhất 1 chữ cái , 1 số , không kí tự đặc biệt",
-      }),
-    name: string()
-      .required("Tên không được để trống")
-      .matches(
-        /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/,
-        {
-          message: "Tên sai định dạng",
-        }
-      ),
-    phone: string()
-      .required("Số điện thoại không được để trống")
-      .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, {
-        message: "Số điện thoại không đúng định dạng",
-      }),
-    birthday: string().required("Ngày sinh không được để trống"),
-    gender: boolean().required("Giới tính không được để trống"),
-  });
+  // const schema = object({
+  //   email: string()
+  //     .required("Email không được để trống")
+  //     .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, {
+  //       message: "Email phải có định dạng test@gmail.com",
+  //     }),
+  //   password: string()
+  //     .required("Mật khẩu không được để trống")
+  //     .matches(/(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,50})$/g, {
+  //       message:
+  //         "Mật khẩu tối thiểu 8 kí tự , gồm ít nhất 1 chữ cái , 1 số , không kí tự đặc biệt",
+  //     }),
+  //   name: string()
+  //     .required("Tên không được để trống")
+  //     .matches(
+  //       /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/,
+  //       {
+  //         message: "Tên sai định dạng",
+  //       }
+  //     ),
+  //   phone: string()
+  //     .required("Số điện thoại không được để trống")
+  //     .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, {
+  //       message: "Số điện thoại không đúng định dạng",
+  //     }),
+  //   birthday: string().required("Ngày sinh không được để trống"),
+  //   gender: boolean().required("Giới tính không được để trống"),
+  // });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Register>({
-    resolver: yupResolver(schema),
+  } = useForm<userLogin>({
+    // resolver: yupResolver(schema),
     mode: "onTouched",
   });
 
-  const onSubmit = handleSubmit(async (values: any) => {
+  const onSubmit = handleSubmit(async (values: userLogin) => {
     let newValue = { ...values, role: "USER" };
     // let data = {
-    //   username:newValue.username,
-    //   gender: "true",
-    //   phone: "12313",
-    //   email: "ngohy@gmail.com",
-    //   password: "hy123456",
-    //   birthday: "01/12/2022",
-    //   role: "ADMIN",
+    //   username: newValue.name,
+    //   gender: newValue.gender,
+    //   phone: newValue.phone,
+    //   email: newValue.email,
+    //   password: newValue.password,
+    //   birthday: newValue.birthday,
+    //   role: newValue.role,
     // };
-    // console.log(newValue);
-    // const result = await axios.post(registerRoute,newValue);
-    // console.log(result);
+    // const result = await axios.post(registerRoute, data);
     const action = postSignupUser(values);
     dispatch(action);
   });
@@ -227,11 +216,8 @@ export default function Register({}: Props) {
           <button
             type="submit"
             className="w-full text-center py-3 rounded bg-green-500 text-white text-lg hover:bg-green-dark focus:outline-none my-1"
-            onClick={() => {
-              navigate('/');
-            }}
           >
-             Create Account
+            Create Account
           </button>
           <div className="text-center text-sm text-grey-dark mt-4">
             By signing up, you agree to the

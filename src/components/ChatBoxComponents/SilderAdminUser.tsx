@@ -24,10 +24,9 @@ export default function SilderAdminUser({
                 index: number
               ) => {
                 return (
-                  <>
+                  <div  key={index} className={ user.active ? "text-red-700 bg-slate-300 overflow-hidden rounded-lg flex flex-col items-center w-full" : "flex flex-col items-center"}>
                     <button
                       className="mt-2"
-                      key={index}
                       onClick={() => {
                         handleSelectUser(user);
                       }}
@@ -47,9 +46,9 @@ export default function SilderAdminUser({
                         user.active ? "text-red-700 bg-slate-300 " : ""
                       }
                     >
-                      {user.username.slice(0, 10) + "..."}
+                      {user.username.slice(0, 7) + "..."}
                     </p>
-                  </>
+                  </div>
                 );
               }
             )}

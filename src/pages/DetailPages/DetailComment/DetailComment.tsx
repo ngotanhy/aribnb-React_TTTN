@@ -57,14 +57,14 @@ export default function DetailComment({ idRoom }: Props) {
   };
 
   return (
-    <div className="my-3 w-2/3">
+    <div className="my-3 sm:w-2/3">
       <TextArea
         rows={4}
         onChange={(e) => setComment(e.target.value)}
         value={comment}
       />
-      <div className="mt-2 flex items-center gap-4">
-        <span className="text-xl font-medium">Star</span>
+      <div className="mt-2 sm:flex items-center grid gap-4">
+        <span className="text-xl font-medium hidden sm:inline-block">Star</span>
         {arrStar.map((item: Star, index: number) => {
           return (
             <button

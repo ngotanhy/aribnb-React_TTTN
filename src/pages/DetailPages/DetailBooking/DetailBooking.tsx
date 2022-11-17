@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useAppSelector } from "../../../Hooks/HooksRedux";
 import useScroll from "../../../Hooks/UseScroll";
@@ -29,6 +29,17 @@ export default function DetailBooking({ id }: Props) {
   const [date, setDate] = useState([]);
   const [totalDay, setTotalDay] = useState<number>(0);
   const navigate = useNavigate();
+
+  const [width, setWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const handleSize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleSize);
+    handleSize();
+    return () => window.removeEventListener("resize", handleSize);
+  }, [window.innerWidth]);
 
   const handleCount = (type: string, count: number) => {
     const handleCount = (prev: number) => {
@@ -122,12 +133,14 @@ export default function DetailBooking({ id }: Props) {
   return (
     <div
       className={
-        scroll >= 680
-          ? "transition-all ease-in-out "
-          : "fixed z-10 top-135px w-475px transition-all ease-in-out" &&
-            scroll >= 484
-          ? "fixed z-10 top-135px w-475px transition-all ease-in-out"
-          : "transition-all ease-in-out "
+        width > 750
+          ? scroll >= 680
+            ? "transition-all ease-in-out "
+            : "fixed z-10 top-135px w-475px transition-all ease-in-out" &&
+              scroll >= 484
+            ? "fixed z-10 top-135px w-475px transition-all ease-in-out"
+            : "transition-all ease-in-out "
+          : ""
       }
       style={{
         scrollBehavior: "smooth",

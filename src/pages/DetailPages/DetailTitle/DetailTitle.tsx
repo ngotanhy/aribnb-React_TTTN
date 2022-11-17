@@ -13,12 +13,12 @@ export default function DetailTitle({}: Props) {
   // console.log(localDetail)
   return (
     <>
-      <div className="flex text-3xl font-medium ">
+      <div className="flex text-3xl font-medium text-xl">
         <BsTranslate className="mr-2" />
         {roomDetail?.tenPhong}
       </div>
-      <div className="flex mt-3 justify-start text-sm">
-        <div className="flex gap-3 basis-2/3">
+      <div className="sm:flex mt-3 justify-start text-sm mb-2 sm:mb-0">
+        <div className="sm:flex gap-3 basis-2/3">
           <div className="flex font-medium items-center">
             <AiFillStar />
             4.47 ·
@@ -33,7 +33,7 @@ export default function DetailTitle({}: Props) {
             </button>
           </div>
         </div>
-        <div className="flex basis-1/3 justify-end gap-4">
+        <div className="flex basis-1/3 sm:justify-end gap-4 mt-2 sm:mt-0">
           <div className="font-medium flex  items-center gap-1">
             <FiShare />
             <button className="underline underline-offset-1"> Chia Se</button>

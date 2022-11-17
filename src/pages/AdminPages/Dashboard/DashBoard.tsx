@@ -14,10 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Dropdown, Menu } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import {
-  ACCESS_TOKEN,
-  USER_LOGIN,
-} from "../../../utils/setting";
+import { ACCESS_TOKEN, USER_LOGIN } from "../../../utils/setting";
 import { AppDispatch, RootState } from "../../../redux/configStore";
 import { getUserProfileAPi } from "../../../redux/Reducers/userReducer";
 import { AiFillSignal } from "react-icons/ai";
@@ -152,7 +149,6 @@ export default function DashBoard({}: Props) {
       getItem("Danh sách người dùng", "1"),
       getItem("Them người dùng", "2"),
       getItem("Danh sách bình luận", "14"),
-
     ]),
     getItem("Quản lí vị trí", "sub2", <MdShareLocation />, [
       getItem("Danh sách vị trí", "5"),
@@ -171,7 +167,7 @@ export default function DashBoard({}: Props) {
 
   return (
     <div className="grid grid-cols-12 admin ">
-      <div className="col-span-2  ">
+      <div className="xl:col-span-2  md:col-span-3 ">
         <div className="h-full admin_slidebar">
           <div
             className="h-20 px-5 py-4 flex items-center "
@@ -191,9 +187,7 @@ export default function DashBoard({}: Props) {
           <div className="mt-10">
             <Menu
               onClick={onClick}
-              style={{
-                width: 254,
-              }}
+              style={{}}
               defaultSelectedKeys={["13"]}
               defaultOpenKeys={["sub0"]}
               mode="inline"
@@ -203,7 +197,7 @@ export default function DashBoard({}: Props) {
           </div>
         </div>
       </div>
-      <div className="col-span-10 ">
+      <div className="xl:col-span-10 md:col-span-9 ">
         <div>
           <div
             className="h-20 px-8  flex items-center justify-between"

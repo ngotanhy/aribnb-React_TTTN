@@ -8,6 +8,8 @@ import { CURRENT_USER, getStoreJSON } from "../../utils/setting";
 import { allUsersRoute, getUserAdmin, host } from "../../utils/APIRoutes";
 import SilderAdminUser from "../../components/ChatBoxComponents/SilderAdminUser";
 import ChatContainer from "../../components/ChatBoxComponents/ChatContainer";
+
+
 const { Header, Sider } = Layout;
 
 export interface user {
@@ -31,6 +33,10 @@ export default function Chat() {
 
   useEffect(() => {
     let currentUser = getStoreJSON(CURRENT_USER);
+    if (currentUser) {
+      socket.current = io(host);
+      socket.current.emit("add-user", currentUser.id);
+    }
     if (currentUser) {
       if (currentUser.role === "ADMIN") {
         setIsLoadInterface(true);
@@ -64,12 +70,9 @@ export default function Chat() {
     })();
   }, []);
 
-  useEffect(() => {
-    if (currentUser) {
-      socket.current = io(host);
-      socket.current.emit("add-user", currentUser.id);
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+
+  // }, [currentUser]);
 
   const handleSelectUser = async (userSelect: user) => {
     if (currentUser?.role === "ADMIN") {
@@ -121,18 +124,6 @@ export default function Chat() {
               {isLoadInterface ? (
                 currentChat !== null ? (
                   <>
-                    <Header className="bg-slate-600 flex items-center gap-4 ">
-                      <div className="w-12 h-12 rounded-full overflow-hidden">
-                        <img
-                          src="https://i.pravatar.cc/300"
-                          alt="..."
-                          className="w-full h-full"
-                        />
-                      </div>
-                      <p className="text-lg font-semibold text-lime-600">
-                        {currentChat?.username}
-                      </p>
-                    </Header>
                     <ChatContainer
                       currentChat={currentChat}
                       socket={socket}
@@ -180,7 +171,7 @@ export default function Chat() {
               if (getStoreJSON(CURRENT_USER)) {
                 setIsOpen(true);
               } else {
-                navigate("/login/1");
+                navigate("/login/0");
               }
             }}
           >

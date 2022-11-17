@@ -10,8 +10,8 @@ type Props = {
 
 export default function DetailInfoRoom({ id }: Props) {
   return (
-    <div className="mt-14 flex gap-24">
-      <div className="w-3/5">
+    <div className="mt-14 sm:flex sm:gap-24">
+      <div className="sm:w-3/5 ">
         <DetailDescription />
         <DetailInfoCover />
         {/* <DetailIntroduce/> */}
@@ -19,7 +19,7 @@ export default function DetailInfoRoom({ id }: Props) {
         <DetailEquipment />
         {/* <DetailCalendar/> */}
       </div>
-      <div className="w-2/5 relative right-0 top-0 ">
+      <div className="sm:w-2/5 relative right-0 top-0 ">
         <DetailBooking id={id} />
       </div>
     </div>

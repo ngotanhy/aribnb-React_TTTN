@@ -41,7 +41,7 @@ function DetailPages({}: Props) {
     <div className="relative">
       {/* <HeaderDetail /> */}
       <div className="mt-28">
-        <div className="container ">
+        <div className="sm:container px-5">
           <DetailTitle />
           {/* <DetailImage /> */}
           <div

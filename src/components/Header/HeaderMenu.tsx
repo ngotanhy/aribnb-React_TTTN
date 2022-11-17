@@ -154,7 +154,7 @@ export default function HeaderMenu({}: Props) {
   );
   return (
     <>
-      <div className="userDropDown hidden sm:block">
+      <div className="userDropDown">
         <Dropdown overlay={menu} trigger={["click"]}>
           <div className="flex text-gray-500 items-center py-1 px-3">
             <FaBars className="text-lg mr-3" />

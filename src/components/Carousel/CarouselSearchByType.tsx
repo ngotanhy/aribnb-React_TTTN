@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Button, Carousel } from "antd";
 import { CarouselRef } from "antd/lib/carousel";
 import { FcNext, FcPrevious } from "react-icons/fc";
@@ -107,18 +107,38 @@ const image1 = [
 
 export default function CarouselSearchByType({}: Props) {
   const slider = useRef<CarouselRef>(null);
+  const [width, setWidth] = useState<number>(0);
+
+  const numberItem=()=>{
+    if(width>900){
+      return 10;
+    }else if(width>768){
+      return 7;
+    }else{
+      return 5;
+    }
+  }
 
   const settings = {
     dots: false,
-    slidesToShow: 10,
+    slidesToShow: numberItem(),
     slidesToScroll: 1,
     autoplaySpeed: 2000,
   };
 
+  useEffect(() => {
+    const handleSize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleSize);
+    handleSize();
+    return () => window.removeEventListener('resize', handleSize);
+  }, [window.innerWidth]);
+
   return (
     <div className=" mt-24 ">
-      <div className="container flex">
-        <div className="relative w-11/12 inline-block  mr-7">
+      <div className="container md:w-full  sm:flex hidden">
+        <div className="relative lg:w-11/12 md:w-5/6 sm:w-2/3 inline-block  mr-7">
           <button
             className="absolute left-0 font-medium text-sm"
             style={{ top: "50%", transform: "translateY(-50%)", zIndex: "2" }}

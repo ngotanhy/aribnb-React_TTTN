@@ -17,7 +17,7 @@ export default function DetailDescription({}: Props) {
             {roomDetail?.khach} khách · {roomDetail?.phongNgu} phòng ngủ · {roomDetail?.giuong} giường · {roomDetail?.phongTam} phòng tắm
           </div>
         </div>
-        <div className="w-16 h-16 rounded-full overflow-hidden">
+        <div className="sm:w-16 sm:h-16 w-16 h-12 rounded-full overflow-hidden">
           <img
             src="https://a0.muscache.com/im/pictures/d0e3bb05-a96a-45cf-af92-980269168096.jpg?im_w=720"
             alt="..."

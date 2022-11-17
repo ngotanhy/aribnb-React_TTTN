@@ -15,23 +15,25 @@ export default function HeaderPage({}: Props) {
 
   return (
     <>
-      <div className="fixed top-0 right-0 left-0 z-10 bg-white">
+      <div className=" top-0 right-0 left-0 z-10 bg-white fixed">
         <div className="header py-4">
-          <div className="container-dn">
+          <div className="container-dn ">
             <div className="flex items-center justify-between ">
               <div
-                className="w-2/12 cursor-pointer hidden md:block"
+                className="w-2/12 cursor-pointer sm:block"
                 onClick={() => navigate("/")}
               >
-                <p className="text-ellipsis font-sans text-2xl text-red-400 font-extrabold">UTHBooking</p>
+                <p className="text-ellipsis font-sans text-2xl text-red-400 font-extrabold">
+                  UTHBooking
+                </p>
                 {/* <img
                   className="w-3/5 h-11"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png"
                   alt=""
                 /> */}
               </div>
-              <div className="  flex justify-between items-center  ">
-                <div className="rounded-full searchBox hidden sm:block">
+              <div className=" flex justify-between items-center sm:h-16 ">
+                <div className="rounded-full searchBox hidden lg:block">
                   <button
                     className=" py-3 px-4 font-medium"
                     onClick={() => setSearchVisible(!searchVisible)}
@@ -41,7 +43,7 @@ export default function HeaderPage({}: Props) {
                   <span className="w-px h-6 bg-gray-300 inline-block translate-y-1/4"></span>
                   <button className="py-3 px-4 font-medium">Trải nhiệm</button>
                   <span className="w-px h-6 bg-gray-300 inline-block translate-y-1/4"></span>
-                  <button className="py-3 px-4 font-mono text-gray-400 inline-flex items-center">
+                  <button className="py-3 px-4 font-mono text-gray-400 inline-flex items-center hidden sm:inline-block">
                     Trải nhiệm trực tuyến
                     <div className="inline-flex w-8 h-8 p-2 ml-8 rounded-full bg-red-400 items-center ">
                       <FaSearch className="text-white inline-block text-sm " />

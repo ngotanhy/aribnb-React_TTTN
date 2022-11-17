@@ -96,9 +96,15 @@ export default userReducer.reducer;
 export const postSignupUser = (data: userLogin) => {
   return async (dispatch: AppDispatch) => {
     try {
-      let result = await http.post("/auth/signup", data);
-      // setStoreJSON(USER_LOGIN, data);
-      history.push("/");
+      let result2 = await http.post("/auth/signup", data);
+      if (result2?.data.statusCode=== 200) {
+        let data={
+          email: result2?.data.content.email,
+          password: result2?.data.content.password
+        }
+        await postSignIn(data);
+        history.push("/");
+      }
     } catch (error: any) {
       console.log({ error });
       alert(error.response.data.content);

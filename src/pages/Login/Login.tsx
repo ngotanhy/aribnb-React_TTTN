@@ -43,14 +43,14 @@ function Login({}: Props) {
   const onSubmit = handleSubmit(async (values) => {
     await dispatch(postSignIn(values));
     let user_login = {
-      username: values.email,
+      email: values.email,
       password: values.password,
     };
-    // let currentUser = await axios.post(loginRoute, user_login);
-    // await setStoreJSON(CURRENT_USER, currentUser.data.content);
+    let currentUser = await axios.post(loginRoute, user_login);
+    await setStoreJSON(CURRENT_USER, currentUser.data.content);
     let userLogin = await getStoreJSON(USER_LOGIN);
     if (userLogin) {
-      navigate(`/${-Number(number)}`);
+      Number(number)>0 ?navigate(`/${-Number(number)}`): navigate(`/`);
     }
   });
 
