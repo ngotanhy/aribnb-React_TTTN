@@ -10,9 +10,8 @@ import {
   USER_LOGIN,
 } from "../../utils/setting";
 
-interface userLogin {
+export interface userLogin {
   user: any;
-  // user: string;
   id?: number;
   name?: string;
   email?: string;

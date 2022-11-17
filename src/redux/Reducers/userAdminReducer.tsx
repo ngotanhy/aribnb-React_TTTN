@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import { registerRoute } from "../../utils/APIRoutes";
 import { http } from "../../utils/setting";
 import { AppDispatch } from "../configStore";
 
@@ -115,7 +117,7 @@ export const createUserApi = (data: UserPost) => {
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.post("/users", data);
-      //   let userPost: UserPost[] = result.data.content;
+      // const createUser=await axios.post(registerRoute,data)
       const action = userCreateAdmin(result.data.content);
       console.log(result);
       dispatch(action);

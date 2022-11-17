@@ -11,7 +11,6 @@ export default function PopupReview({}: Props) {
   const saoBinhLuan=_.reduce(commentById, (total,item)=>{
       return total + item.saoBinhLuan
   },0)
-  console.log(saoBinhLuan)
   return (
     <div className="grid grid-cols-2 gap-1">
       <div className="overflow-hidden">

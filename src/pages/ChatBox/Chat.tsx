@@ -44,10 +44,12 @@ export default function Chat() {
     (async function getAllUsers() {
       try {
         let getUser = await axios.get(allUsersRoute);
-        let setUser = getUser?.data.map((user: user) => {
-          return { ...user, active: false };
-        });
-        setAllUser(setUser);
+        if (getUser) {
+          let setUser = getUser?.data.content.map((user: user) => {
+            return { ...user, active: false };
+          });
+          setAllUser(setUser);
+        }
       } catch (e) {
         console.log(e);
       }
@@ -91,8 +93,7 @@ export default function Chat() {
         let currentUser = getStoreJSON(CURRENT_USER);
         if (currentUser.role === "USER") {
           let admin = await axios.get(getUserAdmin);
-          setCurrentChat(admin.data);
-          console.log(admin.data);
+          setCurrentChat(admin.data.content);
         } else {
           setIsOpen(true);
         }

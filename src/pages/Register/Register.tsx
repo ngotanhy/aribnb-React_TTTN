@@ -6,14 +6,15 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { string, object, boolean } from "yup";
-import classnames from "classnames";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import dayjs from "dayjs";
 import classNames from "classnames";
 import { AppDispatch } from "../../redux/configStore";
 import { postSignupUser } from "../../redux/Reducers/userReducer";
 import { getUserApi } from "../../redux/Reducers/userAdminReducer";
-import UseCheckEmail from "../../Hooks/UseCheckEmail"
+import UseCheckEmail from "../../Hooks/UseCheckEmail";
+import axios from "axios";
+import { registerRoute } from "../../utils/APIRoutes";
 
 type Props = {};
 
@@ -29,18 +30,16 @@ interface Register {
 }
 
 export default function Register({}: Props) {
-  
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const [isShowPass, setIsShowPass] = useState(false);
   const [day, setDay] = useState("1/1/2022");
-  
+
   useEffect(() => {
     dispatch(getUserApi());
   }, []);
-  
-  const { isExitEmail, handleCheckEmail } = UseCheckEmail();
 
+  const { isExitEmail, handleCheckEmail } = UseCheckEmail();
 
   const schema = object({
     email: string()
@@ -80,8 +79,20 @@ export default function Register({}: Props) {
     mode: "onTouched",
   });
 
-  const onSubmit = handleSubmit((values: any) => {
-    console.log(values);
+  const onSubmit = handleSubmit(async (values: any) => {
+    let newValue = { ...values, role: "USER" };
+    // let data = {
+    //   username:newValue.username,
+    //   gender: "true",
+    //   phone: "12313",
+    //   email: "ngohy@gmail.com",
+    //   password: "hy123456",
+    //   birthday: "01/12/2022",
+    //   role: "ADMIN",
+    // };
+    // console.log(newValue);
+    // const result = await axios.post(registerRoute,newValue);
+    // console.log(result);
     const action = postSignupUser(values);
     dispatch(action);
   });
@@ -118,7 +129,7 @@ export default function Register({}: Props) {
               </div>
               <div className="h-24">
                 <input
-                    onInput={handleCheckEmail}
+                  onInput={handleCheckEmail}
                   {...register("email")}
                   type="text"
                   className="block border border-grey-light w-full p-3 rounded mb-0"
@@ -217,9 +228,9 @@ export default function Register({}: Props) {
           <button
             type="submit"
             className="w-full text-center py-3 rounded bg-green-500 text-white text-lg hover:bg-green-dark focus:outline-none my-1"
-            onClick={() => {
-              navigate('/login/2');
-            }}
+            // onClick={() => {
+            //   navigate('/login/2');
+            // }}
           >
             Create Account
           </button>
@@ -242,11 +253,12 @@ export default function Register({}: Props) {
         </div>
         <div className="text-grey-dark mt-6 text-slate-700 text-xl">
           <button className="mr-2">Already have an account?</button>
-          <button className="hover:text-blue-700"
-             onClick={()=>{
-              navigate('/login/2');
-             }}
-             >
+          <button
+            className="hover:text-blue-700"
+            onClick={() => {
+              navigate("/login/2");
+            }}
+          >
             Log in
           </button>
         </div>
@@ -254,5 +266,3 @@ export default function Register({}: Props) {
     </form>
   );
 }
-
-

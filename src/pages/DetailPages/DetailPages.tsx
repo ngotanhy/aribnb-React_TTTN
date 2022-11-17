@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import ModalPopup from "../../HOC/ModalPopup";
@@ -18,8 +18,7 @@ type Props = {};
 type QuizParams = {
   id: string;
 };
-
-export default function DetailPages({}: Props) {
+function DetailPages({}: Props) {
   const { id } = useParams<QuizParams>();
   const dispatch = useAppDispatch();
   const { roomDetail } = useAppSelector((state) => state.roomReducer);
@@ -61,3 +60,5 @@ export default function DetailPages({}: Props) {
     </div>
   );
 }
+
+export default memo(DetailPages);
