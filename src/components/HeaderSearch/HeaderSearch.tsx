@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { DatePicker, Space, Tabs } from "antd";
+import { DatePicker, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import useScroll from "../../Hooks/UseScroll";
 import { AppDispatch, RootState } from "../../redux/configStore";
-import { MdLocationOn, MdOutlineLocationOn } from "react-icons/md";
-import { getRoomAPiID } from "../../redux/Reducers/roomReducer";
+import { MdOutlineLocationOn } from "react-icons/md";
 
 export default function HeaderSearch(props: any) {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,6 +15,7 @@ export default function HeaderSearch(props: any) {
   const { searchVisible, setSearchVisible } = props;
   const [positionVisible, setPositionVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
   // const { positionArray } = useSelector((state) => state.position);
   // const
 
@@ -32,8 +32,10 @@ export default function HeaderSearch(props: any) {
   const navigate = useNavigate();
 
   const renderPosition = () => {
-    const fillPositionArray = locationList?.filter((item) =>
-      item.tenViTri?.toLowerCase().includes(searchValue.toLowerCase()) || item.tinhThanh?.toLowerCase().includes(searchValue.toLowerCase())
+    const fillPositionArray = locationList?.filter(
+      (item) =>
+        item.tenViTri?.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.tinhThanh?.toLowerCase().includes(searchValue.toLowerCase())
     );
     return fillPositionArray?.map((item, index) => {
       return (
@@ -113,8 +115,7 @@ export default function HeaderSearch(props: any) {
               </div>
             }
             key="2"
-          >
-          </TabPane>
+          ></TabPane>
           <TabPane
             tab={
               <div className="flex flex-col ">
@@ -122,8 +123,7 @@ export default function HeaderSearch(props: any) {
               </div>
             }
             key="3"
-          >
-          </TabPane>
+          ></TabPane>
           <TabPane
             tab={
               <div className="flex flex-col ">

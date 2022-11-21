@@ -178,7 +178,7 @@ export default function UserManagement(): JSX.Element {
       <Space
         // style={{ width: "100%" }}
         direction="vertical"
-        className="w-1/2 py-3 rounded-sm"
+        className="w-full py-3 rounded-sm"
       >
         <Search
           placeholder="Nhập họ tên cần tìm"

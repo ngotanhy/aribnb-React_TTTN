@@ -19,7 +19,7 @@ export default function DetailLocationRoom({}: Props) {
   return (
     <div>
       <Title />
-      <div className="mt-4 overflow-auto h-40rem px-4">
+      <div className="mt-4 sm:overflow-auto h-40rem px-4">
         {roomListLocation?.map((item: any, index: number) => {
           return <ItemRoomLocation location={item} key={index} />;
         })}

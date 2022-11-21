@@ -13,8 +13,12 @@
     line-height: 1.5715;
     list-style: none;
 }
-.ant-switch, .ant-switch-checked  {
+.ant-switch {
     background-color: grey ;
+}
+
+.ant-switch-checked {
+    background-color: rgb(58, 216, 58);
 }
 .ant-form-items {
     text-align: center;

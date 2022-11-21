@@ -46,8 +46,8 @@ function Login({}: Props) {
       email: values.email,
       password: values.password,
     };
-    let currentUser = await axios.post(loginRoute, user_login);
-    await setStoreJSON(CURRENT_USER, currentUser.data.content);
+    // let currentUser = await axios.post(loginRoute, user_login);
+    // await setStoreJSON(CURRENT_USER, currentUser.data.content);
     let userLogin = await getStoreJSON(USER_LOGIN);
     if (userLogin) {
       Number(number)>0 ?navigate(`/${-Number(number)}`): navigate(`/`);
@@ -68,7 +68,7 @@ function Login({}: Props) {
         }}
         className="text-lg cursor-pointer transition-all hover:-translate-y-2 text-white font-medium rounded-full bg-primary"
       >
-        Back to Home
+        Trang chủ
       </div>
       <div className="demo">
         <div className="login">
@@ -107,11 +107,11 @@ function Login({}: Props) {
               )}
             </div>
             <button type="submit" className="login__submit">
-              Sign in
+              Đăng nhập
             </button>
             <p className="login__signup">
-              Don't have an account? &nbsp;
-              <a onClick={() => navigate("/register")}>Sign up</a>
+              Vui lòng đăng kí? &nbsp;
+              <a onClick={() => navigate("/register")}>Đăng kí</a>
             </p>
           </div>
         </div>

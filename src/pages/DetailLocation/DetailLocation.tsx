@@ -6,8 +6,8 @@ type Props = {};
 
 export default function DetailLocation({}: Props) {
   return (
-    <div className="sm:container">
-      <div className="sm:flex mt-28 gap-4">
+    <div className="container sm:w-full ">
+      <div className="sm:flex mt-28 gap-4 ">
         <div className="basis-2/3 ">
           <DetailLocationRoom  />
         </div>

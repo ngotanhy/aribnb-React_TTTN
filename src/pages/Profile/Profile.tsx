@@ -27,8 +27,8 @@ export default function Profile({}: Props) {
 
   return (
     <div>
-      <div className="xl:max-w-7xl mx-auto py-24 pt-28 flex justify-center">
-        <div className="border-solid border-[5px] w-1/4 pt-10 rounded-xl h-3/4 ">
+      <div className="xl:max-w-7xl mx-auto py-24 sm:pt-28 sm:flex justify-center px-5 sm:px-0">
+        <div className="sm:border-solid sm:border-[5px] sm:w-1/4 pt-10 rounded-xl sm:h-3/4 border-b">
           <div className="flex flex-col items-center">
             <UpdateAvatar />
           </div>
@@ -36,7 +36,7 @@ export default function Profile({}: Props) {
             <div>
               <SiAdguard />
             </div>
-            <div className="border-solid border-b-[1px]">
+            <div className="border-solid border-b-[1px] hidden sm:block">
               <h3 className="font-medium">Xác minh danh tính</h3>
               <p className="leading-5 pb-5">
                 Xác thực danh tính của bạn với huy hiệu xác minh danh tính
@@ -54,14 +54,14 @@ export default function Profile({}: Props) {
             </div>
           </div>
         </div>
-        <div className="px-20 w-3/5">
+        <div className="sm:px-20 sm:w-3/5">
           <div className="leading-8 mx-auto">
-            <h1 className="text-3xl font-semibold">
+            <h1 className="sm:text-3xl text-xl font-semibold mt-4 sm:mt-0">
               Xin Chào, tôi là {userProfile?.name}
             </h1>
             <span>Bắt đầu tham gia vào 2022</span>
             <div
-              className="w-4/6 p-6 rounded-2xl py-4"
+              className="sm:w-4/6 p-6 rounded-2xl py-4"
               style={{ border: "2px solid #ff385c" }}
             >
               <div className="">

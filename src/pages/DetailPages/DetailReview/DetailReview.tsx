@@ -15,7 +15,7 @@ type Props = {
   const { commentById } = useAppSelector((state) => state.commentReducer);
   const dispatch = useAppDispatch();
   let user1=_.random(0, commentById.length - 1);
-  let user2=_.random(0, commentById.length-1);
+  let user2=_.random(0, commentById.length-2)+1;
   return (
     <div className="" id="review">
       <div className="flex items-center gap-2 font-semibold text-2xl mt-5">

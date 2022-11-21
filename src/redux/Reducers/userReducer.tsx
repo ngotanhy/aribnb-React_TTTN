@@ -84,6 +84,12 @@ const userReducer = createSlice({
     ) => {
       state.userBooking = action.payload;
     },
+    // setUserRegister: (
+    //   state: userLoginState,
+    //   action: PayloadAction<userLogin>
+    // ) => {
+    //   state.userLogin= action.payload;
+    // },
   },
 });
 
@@ -92,25 +98,25 @@ export const { setUserLogin, setUserProfile, setUserBooking } =
 
 export default userReducer.reducer;
 
-/// Call api post signup
-export const postSignupUser = (data: userLogin) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      let result2 = await http.post("/auth/signup", data);
-      if (result2?.data.statusCode=== 200) {
-        let data={
-          email: result2?.data.content.email,
-          password: result2?.data.content.password
-        }
-        await postSignIn(data);
-        history.push("/");
-      }
-    } catch (error: any) {
-      console.log({ error });
-      alert(error.response.data.content);
-    }
-  };
-};
+// /// Call api post signup
+// export const postSignupUser = (data: userLogin) => {
+//   return async (dispatch: AppDispatch) => {
+//     try {
+//       let result2 = await http.post("/auth/signup", data);
+//       if (result2?.data.statusCode=== 200) {
+//         let data={
+//           email: result2?.data.content.email,
+//           password: result2?.data.content.password
+//         }
+//         await postSignIn(data);
+//         history.push("/");
+//       }
+//     } catch (error: any) {
+//       console.log({ error });
+//       alert(error.response.data.content);
+//     }
+//   };
+// };
 
 // Call api  post signin
 export const postSignIn = (data: UserSignIn) => {

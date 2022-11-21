@@ -126,7 +126,7 @@ export default function DetailBooking({ id }: Props) {
         }
       }
     } else {
-      navigate("/login");
+      navigate("/login/1");
     }
   };
 
@@ -134,7 +134,7 @@ export default function DetailBooking({ id }: Props) {
     <div
       className={
         width > 750
-          ? scroll >= 680
+          ? scroll >= 780
             ? "transition-all ease-in-out "
             : "fixed z-10 top-135px w-475px transition-all ease-in-out" &&
               scroll >= 484

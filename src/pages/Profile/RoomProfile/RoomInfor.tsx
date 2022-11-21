@@ -39,7 +39,7 @@ export default function RoomInfor({ mainbooking }: Props) {
   }, []);
 
   return (
-    <div className="grid grid-cols-5 mt-8 cursor-default">
+    <div className="sm:grid grid-cols-5 mt-8 cursor-default">
       <div
         className="sm:col-span-2 col-span-5 rounded-xl h-40 overflow-hidden"
         style={{ boxShadow: " 0 0 2px 4px rgba(0,0,0,0.3)" }}
@@ -54,20 +54,20 @@ export default function RoomInfor({ mainbooking }: Props) {
         />
       </div>
       <div className="relative col-span-2 mt-3 sm:mt-0 sm:col-span-3 sm:pl-4 flex flex-col justify-between">
-        <div className="Infor_room">
+        <div className="w-full">
           <div className="flex justify-start">
             <span className="text-rose-500 text-xl">
               <BsFillGeoAltFill />
             </span>
-            <p className="text-base text-rose-600 font-semibold w-11/12 ml-2">
+            <p className="text-base text-rose-600 font-semibold sm:w-11/12 ml-2">
               {data?.tenPhong}
             </p>
           </div>
-          <p className="m-0 mt-4 text-sm font-bold ml-10">
+          <p className="m-0 mt-4 text-sm font-bold sm:ml-10">
             {mainbooking.soLuongKhach} khách - {data?.phongNgu} phòng ngủ -{" "}
             {data?.phongTam} phòng tắm
           </p>
-          <p className="flex justify-start w-9/12 mt-4 ml-10">
+          <p className="flex justify-start sm:w-9/12 mt-4 sm:ml-10">
             <p className="mr-4">
               {moment(mainbooking.ngayDen).format(formatDay)}
             </p>
@@ -76,7 +76,7 @@ export default function RoomInfor({ mainbooking }: Props) {
             </span>
             <p>{moment(mainbooking.ngayDi).format(formatDay)}</p>
           </p>
-          <p className="flex text-sm font-extrabold justify-end w-10/12 mt-4">
+          <p className="flex text-sm font-extrabold justify-end sm:w-10/12 mt-4">
             {" "}
             Giá tiền: {data?.giaTien}$ / ngày{" "}
           </p>

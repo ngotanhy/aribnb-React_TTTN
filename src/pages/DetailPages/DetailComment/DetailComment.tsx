@@ -64,7 +64,7 @@ export default function DetailComment({ idRoom }: Props) {
         value={comment}
       />
       <div className="mt-2 sm:flex items-center grid gap-4">
-        <span className="text-xl font-medium hidden sm:inline-block">Star</span>
+        <span className="text-xl font-medium hidden sm:inline-block">Đáng Giá</span>
         {arrStar.map((item: Star, index: number) => {
           return (
             <button
@@ -91,7 +91,7 @@ export default function DetailComment({ idRoom }: Props) {
         className="px-10 font-medium text-2xl bg-blue-500 mt-2 flex items-center gap-3"
         onClick={handleInput}
       >
-        Send
+        Gửi
         <AiOutlineSend />
       </Button>
     </div>

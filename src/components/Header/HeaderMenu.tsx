@@ -39,13 +39,13 @@ export default function HeaderMenu({}: Props) {
 
   const menu = (
     <Menu
-      className="w-60 rounded-xl py-2.5 mt-2.5 shadow-b-3"
+      className="w-60 rounded-xl px-2 py-2.5 mt-2.5 shadow-b-3"
       items={[
         {
           key: "1",
           label: (
             <>
-              {userLog !== null ? (
+              {userLog !== null && (
                 <>
                   <p
                     onClick={() => {
@@ -55,7 +55,7 @@ export default function HeaderMenu({}: Props) {
                         navigate("/login/1");
                       }
                     }}
-                    className="text-base font-medium m-0"
+                    className="text-base font-medium py-2"
                   >{`Hello ${userLog?.name}`}</p>
                   <p
                     onClick={() => {
@@ -66,25 +66,68 @@ export default function HeaderMenu({}: Props) {
                       }
                     }}
                     className="text-base  mt-3"
+                    style={{ borderBottom: "1px solid #ccc" }}
                   >
                     Lịch sử đặt vé
                   </p>
                 </>
-              ) : (
-                <p
-                  onClick={() => navigate("/register")}
-                  className="text-base font-medium m-0"
-                >
-                  Đăng ký
-                </p>
               )}
             </>
             //
           ),
         },
-
         {
           key: "2",
+          label: (
+            <p
+              className="text-base m-0 py-1"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Trang Chủ
+            </p>
+          ),
+        },
+        {
+          key: "3",
+          label: (
+            <p
+              onClick={() => {
+                if (userProfile?.role === "ADMIN") {
+                  navigate("/admin/dashboard");
+                } else {
+                  navigate("/");
+                  alert("Bạn không có quyền truy cập");
+                }
+              }}
+              className="text-base py-2"
+            >
+              Đi đến trang quản trị
+            </p>
+          ),
+        },
+        {
+          key: "4",
+          label: <p className="text-base m-0 py-1">Tổ chức trải nhiệm</p>,
+        },
+        {
+          key: "5",
+          label: <p className="text-base py-2">Trợ giúp</p>,
+        },
+        {
+          key: "6",
+          label: userLog === null && (
+            <p
+              onClick={() => navigate("/register")}
+              className="text-base font-medium py-2"
+            >
+              Đăng ký
+            </p>
+          ),
+        },
+        {
+          key: "7",
           label: (
             <>
               {userLog !== null ? (
@@ -100,54 +143,20 @@ export default function HeaderMenu({}: Props) {
                     dispatch(action2);
                     navigate("/");
                   }}
-                  style={{ borderBottom: "1px solid #ccc" }}
-                  className="text-base   m-0 pb-2 pt-2"
+                  className="text-base py-2"
                 >
                   Đăng xuất
                 </p>
               ) : (
                 <p
                   onClick={() => navigate("/login/1")}
-                  className="text-base   m-0 pb-4 pt-3"
-                  style={{ borderBottom: "1px solid #ccc" }}
+                  className="text-base py-2"
                 >
                   Đăng nhập
                 </p>
               )}
             </>
           ),
-        },
-
-        {
-          key: "3",
-          label: (
-            <p
-              onClick={() => {
-                if (userProfile?.role === "ADMIN") {
-                  navigate("/admin/dashboard");
-                } else {
-                  navigate("/");
-                  alert("Bạn không có quyền truy cập");
-                }
-              }}
-              className="text-base m-0 py-1"
-            >
-              Đi đến trang quản trị
-            </p>
-          ),
-        },
-        {
-          key: "4",
-          label: <p className="text-base m-0 py-1">Cho thuê nhà</p>,
-        },
-
-        {
-          key: "5",
-          label: <p className="text-base m-0 py-1">Tổ chức trải nhiệm</p>,
-        },
-        {
-          key: "6",
-          label: <p className="text-base m-0 py-1">Trợ giúp</p>,
         },
       ]}
     />
