@@ -193,7 +193,6 @@ export default function DashBoard({}: Props) {
               mode="inline"
               items={items}
             />
-            ,
           </div>
         </div>
       </div>
@@ -218,7 +217,7 @@ export default function DashBoard({}: Props) {
                       userProfile?.avatar ||
                       "https://images.pexels.com/photos/13691873/pexels-photo-13691873.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                     }
-                    alt=""
+                    alt="..."
                   />
                 </div>
               </Dropdown>

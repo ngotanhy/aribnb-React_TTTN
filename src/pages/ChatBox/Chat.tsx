@@ -9,7 +9,6 @@ import { allUsersRoute, getUserAdmin, host } from "../../utils/APIRoutes";
 import SilderAdminUser from "../../components/ChatBoxComponents/SilderAdminUser";
 import ChatContainer from "../../components/ChatBoxComponents/ChatContainer";
 
-
 const { Header, Sider } = Layout;
 
 export interface user {
@@ -49,7 +48,7 @@ export default function Chat() {
   useEffect(() => {
     (async function getAllUsers() {
       try {
-        let getUser = await axios.get(allUsersRoute);
+        let getUser = await axios.post(allUsersRoute);
         if (getUser) {
           let setUser = getUser?.data.content.map((user: user) => {
             return { ...user, active: false };
@@ -70,10 +69,6 @@ export default function Chat() {
     })();
   }, []);
 
-  // useEffect(() => {
-
-  // }, [currentUser]);
-
   const handleSelectUser = async (userSelect: user) => {
     if (currentUser?.role === "ADMIN") {
       let allUserNew = allUser?.map((user: user) => {
@@ -84,6 +79,14 @@ export default function Chat() {
         }
       });
       if (allUserNew) {
+        let findUser: number = allUserNew?.findIndex(
+          (user) => user.active === true
+        );
+        let selectUser: user | undefined=allUserNew[findUser];
+        if (findUser > -1) {
+          allUserNew.splice(findUser, 1);
+          allUserNew.unshift(selectUser);
+        }
         setAllUser(allUserNew);
       }
       setCurrentChat(userSelect);
@@ -95,7 +98,7 @@ export default function Chat() {
       try {
         let currentUser = getStoreJSON(CURRENT_USER);
         if (currentUser.role === "USER") {
-          let admin = await axios.get(getUserAdmin);
+          let admin = await axios.post(getUserAdmin);
           setCurrentChat(admin.data.content);
         } else {
           setIsOpen(true);

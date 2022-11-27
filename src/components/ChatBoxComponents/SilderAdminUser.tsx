@@ -1,6 +1,7 @@
 import { Layout } from "antd";
-import React from "react";
+import React, { useRef } from "react";
 import { user } from "../../pages/ChatBox/Chat";
+import personIcon from "../../assets/img/personIcon.jpg";
 const { Sider } = Layout;
 type Props = {
   arrUser: any;
@@ -13,40 +14,49 @@ export default function SilderAdminUser({
   handleSelectUser,
   currentChat,
 }: Props) {
+  const scrollRef = useRef<any>(0);
+
   return (
     <>
       {currentChat !== null ? (
-        <Sider className="">
-          <div className="flex flex-col justify-center items-center">
+        <Sider className="overflow-y-auto scroll-smooth">
+          <div
+            className="flex flex-col justify-center items-center gap-4 "
+            ref={scrollRef}
+          >
             {arrUser?.map(
               (
                 user: { avatar: string; username: string; active: boolean },
                 index: number
               ) => {
                 return (
-                  <div  key={index} className={ user.active ? "text-red-700 bg-slate-300 overflow-hidden rounded-lg flex flex-col items-center w-full" : "flex flex-col items-center"}>
+                  <div
+                    key={index}
+                    className={
+                      user.active
+                        ? "text-red-700 bg-slate-500 overflow-hidden rounded-lg flex flex-col items-center w-full"
+                        : "flex flex-col items-center bg-slate-200 overflow-hidden rounded-lg w-full"
+                    }
+                  >
                     <button
                       className="mt-2"
                       onClick={() => {
                         handleSelectUser(user);
+                        scrollRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        });
                       }}
                     >
                       <img
-                        src={
-                          user.avatar
-                            ? user.avatar
-                            : "https://i.pravatar.cc/300"
-                        }
+                        src={user.avatar !== null ? user.avatar : personIcon}
                         alt="..."
                         className="w-full h-full rounded-full h-16 w-16"
                       />{" "}
                     </button>
-                    <p
-                      className={
-                        user.active ? "text-red-700 bg-slate-300 " : ""
-                      }
-                    >
-                      {user.username.slice(0, 7) + "..."}
+                    <p className={user.active ? "text-red-500" : "text-gray-400"}>
+                      {user.username.length > 20
+                        ? user.username.slice(0, 15) + "..."
+                        : user.username}
                     </p>
                   </div>
                 );
@@ -72,19 +82,13 @@ export default function SilderAdminUser({
                   <div className="pl-2">
                     <img
                       src={
-                        user.avatar ? user.avatar : "https://i.pravatar.cc/300"
+                        user.avatar!== null? user.avatar : personIcon
                       }
                       alt="..."
                       className="w-full h-full rounded-full h-16 w-16  "
                     />
                   </div>
-                  <p
-                    className={
-                      user.active ? "text-red-700 bg-slate-300 pt-2 " : " pt-2"
-                    }
-                  >
-                    {user.username}
-                  </p>
+                  <p>{user.username}</p>
                 </button>
               );
             }
